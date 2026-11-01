@@ -417,7 +417,7 @@ There are many other types of graphs that can be used to display categorical dat
 1.  Data was collected from Dutch farms about the ecological factors of farm management. Create a frequency and relative frequency distribution for grassland usage. Describe any findings you see from your distributions.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [MASS]{.repo}, with the dataset name [farms]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Intro to Stats with Rguroo]{.repo}, with the dataset name [farms]{.data}.
 :::
 
 ```{r, echo=FALSE}
@@ -972,7 +972,7 @@ b.  Create a relative frequency distribution for race distance with 6 classes an
 c.  Write a summary of your observations for both distributions.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [MASS]{.repo}, with the dataset name [hills]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Intro to Stats with Rguroo]{.repo}, with the dataset name [hills]{.data}.
 :::
 
 ```{r, echo=FALSE}
@@ -1188,7 +1188,7 @@ Sometimes you have two numerical variables, and you want to see if they are rela
 ::: {#exm-scatter-plot}
 A study was conducted on tire rubber and recorded the abrasion loss, the hardness of the rubber, and tensile strength. Suppose you are interested in visualizing the relationship of the rubber abrasion loss versus the hardness of the rubber. Create a scatterplot of the variables [loss]{.var} and [hard]{.var}. Describe the relationship, if any exists.
 
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [MASS]{.repo}, with the dataset name [Rubber]{.data}. @tbl-rubber displays the first five rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-rubber) that follows.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [Intro to Stats with Rguroo]{.repo}, with the dataset name [Rubber]{.data}. @tbl-rubber displays the first five rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-rubber) that follows.
 :::
 
 ```{r, echo=FALSE}
@@ -1276,7 +1276,7 @@ The purpose of a time-series plot is to look for patterns or trends over time. H
 
 Data was collected from a simulation study of motorcycle accidents designed to test crash helmets. The study recorded the acceleration of the rider’s head immediately after impact. Head acceleration measures how quickly the speed of the head changes during the crash and is measured in $g$ units where $1g = 9.8 m/s^2$ meters per second squared. Create a time series plot of the head acceleration versus time.
 
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [MASS]{.repo}, with the dataset name [mcycle]{.data}. @tbl-mcycle displays the first five rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-mcycle) that follows.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [Intro to Stats with Rguroo]{.repo}, with the dataset name [mcycle]{.data}. @tbl-mcycle displays the first five rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-mcycle) that follows.
 :::
 
 ```{r, echo=FALSE}

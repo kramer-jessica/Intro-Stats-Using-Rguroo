@@ -2116,7 +2116,7 @@ There is sufficient evidence to support the claim that at least one distribution
 Researchers studying patients diagnosed with malignant melanoma in Denmark want to determine whether the distribution of survival outcomes is the same for male and female patients. The patients are classified according to their survival status: died from melanoma, alive at follow-up, or died from other causes. Is the distribution of survival status the same for male and female melanoma patients at the $\alpha=0.01$ level of significance?
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [MASS]{.repo}, with the dataset name [Melanoma]{.data}. The codebook is below.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Intro to Stats with Rguroo]{.repo}, with the dataset name [Melanoma]{.data}. The codebook is below.
 :::
 
 
