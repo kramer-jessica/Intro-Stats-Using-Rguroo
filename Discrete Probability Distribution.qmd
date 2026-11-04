@@ -29,7 +29,9 @@ By the end of Chapter 5, you should be able to:
 
 :::
 
-When calculating probabilities, we begin by identifying the sample space—the complete set of all possible outcomes of an experiment. When each of these outcomes is assigned a probability, the combination forms a probability distribution. This distribution allows us to examine the overall shape of the random variable's distribution, compute measures such as the mean and standard deviation, and determine the likelihood of specific events. The methods used to find these values depend on the type of random variable involved. Recall that numerical variables fall into two categories: discrete and continuous. **Discrete data** can only take specific, separate values within a given range, while **continuous data** can take on any value within that range. Typically, discrete data arise from counting, whereas continuous data come from measurement. Discrete probability distributions provide a way to model and understand situations in which outcomes can be counted.
+When calculating probabilities, we begin by identifying the sample space—the complete set of all possible outcomes of an experiment. When each of these outcomes is assigned a probability, the combination forms a probability distribution. Often, we are interested in a numerical value associated with the outcome of an experiment. For example, when we flip two coins, we may be interested in the number of heads. We use a *random variable* to represent this numerical value. A **random variable** assigns a numerical value to each outcome in the sample space. The probability distribution of a random variable allows us to examine the overall shape of the random variable’s distribution, compute measures such as the mean and standard deviation, and determine the likelihood of specific events. The methods used to find these values depend on the type of random variable involved. 
+
+Recall that numerical variables fall into two categories: discrete and continuous. Similarly, random variables can be discrete or continuous. A **discrete random variable** can only take specific, separate values within a given range, while a **continuous random variable** can take on any value within that range. Typically, discrete random variables arise from counting, whereas continuous random variables come from measurement. Discrete probability distributions provide a way to model and understand situations in which outcomes can be counted.
 
 ::: {#exm-discrete-continuous-review}
 ## Review of Discrete or Continuous Variables
@@ -66,7 +68,7 @@ These questions can be answered more easily with a discrete probability distribu
 
 ### Random Variables and Probability Distributions
 
-A **random variable** is a numerical measure of each outcome of an experiment.  Usually, we use capital $X$ to describe the random variable in words and use lower case $x$ to denote the values that the random variable can take on.  For example, in the fair coin toss experiment above, we can let $X$ = the number of heads. Then, $x$ could be 0 (no heads - TT), 1 (one heads - HT or TH), or 2 (two heads - HH). So 
+A **random variable** assigns a numerical value to each outcome of an experiment.  Usually, we use capital $X$ to describe the random variable in words and use lower case $x$ to denote the values that the random variable can take on.  For example, in the fair coin toss experiment above, we can let $X$ = the number of heads. Then, $x$ could be 0 (no heads - TT), 1 (one heads - HT or TH), or 2 (two heads - HH). So 
 
 $$X= \text{number of heads}$$
 $$x=\{0, 1, 2\}$$
@@ -248,7 +250,7 @@ knitr::include_graphics(
 
 ### Mean or Expected Value and Standard Deviation 
 
-In probability distributions, the **mean**, also called the **expected value**, represents the long-run average outcome of a random variable. Recall from Chapter 4, the Law of Large Numbers states that as the number of trials, $n$, of an experiment increases, the relative frequency of an event gets closer and closer to the true probability of that event. So, the long-term average, the mean (or expected value) of a probability distribution, is the average you would expect if the number of trials were repeated an infinite number of times. Since the expected value of a random variable is a theoretical, long-run average, it is treated as a population parameter and is labeled as $\mu$.  We can calculate the expected value using the formula below or using statistical software, like Rgruoo.
+In probability distributions, the **mean**, also called the **expected value**, represents the long-run average outcome of a random variable over many repetitions of the random experiment. Recall from Chapter 4, the Law of Large Numbers states that as the number of trials, $n$, of an experiment increases, the relative frequency of an event gets closer and closer to the true probability of that event. Similarly, the mean (or expected value) of a probability distribution represents the long-run average value of the random variable that we would expect over many repetitions of the experiment. Since the expected value of a random variable is a theoretical, long-run average, it is treated as a population parameter and is labeled as $\mu$.  We can calculate the expected value using the formula below or using statistical software, like Rgruoo.
 
 $$\mu = \sum (x \cdot P(x))$$
 
