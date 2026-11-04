@@ -9,7 +9,7 @@ number-sections: false
 
 Rguroo is a statistical software program designed to help students explore data and perform statistical analyses. Throughout this text, Rguroo will be used to carry out calculations, create graphs, and conduct statistical inferences. Using Rguroo allows us to focus on understanding statistical concepts and interpreting results rather than spending excessive time on complicated calculations. As new statistical methods are introduced, you will learn how to use the corresponding tools in Rguroo to perform the analysis and interpret the output.
 
-![Video icon](Rguroo_Icons/camera_inline.png)[Click Here](https://www.youtube.com/watch?v=vla0uFydqW8) to watch a video overview of Rguroo.
+![Video icon](Rguroo_Icons/camera_inline.png)[Click Here](https://www.youtube.com/watch?v=gD-V-Jy8i-4) to watch a video overview of Rguroo.
 
 ## 0.2 Creating a Student Account {#creating-student-account}
 
@@ -41,14 +41,14 @@ knitr::include_graphics("Rguroo_outputs/Chapter_0/student.png")
 
 Select the type of account needed. Students can choose from the following account types.
 
-- *Create a free trial account*: Try Rguroo for free for ten days. Only one trial account per individual is allowed.
+- *Create a free trial account*: Try Rguroo for free for ten days. Only one trial account per individual is allowed. Trial accounts can be created only with your school email ending with .edu.
 - *Create a new account*: Don’t have an Rguroo account? Select this option to register for a new account.
 - *Renew your account*: Extend the subscription for your existing Rguroo account.
 - *Extend your trial account*: Is your trial account is about to expire, or is expired? Purchase an Rguroo subscription
 
 Next, select the type of subscription needed. The following options are available.
 
-- *Purchase Premium Support*: Premium Support is optional and can be added by checking this box. All accounts come with standard support.
+- *Purchase Premium Support*: Premium Support is optional and can be added by checking this box. All accounts come with standard support. To learn more about Premium Support, [click here](https://rguroo.com/premium-info.html).
 - *Have Access Key*: If you have an Access Key, select this option. Note: This is not a group code.
 - If you don’t have an Access Key, select one of the two subscription lengths: 6 Months or 12 Months (check with your instructor on the length you need).
 
@@ -90,6 +90,8 @@ If you have an Access Key, type it in the space provided, read and check the box
 
 If you do not have an access key and need to purchase an Rguroo subscription, enter your credit card number and billing information. Click Submit and go to Step 5.
 
+*Note: Your college amy have an institutional license, and you may not need to pay. Ask your instructor whether your school has institutional license.* 
+
 **Step 5: Sign-in to Rguroo**
 
 If your registration is complete, you should have received an email with a temporary password. You can now log into Rguroo by following the steps below.
@@ -112,7 +114,7 @@ To sign-in to Rguroo, use the sign in button button on Rguroo’s main website [
 
 ## 0.3 Rguroo Dashboard and Icons {#dashboard-icons}
 
-Before you begin using Rguroo, take a few minutes to explore the dashboard and become familiar with its main features. You do not need to learn every feature at once. As you work through the examples in this book, you will be directed to the appropriate menus and tools. The numbered items below highlight the main areas of the dashboard that you will use. @fig-dashboard illustrates the main areas of the Rguroo dashboard. More detail of each follows.
+Before you begin using Rguroo, take a few minutes to explore the dashboard and become familiar with its main features. You do not need to learn every feature at once. @fig-dashboard illustrates the main areas of the Rguroo dashboard. As you work through the examples in this book, you will be directed to the appropriate menus and tools. The numbered items below highlight the main areas of the dashboard that you will use.  More detail of each follows.
 
 ```{r, echo=FALSE}
 #| label: fig-dashboard
@@ -124,7 +126,7 @@ knitr::include_graphics("Rguroo_outputs/Chapter_0/dashboard.png")
 
 [1]{.circle-number} **Toolbox Menu**
 
-The menu on the left organizes Rguroo's statistical tools into categories. Expand Data, Plots, Analytics, Prediction-Classification, Probability-Simulation, or Applets-Calculators to access the tools available within each category.
+The menu on the left organizes Rguroo's statistical tools into categories. Expand Data, Plots, Analytics, Prediction-Classification, Probability-Simulation, or Applets-Calculators to access the functions available within each category.
 
 [2]{.circle-number} **Quick Access Tools**
 
@@ -162,7 +164,7 @@ Displays a dataset template in a spreadsheet-style format, with variables in col
 
 Allows you to control which variables are displayed and filter the dataset to focus on selected observations.
 
-![Video icon](Rguroo_Icons/camera_inline.png)[Click Here](https://www.youtube.com/watch?v=gD-V-Jy8i-4) to watch a video walkthrough of the Rguroo dashboard.
+[Click Here](http://files.rguroo.com/guides/quick_userguide_dashboard.html) to access the Dashboard User Guide.
 
 ::: {.callout-note appearance="simple" icon="false"}
 **Common Rguroo Icons**
@@ -173,7 +175,7 @@ The following icons are used in Rguroo and throughout the text.
 
 ![camera](Rguroo_Icons/camera_inline.png) Camera - A video is available
 
-![folder icon](Rguroo_Icons/Rguroo_repo.png) Folder - The dataset in in a Rguroo repository
+![folder icon](Rguroo_Icons/Rguroo_repo.png) Folder - The dataset in a Rguroo repository
 
 :::
 
@@ -199,11 +201,11 @@ You can create a dataset directly in Rguroo by entering your observations into t
 knitr::include_graphics("Rguroo_outputs/Chapter_0/dataset_row_column.png")
 ```
 
-4.  Click Create Dataset. A dataset containing one column will open in the Dataset Editor. The variable is initially named Var1. You can rename the variable with a meaningful name that describes the data, such as Height, ExamScore, or StudyHours. To rename the variable, select the three horizontal bars ![hamburger icon](Rguroo_Icons/thtee_horizontal_line_icon.png) to the right of Var1. Then click *Rename*.
+4.  Click Create Dataset. A dataset containing one column will open in the Dataset Editor. The variable is initially named Var1. You can rename the variable with a meaningful name that describes the data, such as Height, ExamScore, or StudyHours. To rename the variable, select the three horizontal bars ![hamburger icon](Rguroo_Icons/thtee_horizontal_line_icon.png) to the right of Var1 on the column header. Then click *Rename*.
 5.  Enter the data values in the column, placing one observation in each row.
-6.  In the Save As box, enter a descriptive name for the dataset and save it. The dataset will now show in your **Data** toolbox.
+6.  In the ![Save As](Rguroo_Icons/save_as.png) box, enter a descriptive name for the dataset and save it. The dataset will now show in your **Data** toolbox.
 
-![Video icon](Rguroo_Icons/camera_inline.png)[Click Here](https://www.youtube.com/watch?v=ps://www.youtube.com/watch?v=Is819ogn7sU) to watch a video of how to create a dataset.
+![Video icon](Rguroo_Icons/camera_inline.png)[Click Here](https://youtu.be/Is819ogn7sU) to watch a video of how to create a dataset.
 
 [Walkthrough Example: Creating a Dataset in One Variable]{style="color: blue; font-weight: bold;"}
 
@@ -265,7 +267,7 @@ The Table Editor in Rguroo lets you easily create one-way or two-way frequency t
 5.  In the cells with gray backgrounds in the first column, enter the levels for the row variable.
 6.  In the white-background cells (i.e., the body of the table), enter values corresponding to the specified row and column levels.
 7.  To save your table as a table, enter a name for your table in the Save As Table textbox on the top, and click the Save as table button.
-8.  To save your table as a dataset (with variables in columns) enter a name for your dataset in the Save As Dataset textbox on the top, and click the Save as button button to save your dataset. To see your dataset as a table click the View dataset icon.
+8.  To save your table as a dataset (with variables in columns) enter a name for your dataset in the ![Save As](Rguroo_Icons/save_as.png) Dataset textbox on the top, and click the ![Save As](Rguroo_Icons/save_as.png) button to save your dataset. To see your dataset as a table click the View dataset icon.
 
 ![Video icon](Rguroo_Icons/camera_inline.png)[Click Here](https://www.youtube.com/watch?v=t8JmZJyUQRc) to watch a video of how to create a table.
 
@@ -294,9 +296,9 @@ Suppose a pet store records the number of pets of each type currently available 
 knitr::include_graphics("Rguroo_outputs/Chapter_0/pet-table.png")
 ```
 
-For tables, you can save in two ways; a table and/or a dataset. It is recommended that you save as both, so you have both forms available to you for future analysis. For this example, the table is saved as *Pet Store* and it is also saved as a dataset, named *Pet Store Dataset*. Saving the table as a dataset allows you to make charts, graphs, and perform analysis later on.
+For tables, you can save in two ways; a table and/or a dataset. Although you can use either the table format or dataset format for future ananlysis, it is recommended that you save as both. For this example, the table is saved as *Pet Store* and it is also saved as a dataset, named *Pet Store Dataset*. Saving the table as a dataset allows you to make charts, graphs, and perform analysis later on.
 
-Once you have saved your table as both a table and dataset, look at your **Data** toolbox. You will see both versions which you can use later. @fig-data-toolbox-pet shows the dataset first and the table saved directly below.
+Once you have saved your table as both a table and dataset, look at your **Data** toolbox. You will see both versions which you can use later. @fig-data-toolbox-pet shows the dataset first and the table saved directly below. Notice that the table and dataset use different icons.
 
 ```{r, echo=FALSE}
 #| label: fig-data-toolbox-pet
@@ -331,7 +333,7 @@ knitr::include_graphics("Rguroo_outputs/Chapter_0/exercise-table.png")
 
 As before, we will save the table both as a table and dataset. In this example, the table is named *Exercise* and the dataset is named *Exercise Dataset*.
 
-*Note*: If a table is not saved, the tab in the workspace will show as red. Once saved, the tab will change to green. @fig-not-saved shows the red tab and @fig-saved shows the tab green after saving.
+*Note*: If a table is not saved, the tab in the workspace will show as red. Once saved, the tab will change to green. @fig-not-saved shows the red tab and @fig-saved shows the tab green after saving. *Note: This color pattern is consistent among all tabs in Rguroo, red before saving and green after.*
 
 ```{r, echo=FALSE}
 #| label: fig-not-saved
@@ -356,14 +358,14 @@ As before, once saved, your tables and datasets appear in your **Data** toolbox.
 Sometimes the data you need may already be available from an external source, such as MyOpenMath, a spreadsheet, or another course resource. Rather than entering each value individually, you can copy and paste the data directly into Rguroo. This is a quick and efficient way to transfer datasets while reducing the chance of errors that can occur when entering data manually.Follow the steps below to copy and paste from an external source.
 
 1.  Open both the program with your external data source (such as MyOpenMath) and Rguroo. Note that Rguroo automatically opens a dataset editor when you login. You can use this workspace to paste your data into.
-2.  Go to the external data source and highlight data. Copy the data by pressing Control + C (PC) or Command + C (Mac) on your keyboard.
+2.  Go to the external data source and highlight data (excluding the variable names, if any). Copy the data by pressing Control + C (PC) or Command + C (Mac) on your keyboard.
 3.  Go to your dataset workspace in Rguroo and click on the first cell in the dataset editor. Then paste your data by pressing Control + V (PC) or Command + V (Mac) on your keyboard. This will paste the data exactly as shown from the external dataset.
 4.  If your dataset is one variable but is showing as multiple variables in Rguroo, cut and paste the columns into one column. To cut the column, highlight the column and press Control + X (PC) or Command + X (Mac) on your keyboard. Then go to the next available space in Var1, click on that empty space and paste using the keyboard commands as above. Continue this until all of your data is in the Var1 column.
 5.  Save your data so you can use it for analysis later.
 
 ![Video icon](Rguroo_Icons/camera_inline.png)[Click Here](https://www.youtube.com/watch?v=hS-TdldDhB4) to watch a video of how to copy and paste a large dataset from MyOpenMath.
 
-### 0.4.4 Importing Datasets {importing-datasets}
+### 0.4.4 Importing Datasets {#importing-datasets}
 
 Rguroo provides several options for importing existing data, making it easy to begin working with a dataset without entering the values manually. You can import a dataset from an external file, select a dataset from the Rguroo Repository, or access datasets that have been shared with you through My Groups. Once imported, the dataset is available in your Data toolbox, where you can view, organize, and analyze the data.
 
@@ -413,7 +415,7 @@ If your dataset is saved on your computer or another storage location, you can i
 knitr::include_graphics("Rguroo_outputs/Chapter_0/dataset-import.png")
 ```
 
-3.  If the file is saved on your computer or external drive (such as USB), select *Choose Folder* and select the folder. If the file is from a URL, select *URL* and type or paste the URL in the space provided.
+3.  If the file is saved on your computer or external drive (such as USB), select *Choose Folder* and select the folder. If the file is from a URL, select *URL* and type or paste the URL in the space provided. You can also drag and drop the file in the indicated box.
 
 ```{r, echo=FALSE}
 #| label: fig-import-file
@@ -430,6 +432,8 @@ knitr::include_graphics("Rguroo_outputs/Chapter_0/dialog_file_import.png")
 **My Groups**
 
 The My Groups area in Rguroo provides access to datasets that have been shared within a group, such as those provided by your instructor for a course or assignment. You can select a shared dataset and import it into your Data toolbox, where it is ready to view, explore, and analyze. In order to import a dataset from My Groups, your instructor must provide you with the group code where you can join the group. Follow the steps below to join a group and then import a dataset from your group.
+
+*Note: You only need to join a group once to access the group's repository.*
 
 1.  To import a dataset from a shared group, you will first need to join the group. To do this, click *My Groups* and select *Join a Group*.
 
