@@ -250,7 +250,11 @@ window.Quarto = {
   <ul>
   <li><a href="#sec-one-way-anova" id="toc-sec-one-way-anova" class="nav-link active" data-scroll-target="#sec-one-way-anova"><span class="header-section-number">13.1</span> Comparing Means with One-Way ANOVA</a>
   <ul class="collapse">
-  <li><a href="#homework-for-sec-one-way-anova" id="toc-homework-for-sec-one-way-anova" class="nav-link" data-scroll-target="#homework-for-sec-one-way-anova"><span class="header-section-number">13.1.1</span> Homework for <span>Section 13.1</span></a></li>
+  <li><a href="#exploring-the-data" id="toc-exploring-the-data" class="nav-link" data-scroll-target="#exploring-the-data"><span class="header-section-number">13.1.1</span> Exploring the Data</a></li>
+  <li><a href="#variation-between-and-within-groups" id="toc-variation-between-and-within-groups" class="nav-link" data-scroll-target="#variation-between-and-within-groups"><span class="header-section-number">13.1.2</span> Variation Between and Within Groups</a></li>
+  <li><a href="#the-f-statistic-and-the-anova-test" id="toc-the-f-statistic-and-the-anova-test" class="nav-link" data-scroll-target="#the-f-statistic-and-the-anova-test"><span class="header-section-number">13.1.3</span> The <span class="math inline">\(F\)</span>-Statistic and the ANOVA Test</a></li>
+  <li><a href="#performing-one-way-anova-in-rguroo" id="toc-performing-one-way-anova-in-rguroo" class="nav-link" data-scroll-target="#performing-one-way-anova-in-rguroo"><span class="header-section-number">13.1.4</span> Performing One-Way ANOVA in Rguroo</a></li>
+  <li><a href="#homework-for-sec-one-way-anova" id="toc-homework-for-sec-one-way-anova" class="nav-link" data-scroll-target="#homework-for-sec-one-way-anova"><span class="header-section-number">13.1.5</span> Homework for <span>Section 13.1</span></a></li>
   </ul></li>
   <li><a href="#sec-multiple-comparisons" id="toc-sec-multiple-comparisons" class="nav-link" data-scroll-target="#sec-multiple-comparisons"><span class="header-section-number">13.2</span> Which Means Differ? Multiple Comparisons</a>
   <ul class="collapse">
@@ -316,9 +320,9 @@ window.Quarto = {
 </div>
 </div>
 <p>Analysis of variance (ANOVA) is a statistical method used to compare the population means of three or more groups. In <a href="mean inference.html#sec-mean-independent" class="quarto-xref"><span>Section 10.9</span></a>, we learned how to compare two means using two-sample tests or confidence intervals for the difference between means. When we have three or more groups, one approach would be to compare the means of each pair of groups. For example, suppose that a researcher wants to know whether mean quiz scores differ among students randomly assigned to study with an AI tutor, use only a textbook, or use only class notes. In this example, we have three groups, and comparing each pair of means would require three comparisons, namely, AI tutor vs.&nbsp;textbook, AI tutor vs.&nbsp;class notes, and textbook vs.&nbsp;class notes. As another example, suppose that a researcher wants to know whether mean body weight at 21 days of age differs among chicks receiving four different protein diets. In this example, we have four groups, and comparing each pair of means would require six comparisons, namely, diet 1 vs.&nbsp;diet 2, diet 1 vs.&nbsp;diet 3, diet 1 vs.&nbsp;diet 4, diet 2 vs.&nbsp;diet 3, diet 2 vs.&nbsp;diet 4, and diet 3 vs.&nbsp;diet 4.</p>
-<p>As you can see from the examples above, as the number of groups increases, the number of pairwise comparisons increases rapidly. In general, with <span class="math inline">\(k\)</span> groups there are</p>
+<p>As you can see from the examples above, as the number of groups increases, the number of pairwise comparisons increases rapidly. In general, using the counting method that we learned in Chapter 4, with <span class="math inline">\(k\)</span> groups there are</p>
 <p><span class="math display">\[
-\frac{k(k-1)}{2}
+{}_kC_2=\binom{k}{2}=\frac{k(k-1)}{2}
 \]</span></p>
 <p>pairwise comparisons. For example, if there are 5 groups, there are 10 pairwise comparisons, and if there are 6 groups, there are 15 pairwise comparisons. Conducting many separate tests without accounting for multiple comparisons increases the chance of making at least one Type I error—rejecting a true null hypothesis. Specifically, if we conduct tests each at the 5% level of significance, each test has a 5% chance of rejecting its null hypothesis when that hypothesis is true. Across several tests, however, the probability of making at least one Type I error can be greater than 5%.</p>
 <p>For example, suppose that all the null hypotheses are true and the tests are independent. Under these assumptions, if we conduct <span class="math inline">\(m\)</span> tests, each at the 5% significance level, the probability of making at least one Type I error is</p>
@@ -326,24 +330,26 @@ window.Quarto = {
 1 - (0.95)^m.
 \]</span></p>
 <p>So, for 3 tests this probability is about 14%, for 6 tests it is about 26%, and for 15 tests it is about 54%. Pairwise comparisons involving the same groups are not independent, so these percentages do not apply directly to our examples. Nevertheless, they illustrate how conducting many tests can substantially increase the overall chance of a Type I error. Thus, setting a 5% significance level for each individual test does not keep the overall chance of a Type I error at 5%.</p>
-<p>ANOVA addresses the overall question with a single test of whether all the population means are equal. If the ANOVA test is significant, we have evidence that not all the population means are equal. We can then use multiple comparison procedures to investigate which means differ while controlling the overall chance of a Type I error. In this chapter, we focus on one-way ANOVA, which compares means across groups defined by one categorical variable, such as study method or diet. In <a href="#sec-one-way-anova" class="quarto-xref"><span>Section 13.1</span></a> we will learn how to conduct a one-way ANOVA test, and in <a href="#sec-multiple-comparisons" class="quarto-xref"><span>Section 13.2</span></a> we will learn how to use multiple comparison procedures to investigate which means differ.</p>
+<p>ANOVA addresses the overall question with a single test of whether all the population means are equal. If the ANOVA test is significant, we have evidence that not all the population means are equal. We can then use multiple comparison procedures to investigate which means differ while controlling the overall chance of a Type I error. In this chapter, we focus on one-way ANOVA, which compares means across groups defined by one categorical variable, such as study method or diet. In <a href="#sec-one-way-anova" class="quarto-xref"><span>Section 13.1</span></a> we will learn how to conduct a one-way ANOVA test, in <a href="#sec-multiple-comparisons" class="quarto-xref"><span>Section 13.2</span></a> we will learn how to use multiple comparison procedures to investigate which means differ, and in <a href="#sec-anova-assumptions" class="quarto-xref"><span>Section 13.3</span></a> we will learn about the assumptions underlying ANOVA and how to check them.</p>
 <section id="sec-one-way-anova" class="level2" data-number="13.1">
 <h2 data-number="13.1" class="anchored" data-anchor-id="sec-one-way-anova"><span class="header-section-number">13.1</span> Comparing Means with One-Way ANOVA</h2>
 <p>In this section we introduce one-way ANOVA, a method for testing whether the population means of three or more groups are equal. The null and alternative hypotheses are</p>
 <p><span class="math display">\[
 \begin{cases}
 H_0: &amp; \text{All population means are equal.} \\
-H_a: &amp; \text{Not all population means are equal.}
+H_a: &amp; \text{At least one population mean is different.}
 \end{cases}
 \]</span></p>
 <p>Using the notation <span class="math inline">\(\mu_1, \mu_2, \ldots, \mu_k\)</span> to represent the population means of the <span class="math inline">\(k\)</span> groups, we can write the hypotheses as</p>
 <p><span class="math display">\[
 \begin{cases}
 H_0: &amp; \mu_1 = \mu_2 = \cdots = \mu_k \\
-H_a: &amp; \text{not all population means are equal}
+H_a: &amp; \text{at least one population mean is different}
 \end{cases}
 \]</span></p>
 <p>Note that the alternative hypothesis does <strong>not</strong> say that all the population means are different from one another. <span class="math inline">\(H_a\)</span> is true if even one population mean differs from the others.</p>
+<section id="exploring-the-data" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="exploring-the-data"><span class="header-section-number">13.1.1</span> Exploring the Data</h3>
 <p>To introduce the concepts of one-way ANOVA, we will use the <span class="data">PlantGrowth</span> dataset, which compares dried plant weights under a control condition and two treatment conditions. The dataset contains 30 observations, with 10 observations in each group. This dataset is available in the Rguroo dataset repository <span class="repo">Intro to Stats with Rguroo</span>, with the dataset name <span class="data">PlantGrowth</span>.</p>
 <p>One-way ANOVA examines a quantitative response variable across groups defined by one categorical explanatory variable. In this dataset, the two variables are:</p>
 <ul>
@@ -512,7 +518,7 @@ Code book for Dataset PlantGrowth
 <p><span class="math display">\[
 \begin{cases}
 H_0: &amp; \mu_1 = \mu_2 = \mu_3 \\
-H_a: &amp; \text{not all three population means are equal}
+H_a: &amp; \text{At least one of the three population means is different}
 \end{cases}
 \]</span></p>
 <p>We computed the sample size, mean, and standard deviation of dried weight for each group using the Rguroo <span class="fun">Numerical Summary</span> function. The results are shown in <a href="#tbl-plant-growth-summary" class="quarto-xref">Table&nbsp;<span>13.2</span></a>. Rounded to two decimal places, the sample mean weight is 5.03 for the control group, 4.66 for treatment 1, and 5.53 for treatment 2. These sample means are different, but we need a formal test to determine whether the differences are statistically significant.</p>
@@ -550,6 +556,9 @@ Figure&nbsp;13.1: Side-by-side boxplots of dried plant weights for each group. R
 </div>
 </div>
 <p>The mean markers show that treatment 2 has the highest sample mean weight, followed by the control group and then treatment 1. Notice that the mean and median are not the same within a group. In the control group the mean is below the median, while in treatment 1 the mean is above the median. Treatment 1 also has one unusually large observation, shown as an open circle, which pulls its mean upward. We will return to outliers when we discuss the ANOVA assumptions in <a href="#sec-anova-assumptions" class="quarto-xref"><span>Section 13.3</span></a>.</p>
+</section>
+<section id="variation-between-and-within-groups" class="level3" data-number="13.1.2">
+<h3 data-number="13.1.2" class="anchored" data-anchor-id="variation-between-and-within-groups"><span class="header-section-number">13.1.2</span> Variation Between and Within Groups</h3>
 <p>The boxplots also show that individual plant weights vary within each group. To understand how ANOVA evaluates the differences among the sample means, we need to distinguish two sources of variation:</p>
 <ul>
 <li><strong>Variation between groups</strong> refers to differences among the group means.</li>
@@ -558,6 +567,9 @@ Figure&nbsp;13.1: Side-by-side boxplots of dried plant weights for each group. R
 <p>Differences among group means are easier to detect when the observations within each group are tightly clustered. When observations within each group are widely spread, differences among the means are harder to distinguish from chance variation. ANOVA therefore considers how far apart the group means are in relation to how much observations vary within the groups.</p>
 <p>In the plant growth example, the differences among the sample means of 5.03, 4.66, and 5.53 reflect variation between groups. The sample standard deviations of 0.58 for the control group, 0.79 for treatment 1, and 0.43 for treatment 2 describe variation in individual plant weights within each group. Treatment 1 has the largest spread, which agrees with its taller box and longer whiskers in <a href="#fig-boxplot-plant-growth" class="quarto-xref">Figure&nbsp;<span>13.1</span></a>.</p>
 <p>The sample means alone do not tell us whether the differences are statistically significant. We will use a one-way ANOVA test to assess whether the differences among the means, relative to the variation within groups, provide evidence that not all population means are equal.</p>
+</section>
+<section id="the-f-statistic-and-the-anova-test" class="level3" data-number="13.1.3">
+<h3 data-number="13.1.3" class="anchored" data-anchor-id="the-f-statistic-and-the-anova-test"><span class="header-section-number">13.1.3</span> The <span class="math inline">\(F\)</span>-Statistic and the ANOVA Test</h3>
 <p>One-way ANOVA compares variation between groups with variation within groups using a statistic called the <strong><span class="math inline">\(F\)</span>-statistic</strong>. The <span class="math inline">\(F\)</span>-statistic is a ratio:</p>
 <p><span class="math display">\[
 F=\frac{\text{Mean square between groups}}{\text{Mean square within groups}}.
@@ -569,13 +581,32 @@ F=\frac{\text{Mean square between groups}}{\text{Mean square within groups}}.
 <li>The <strong>mean square between groups</strong> also estimates <span class="math inline">\(\sigma^2\)</span> when the null hypothesis is true. When the population means differ, however, it tends to be larger than <span class="math inline">\(\sigma^2\)</span>, because it also reflects the differences among the population means.</li>
 </ul>
 <p>Because both mean squares estimate the same variance under the null hypothesis, an <span class="math inline">\(F\)</span>-statistic near 1 is consistent with equal population means. A large <span class="math inline">\(F\)</span>-statistic indicates that the differences among sample means are greater than we would expect from the variation within groups alone, providing evidence against the null hypothesis.</p>
-<p>Because large values provide evidence against the null hypothesis, the p-value for the ANOVA test is the area to the <strong>right</strong> of the observed <span class="math inline">\(F\)</span>-statistic under the <span class="math inline">\(F\)</span> distribution. We use Rguroo to calculate the p-value and compare it with the significance level to decide whether to reject the null hypothesis.</p>
+<p>When the null hypothesis is true and the ANOVA assumptions hold, the <span class="math inline">\(F\)</span>-statistic follows an <strong><span class="math inline">\(F\)</span> distribution</strong>. An <span class="math inline">\(F\)</span> distribution is determined by two degrees of freedom: the <strong>numerator degrees of freedom</strong>, <span class="math inline">\(d_1\)</span>, associated with the mean square between groups, and the <strong>denominator degrees of freedom</strong>, <span class="math inline">\(d_2\)</span>, associated with the mean square within groups. For one-way ANOVA with <span class="math inline">\(k\)</span> groups and <span class="math inline">\(n\)</span> total observations, <span class="math inline">\(d_1 = k - 1\)</span> and <span class="math inline">\(d_2 = n - k\)</span>. For example, the plant growth data have <span class="math inline">\(k = 3\)</span> groups and <span class="math inline">\(n = 30\)</span> observations, so <span class="math inline">\(d_1 = 2\)</span> and <span class="math inline">\(d_2 = 27\)</span>.</p>
+<p><a href="#fig-f-distribution" class="quarto-xref">Figure&nbsp;<span>13.2</span></a> shows several <span class="math inline">\(F\)</span> distributions. Because the <span class="math inline">\(F\)</span>-statistic is a ratio of two mean squares, it cannot be negative, and every <span class="math inline">\(F\)</span> distribution is skewed to the right. Notice that as the degrees of freedom increase, the distribution becomes more concentrated around 1, consistent with our earlier observation that the <span class="math inline">\(F\)</span>-statistic tends to be near 1 when the null hypothesis is true.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-f-distribution" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Four F distribution density curves plotted from 0 to 5. The curve with 2 and 10 degrees of freedom starts at its highest point at zero and decreases. The curves with 3 and 41, 5 and 20, and 10 and 50 degrees of freedom rise to a peak below 1 and then decrease with a long right tail. As the degrees of freedom increase, the curves become taller and more concentrated near 1. All curves are skewed to the right and take only nonnegative values." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-f-distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Rguroo_outputs/ANOVA/f_distribution.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Four F distribution density curves plotted from 0 to 5. The curve with 2 and 10 degrees of freedom starts at its highest point at zero and decreases. The curves with 3 and 41, 5 and 20, and 10 and 50 degrees of freedom rise to a peak below 1 and then decrease with a long right tail. As the degrees of freedom increase, the curves become taller and more concentrated near 1. All curves are skewed to the right and take only nonnegative values.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-f-distribution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.2: Probability density functions of <span class="math inline">\(F\)</span> distributions for several combinations of numerator degrees of freedom (<span class="math inline">\(d_1\)</span>) and denominator degrees of freedom (<span class="math inline">\(d_2\)</span>).
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Because large values provide evidence against the null hypothesis, the p-value for the ANOVA test is the area under the <span class="math inline">\(F\)</span> distribution to the <strong>right</strong> of the observed <span class="math inline">\(F\)</span>-statistic. We use Rguroo to calculate the p-value and compare it with the significance level to decide whether to reject the null hypothesis.</p>
+</section>
+<section id="performing-one-way-anova-in-rguroo" class="level3" data-number="13.1.4">
+<h3 data-number="13.1.4" class="anchored" data-anchor-id="performing-one-way-anova-in-rguroo"><span class="header-section-number">13.1.4</span> Performing One-Way ANOVA in Rguroo</h3>
 <p>The following example presents a complete one-way ANOVA analysis of the plant growth data using Rguroo, from stating the hypotheses to making a decision and interpreting the results in context.</p>
 <div id="exm-anova-plant-growth" class="callout-example theorem example">
 <p><span class="theorem-title"><strong>Example 13.1 (Comparing mean dried weights of plants under three experimental conditions)</strong></span> Consider the <span class="data">PlantGrowth</span> dataset, which contains dried plant weights under a control condition and two treatment conditions. The dataset includes 30 observations, with 10 observations in each group. We want to determine whether there is evidence that the mean dried weight differs among the three experimental conditions. Denoting the population mean dried weights of plants grown under the control condition, treatment 1, and treatment 2 as <span class="math inline">\(\mu_1\)</span>, <span class="math inline">\(\mu_2\)</span>, and <span class="math inline">\(\mu_3\)</span>, respectively, we stated the null and alternative hypotheses as <span class="math display">\[
 \begin{cases}
 H_0: \mu_1 = \mu_2 = \mu_3 \\
-H_a: \text{not all means are equal.}\end{cases}
+H_a: \text{At least one population mean is different.}\end{cases}
 \]</span></p>
 <ol type="a">
 <li><p>Use Rguroo to test the hypotheses at the 5% significance level. Report the mean square between groups, the mean square within groups, the F-statistic, and the p-value.</p></li>
@@ -613,14 +644,15 @@ H_a: \text{not all means are equal.}\end{cases}
 <div class="callout-body-container callout-body">
 <p>Before you begin, make sure to import the <span class="data">PlantGrowth</span> dataset from the <span class="repo">Intro to Stats with Rguroo</span> repository.</p>
 <ol type="1">
-<li><p>Open the <strong>Analytics</strong> toolbox in Rguroo.</p></li>
-<li><p>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</p></li>
-<li><p>From the <span class="dpd">Dataset</span> dropdown, select the <span class="data">PlantGrowth</span> dataset.</p></li>
-<li><p>From the <span class="dpd">Response</span> dropdown, select the variable <span class="var">weight</span>.</p></li>
-<li><p>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown select the categorical variable <span class="var">group</span>.</p></li>
-<li><p>Enter <span class="typein">0.05</span> in the <span class="des">Significance level</span> textbox.</p></li>
-<li><p>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon"> to view the output.</p></li>
-<li><p>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">ANOVA_PlantGrowth</span>.</p></li>
+<li>Open the <strong>Analytics</strong> toolbox in Rguroo.<br>
+</li>
+<li>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</li>
+<li>From the <span class="dpd">Dataset</span> dropdown, select the <span class="data">PlantGrowth</span> dataset.</li>
+<li>From the <span class="dpd">Response</span> dropdown, select the variable <span class="var">weight</span>.</li>
+<li>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown select the categorical variable <span class="var">group</span>.</li>
+<li>Enter <span class="typein">0.05</span> in the <span class="des">Significance level</span> textbox.</li>
+<li>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon"> to view the output.</li>
+<li>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">ANOVA_PlantGrowth</span>.</li>
 </ol>
 <div class="inner-callout callout callout-style-default callout-tip callout-titled" title="Rguroo ANOVA dialog">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
@@ -687,7 +719,7 @@ Table&nbsp;13.3: ANOVA table for dried plant weights by experimental group.
 </figure>
 </div>
 </div>
-<p>In the Rguroo output, the mean square between groups appears in the row labeled <em>group</em>, and the mean square within groups appears in the row labeled <em>Residual</em>. Rounded to two decimal places, these values are 1.88 and 0.39, respectively. The <span class="math inline">\(F\)</span>-statistic is the ratio of these two mean squares, <span class="math inline">\(F = 4.85\)</span>, with 2 and 27 degrees of freedom. (Rguroo computes <span class="math inline">\(F\)</span> from the unrounded mean squares, so dividing the rounded values gives a slightly different result.) The mean square between groups is almost five times the mean square within groups, much larger than the value near 1 we would expect if <span class="math inline">\(H_0\)</span> were true. Rounded to three decimal places, the p-value is 0.016.</p>
+<p>In the Rguroo output, the mean square between groups appears in the row labeled <em>group</em>, and the mean square within groups appears in the row labeled <em>Residual</em>. Rounded to two decimal places, these values are 1.88 and 0.39, respectively. The <span class="math inline">\(F\)</span>-statistic is the ratio of these two mean squares, <span class="math inline">\(F = 4.85\)</span>, with 2 and 27 degrees of freedom. (Rguroo computes <span class="math inline">\(F\)</span> from the unrounded mean squares, so dividing the rounded values gives a slightly different result.) The mean square between groups is almost five times the mean square within groups, much larger than the value near 1 we would expect if <span class="math inline">\(H_0\)</span> were true. Rounded to three decimal places, the p-value is 0.016. Note that the p-value is shown under the column labeled <em>Pr&gt;F</em> in the Rguroo output.</p>
 <p>b. Since the p-value of 0.016 is less than the significance level <span class="math inline">\(\alpha = 0.05\)</span>, we reject <span class="math inline">\(H_0\)</span>. At the 5% significance level, there is evidence that not all three experimental conditions have the same population mean dried weight. This conclusion does not mean that all three population means differ from one another; it means that at least one population mean differs from the others.</p>
 <p>Because the <span class="data">PlantGrowth</span> data come from an experiment, if the plants were randomly assigned to the three conditions, this result would support the conclusion that the experimental conditions <em>caused</em> differences in mean dried weight. Note that the ANOVA test does not tell us which population means differ. In <a href="#sec-multiple-comparisons" class="quarto-xref"><span>Section 13.2</span></a>, we will use multiple comparison procedures to investigate this question.</p>
 </div>
@@ -698,10 +730,10 @@ Table&nbsp;13.3: ANOVA table for dried plant weights by experimental group.
 <p><span class="theorem-title"><strong>Example 13.2 (Comparing mean body mass of Adélie penguins across three islands)</strong></span> Consider the <span class="data">palmerpenguins_Adelie</span> dataset, available in the <span class="repo">Intro to Stats with Rguroo</span> repository. This dataset contains measurements of Adélie penguins observed on Biscoe, Dream, and Torgersen islands near Palmer Station, Antarctica. The variables <span class="var">body_mass_g</span> and <span class="var">island</span> give each penguin’s body mass in grams and the island where it was observed.</p>
 <p>We want to investigate whether the population mean body mass of Adélie penguins differs among the three islands.</p>
 <ol type="a">
-<li><p>Use the Rguroo <span class="fun">Numerical Summaries</span> function to obtain the sample size, mean, and standard deviation of body mass for each island.</p></li>
-<li><p>Use the Rguroo <span class="fun">Boxplot</span> function to create side-by-side boxplots of body mass by island. Describe the centers and variation of the three distributions.</p></li>
+<li><p>Use Rguroo to obtain the sample size, mean, and standard deviation of body mass for each island.</p></li>
+<li><p>Use Rguroo to create side-by-side boxplots of body mass by island. Describe the centers and variation of the three distributions.</p></li>
 <li><p>State the null and alternative hypotheses for testing whether the population mean body mass is the same on all three islands.</p></li>
-<li><p>Use the Rguroo <span class="fun">ANOVA</span> function to perform a one-way ANOVA test at the 5% significance level. Report the mean square between groups, the mean square within groups, the <span class="math inline">\(F\)</span>-statistic, and the p-value.</p></li>
+<li><p>Use the Rguroo to perform a one-way ANOVA test at the 5% significance level. Report the mean square between groups, the mean square within groups, the <span class="math inline">\(F\)</span>-statistic, and the p-value.</p></li>
 <li><p>Based on the p-value, state your conclusion in the context of the problem.</p></li>
 </ol>
 <div tabindex="0" style="width:85%; margin:auto;">
@@ -743,17 +775,17 @@ Table&nbsp;13.4: Summary statistics for Adélie penguin body mass, in grams, by 
 </div>
 </div>
 <p>Rounded to the nearest gram, the sample means are 3,710 g for Biscoe, 3,688 g for Dream, and 3,706 g for Torgersen. The corresponding standard deviations are 487 g, 455 g, and 445 g. The sample means are close to one another, with a difference of only about 21 g between the largest and smallest means. In comparison, the standard deviation within each island is more than 440 g.</p>
-<p>b. In the Rguroo <span class="fun">Boxplot</span> function, select <span class="var">body_mass_g</span> as the numerical variable and <span class="var">island</span> as the grouping variable. Include the group means in the plot by selecting the checkbox <span class="des">Show Mean</span> in the <span class="dialog">Boxplot</span> dialog.</p>
-<p><a href="#fig-adelie-boxplot" class="quarto-xref">Figure&nbsp;<span>13.2</span></a> shows the resulting side-by-side boxplots. The red diamonds represent the sample means.</p>
+<p>b. In the Rguroo <span class="fun">Boxplot</span> function, select <span class="var">body_mass_g</span> from the <span class="des">Numerical Variables</span> column and <span class="var">island</span> from the <span class="des">Factor Variables</span> column. Include the group means in the plot by selecting the checkbox <span class="des">Show Mean</span> in the <span class="dialog">Boxplot</span> dialog.</p>
+<p><a href="#fig-adelie-boxplot" class="quarto-xref">Figure&nbsp;<span>13.3</span></a> shows the resulting side-by-side boxplots. The red diamonds represent the sample means.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-adelie-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Side-by-side boxplots of Adélie penguin body mass on Biscoe, Dream, and Torgersen islands. The distributions have similar centers and spreads, with substantial overlap. Red diamonds indicate nearly identical sample means.">
+<div id="fig-adelie-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Side-by-side boxplots of Adélie penguin body mass on Biscoe, Dream, and Torgersen islands. The distributions have similar centers and spreads, with substantial overlap. Red diamonds indicate nearly identical sample means." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-adelie-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Rguroo_outputs/ANOVA/adelie_boxplot.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Side-by-side boxplots of Adélie penguin body mass on Biscoe, Dream, and Torgersen islands. The distributions have similar centers and spreads, with substantial overlap. Red diamonds indicate nearly identical sample means.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adelie-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.2: Body mass of Adélie penguins by island. Red diamonds indicate sample means.
+Figure&nbsp;13.3: Body mass of Adélie penguins by island. Red diamonds indicate sample means.
 </figcaption>
 </figure>
 </div>
@@ -764,7 +796,7 @@ Figure&nbsp;13.2: Body mass of Adélie penguins by island. Red diamonds indicate
 <p><span class="math display">\[
 \begin{cases}
 H_0: \mu_1 = \mu_2 = \mu_3 \\
-H_a: \text{not all population means are equal.}
+H_a: \text{At least one population mean is different.}
 \end{cases}
 \]</span></p>
 <p>d. Click to expand the box below to see how to use the <span class="fun">ANOVA</span> function in Rguroo to answer this question.</p>
@@ -781,14 +813,14 @@ H_a: \text{not all population means are equal.}
 <div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p>Open the <strong>Analytics</strong> toolbox in Rguroo.</p></li>
-<li><p>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</p></li>
-<li><p>From the <span class="dpd">Dataset</span> dropdown, select the <span class="data">palmerpenguins_Adelie</span> dataset.</p></li>
-<li><p>From the <span class="dpd">Response</span> dropdown, select the variable <span class="var">body_mass_g</span>.</p></li>
-<li><p>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown, select the categorical variable <span class="var">island</span>.</p></li>
-<li><p>Enter <span class="typein">0.05</span> in the <span class="des">Significance Level</span> textbox.</p></li>
-<li><p>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon"> to view the output.</p></li>
-<li><p>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">ANOVA_adelie</span>.</p></li>
+<li>Open the <strong>Analytics</strong> toolbox in Rguroo.</li>
+<li>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</li>
+<li>From the <span class="dpd">Dataset</span> dropdown, select the <span class="data">palmerpenguins_Adelie</span> dataset.</li>
+<li>From the <span class="dpd">Response</span> dropdown, select the variable <span class="var">body_mass_g</span>.</li>
+<li>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown, select the categorical variable <span class="var">island</span>.</li>
+<li>Enter <span class="typein">0.05</span> in the <span class="des">Significance Level</span> textbox.</li>
+<li>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon"> to view the output.</li>
+<li>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">ANOVA_adelie</span>.</li>
 </ol>
 <div class="inner-callout callout callout-style-default callout-tip callout-titled" title="Rguroo ANOVA dialog">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="true" aria-label="Toggle callout">
@@ -859,7 +891,7 @@ Table&nbsp;13.5: ANOVA table for Adélie penguin body mass by island.
 <p><span class="math display">\[
 F = \frac{6{,}827.3}{213{,}032} \approx 0.032.
 \]</span></p>
-<p>The mean square between groups is much smaller than the mean square within groups. Recall that large values of <span class="math inline">\(F\)</span> provide evidence against <span class="math inline">\(H_0\)</span>; this small value does not. In fact values of F far below 1 simply indicate chance variation. Rounded to three decimal places, the p-value is 0.968.</p>
+<p>The mean square between groups is much smaller than the mean square within groups. Recall that large values of <span class="math inline">\(F\)</span> provide evidence against <span class="math inline">\(H_0\)</span>; this small value does not. In fact values of F far below 1 simply indicate chance variation. Rounded to three decimal places, the p-value is 0.968. Note that the p-value is shown under the column labeled <em>Pr&gt;F</em> in the Rguroo output.</p>
 <p>e. Since the p-value of 0.968 is greater than the significance level <span class="math inline">\(\alpha = 0.05\)</span>, we fail to reject <span class="math inline">\(H_0\)</span>. At the 5% significance level, there is insufficient evidence that the population mean body mass of Adélie penguins differs among Biscoe, Dream, and Torgersen islands. This conclusion does not establish that the population means are equal; it means that these data do not provide sufficient evidence of a difference.</p>
 </div>
 </div>
@@ -869,10 +901,10 @@ F = \frac{6{,}827.3}{213{,}032} \approx 0.032.
 <p><span class="theorem-title"><strong>Example 13.3 (Comparing mean chick body weights under four protein diets)</strong></span> Consider the <span class="data">ChickWeight21</span> dataset, available in the <span class="repo">Intro to Stats with Rguroo</span> repository. This dataset contains body weights of chicks at 21 days of age from an experiment comparing four protein diets. The variables <span class="var">weight</span> and <span class="var">Diet</span> give each chick’s body weight in grams and the diet it received. Each chick contributes one observation.</p>
 <p>We want to investigate whether the population mean body weight at 21 days differs among the four diets.</p>
 <ol type="a">
-<li><p>Use the Rguroo <span class="fun">Numerical Summaries</span> function to obtain the sample size, mean, and standard deviation of body weight for each diet.</p></li>
-<li><p>Use the Rguroo <span class="fun">Boxplot</span> function to create side-by-side boxplots of body weight by diet. Describe the centers and variation of the four distributions.</p></li>
+<li><p>Use Rguroo to obtain the sample size, mean, and standard deviation of body weight for each diet.</p></li>
+<li><p>Use Rguroo to create side-by-side boxplots of body weight by diet. Describe the centers and variation of the four distributions.</p></li>
 <li><p>State the null and alternative hypotheses for testing whether the population mean body weight at 21 days is the same under all four diets.</p></li>
-<li><p>Use the Rguroo <span class="fun">ANOVA</span> function to perform a one-way ANOVA test at the 1% significance level. Report the mean square between groups, the mean square within groups, the <span class="math inline">\(F\)</span>-statistic, and the p-value. Assume that the ANOVA assumptions hold (see <a href="#sec-anova-assumptions" class="quarto-xref"><span>Section 13.3</span></a>).</p></li>
+<li><p>Use the Rguroo to perform a one-way ANOVA test at the 1% significance level. Report the mean square between groups, the mean square within groups, the <span class="math inline">\(F\)</span>-statistic, and the p-value. Assume that the ANOVA assumptions hold (see <a href="#sec-anova-assumptions" class="quarto-xref"><span>Section 13.3</span></a>).</p></li>
 <li><p>Based on the p-value, state your conclusion in the context of the problem.</p></li>
 </ol>
 <div tabindex="0" style="width:85%; margin:auto;">
@@ -945,17 +977,17 @@ Table&nbsp;13.6: Summary statistics for chick body weight at 21 days, in grams, 
 </div>
 <p>The dataset includes 45 chicks, with 16, 10, 10, and 9 chicks receiving Diets 1 through 4, respectively. Rounded to two decimal places, the sample mean weights are 177.75 g, 214.70 g, 270.30 g, and 238.56 g. The corresponding standard deviations are 58.70 g, 78.14 g, 71.62 g, and 43.35 g.</p>
 <p>Diet 3 has the highest sample mean weight, and Diet 1 has the lowest. Diet 2 has the largest standard deviation, while Diet 4 has the smallest.</p>
-<p>b. In the Rguroo <span class="fun">Boxplot</span> function, select <span class="var">weight</span> as the numerical variable and <span class="var">Diet</span> as the grouping variable. Include the group means in the plot by selecting the checkbox <span class="des">Show Mean</span> in the <span class="dialog">Boxplot</span> dialog.</p>
-<p><a href="#fig-chickweight21-boxplot" class="quarto-xref">Figure&nbsp;<span>13.3</span></a> shows the resulting side-by-side boxplots. The red diamonds represent the sample means.</p>
+<p>b. In the Rguroo <span class="fun">Boxplot</span> function, select <span class="var">weight</span> from the <span class="des">Numerical Variables</span> column and <span class="var">Diet</span> from the <span class="des">Factor Variables</span> column. Include the group means in the plot by selecting the checkbox <span class="des">Show Mean</span> in the <span class="dialog">Boxplot</span> dialog.</p>
+<p><a href="#fig-chickweight21-boxplot" class="quarto-xref">Figure&nbsp;<span>13.4</span></a> shows the resulting side-by-side boxplots. The red diamonds represent the sample means.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-chickweight21-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Side-by-side boxplots of chick body weight at 21 days for four protein diets. Diet 3 has the highest median and mean, followed by Diet 4, Diet 2, and Diet 1. Diets 2 and 3 have longer boxes than Diets 1 and 4. Diet 4 has the smallest overall range. Red diamonds mark the sample means.">
+<div id="fig-chickweight21-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Side-by-side boxplots of chick body weight at 21 days for four protein diets. Diet 3 has the highest median and mean, followed by Diet 4, Diet 2, and Diet 1. Diets 2 and 3 have longer boxes than Diets 1 and 4. Diet 4 has the smallest overall range. Red diamonds mark the sample means." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chickweight21-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Rguroo_outputs/ANOVA/chickweight_boxplot.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Side-by-side boxplots of chick body weight at 21 days for four protein diets. Diet 3 has the highest median and mean, followed by Diet 4, Diet 2, and Diet 1. Diets 2 and 3 have longer boxes than Diets 1 and 4. Diet 4 has the smallest overall range. Red diamonds mark the sample means.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chickweight21-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.3: Chick body weights at 21 days by diet. Red diamonds indicate sample means.
+Figure&nbsp;13.4: Chick body weights at 21 days by diet. Red diamonds indicate sample means.
 </figcaption>
 </figure>
 </div>
@@ -967,7 +999,7 @@ Figure&nbsp;13.3: Chick body weights at 21 days by diet. Red diamonds indicate s
 <p><span class="math display">\[
 \begin{cases}
 H_0: \mu_1 = \mu_2 = \mu_3 = \mu_4 \\
-H_a: \text{not all population means are equal.}
+H_a: \text{At least one population mean is different.}
 \end{cases}
 \]</span></p>
 <p>d. Click to expand the box below to see how to use the <span class="fun">ANOVA</span> function in Rguroo to answer this question.</p>
@@ -984,14 +1016,14 @@ H_a: \text{not all population means are equal.}
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ol type="1">
-<li><p>Open the <strong>Analytics</strong> toolbox in Rguroo.</p></li>
-<li><p>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</p></li>
-<li><p>From the <span class="dpd">Dataset</span> dropdown, select the <span class="data">ChickWeight21</span> dataset.</p></li>
-<li><p>From the <span class="dpd">Response</span> dropdown, select the variable <span class="var">weight</span>.</p></li>
-<li><p>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown, select the categorical variable <span class="var">Diet</span>.</p></li>
-<li><p>Enter <span class="typein">0.01</span> in the <span class="des">Significance Level</span> textbox.</p></li>
-<li><p>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon"> to view the output.</p></li>
-<li><p>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">ANOVA_ChickWeight21</span>.</p></li>
+<li>Open the <strong>Analytics</strong> toolbox in Rguroo.</li>
+<li>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</li>
+<li>From the <span class="dpd">Dataset</span> dropdown, select the <span class="data">ChickWeight21</span> dataset.</li>
+<li>From the <span class="dpd">Response</span> dropdown, select the variable <span class="var">weight</span>.</li>
+<li>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown, select the categorical variable <span class="var">Diet</span>.</li>
+<li>Enter <span class="typein">0.01</span> in the <span class="des">Significance Level</span> textbox.</li>
+<li>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon"> to view the output.</li>
+<li>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">ANOVA_ChickWeight21</span>.</li>
 </ol>
 <div class="inner-callout callout callout-style-default callout-tip callout-titled" title="Rguroo ANOVA dialog">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="true" aria-label="Toggle callout">
@@ -1062,14 +1094,226 @@ Table&nbsp;13.7: ANOVA table for chick body weight at 21 days by diet.
 <p><span class="math display">\[
 F = \frac{19{,}054.7}{4{,}093.64} \approx 4.65.
 \]</span></p>
-<p>The mean square between groups is about 4.65 times the mean square within groups. To determine whether this ratio is sufficiently large to reject <span class="math inline">\(H_0\)</span>, we use the p-value. Rguroo reports a p-value of approximately 0.00686.</p>
+<p>The mean square between groups is about 4.65 times the mean square within groups. To determine whether this ratio is sufficiently large to reject <span class="math inline">\(H_0\)</span>, we use the p-value. Rguroo reports a p-value of approximately 0.00686. Note that the p-value is shown under the column labeled <em>Pr&gt;F</em> in the Rguroo output.</p>
 <p>e. Since the p-value of approximately 0.00686 is less than the significance level <span class="math inline">\(\alpha = 0.01\)</span>, we reject <span class="math inline">\(H_0\)</span>. At the 1% significance level, there is evidence that the population mean body weight at 21 days is not the same under all four diets. This does not mean that all four population means differ from one another; it means that at least two population means differ.</p>
 <p>Because these data come from an experiment, if the chicks were randomly assigned to the diets, this result would support the conclusion that diet caused differences in mean body weight at 21 days. The ANOVA test does not tell us which population means differ. In <a href="#sec-multiple-comparisons" class="quarto-xref"><span>Section 13.2</span></a>, we will use multiple comparison procedures to investigate this question.</p>
 </div>
 </div>
 </div>
-<section id="homework-for-sec-one-way-anova" class="level3" data-number="13.1.1">
-<h3 data-number="13.1.1" class="anchored" data-anchor-id="homework-for-sec-one-way-anova"><span class="header-section-number">13.1.1</span> Homework for <a href="#sec-one-way-anova" class="quarto-xref"><span>Section 13.1</span></a></h3>
+<p>The following example uses the <span class="data">Cholesterol</span> dataset to compare mean cholesterol reduction under three dosing schedules of the same drug, from exploring the data to conducting a one-way ANOVA test and interpreting the results.</p>
+<div id="exm-anova-cholesterol" class="callout-example theorem example">
+<p><span class="theorem-title"><strong>Example 13.4 (Comparing mean cholesterol reduction under three dosing schedules)</strong></span> Consider the <span class="data">Cholesterol</span> dataset, available in the <span class="repo">Intro to Stats with Rguroo</span> repository. This dataset contains cholesterol reductions from a clinical study comparing three dosing schedules of the same drug:</p>
+<ul>
+<li><span class="var">1time</span>: 20 mg once daily</li>
+<li><span class="var">2times</span>: 10 mg twice daily</li>
+<li><span class="var">4times</span>: 5 mg four times daily</li>
+</ul>
+<p>Each schedule provides the same total daily dose of 20 mg. The variables <span class="var">response</span> and <span class="var">trt</span> give each patient’s cholesterol reduction and dosing schedule, respectively. The dataset includes 30 patients, with 10 patients in each group.</p>
+<p>We want to investigate whether population mean cholesterol reduction differs among the three dosing schedules.</p>
+<ol type="a">
+<li><p>Use Rguroo to obtain the sample size, mean, and standard deviation of cholesterol reduction for each dosing schedule.</p></li>
+<li><p>Use Rguroo to create side-by-side boxplots of cholesterol reduction by dosing schedule. Describe the centers and variation of the three distributions.</p></li>
+<li><p>State the null and alternative hypotheses for testing whether population mean cholesterol reduction is the same under all three dosing schedules.</p></li>
+<li><p>Use Rguroo to perform a one-way ANOVA test at the 5% significance level. Report the mean square between groups, the mean square within groups, the <span class="math inline">\(F\)</span>-statistic, and the p-value. Assume that the ANOVA assumptions hold (see <a href="#sec-anova-assumptions" class="quarto-xref"><span>Section 13.3</span></a>).</p></li>
+<li><p>Based on the p-value, state your conclusion in the context of the problem.</p></li>
+</ol>
+<div tabindex="0" style="width:85%; margin:auto;">
+<p><img src="Rguroo_Icons/Rguroo_repo_logo.png" class="img-fluid" alt="Rguroo dataset logo"> The dataset for this exercise is available in the Rguroo dataset repository <span class="repo">Intro to Stats with Rguroo</span>, with the dataset name <span class="data">Cholesterol</span>.</p>
+<p><strong>Code book for Dataset Cholesterol is given <a href="#code-book-cholesterol">here</a>.</strong></p>
+</div>
+</div>
+<div id="code-book-cholesterol" class="codebook callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Code book for Dataset Cholesterol
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Dataset Name: <span class="data">Cholesterol</span></p>
+<p>This dataset contains cholesterol reductions from a clinical study comparing three dosing schedules of the same drug. Each schedule provides a total daily dose of 20 mg: 20 mg once daily, 10 mg twice daily, or 5 mg four times daily.</p>
+<p>This subset excludes the two competing-drug groups in the original dataset. It can be used to investigate whether population mean cholesterol reduction differs among the three dosing schedules.</p>
+<p>The variables included in this dataset are described below.</p>
+<p><span class="var">trt</span>: Dosing schedule for the cholesterol-lowering drug</p>
+<ul>
+<li>1time: 20 mg once daily</li>
+<li>2times: 10 mg twice daily</li>
+<li>4times: 5 mg four times daily</li>
+</ul>
+<p><span class="var">response</span>: Cholesterol reduction (measurement units are not specified in the dataset documentation)</p>
+<p>Source</p>
+<p>Adapted from the <a href="https://search.r-project.org/CRAN/refmans/multcomp/html/cholesterol.html">cholesterol dataset</a> in the R package multcomp, retaining only the three dosing schedules.</p>
+<p>Westfall, P. H., Tobias, R. D., Rom, D., Wolfinger, R. D., &amp; Hochberg, Y. (1999). <em>Multiple Comparisons and Multiple Tests Using the SAS System</em>. SAS Institute Inc., p.&nbsp;153.</p>
+</div>
+</div>
+</div>
+<div class="solution-callout callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🔎 Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Before you begin, import the <span class="data">Cholesterol</span> dataset from the <span class="repo">Intro to Stats with Rguroo</span> repository.</p>
+<p>a. In the Rguroo <span class="fun">Numerical Summary</span> function, select <span class="var">response</span> as the numerical variable and <span class="var">trt</span> from the <span class="dpd">Factor</span> dropdown. Then click the <span class="tab">Univariate</span> button and select <span class="des">Mean</span> and <span class="des">Sample Std. Dev.</span> to obtain summaries separately for each value of <span class="var">trt</span>.</p>
+<p><a href="#tbl-cholesterol-summary" class="quarto-xref">Table&nbsp;<span>13.8</span></a> shows the resulting summaries.</p>
+<div class="cell">
+<div id="tbl-cholesterol-summary" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cholesterol-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;13.8: Summary statistics for cholesterol reduction by dosing schedule.
+</figcaption>
+<div aria-describedby="tbl-cholesterol-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Rguroo_outputs/ANOVA/cholestrol_summary.png" class="img-fluid figure-img" style="width:100.0%" alt="Cholesterol reduction summaries for three dosing schedules, with 10 patients per group. Once daily: mean 5.78197, standard deviation 2.87811. Twice daily: mean 9.22497, standard deviation 3.48305. Four times daily: mean 12.37478, standard deviation 2.92312."></p>
+</figure>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Rounded to two decimal places, the sample mean cholesterol reductions are 5.78 for once-daily dosing, 9.22 for twice-daily dosing, and 12.37 for four-times-daily dosing. The corresponding standard deviations are 2.88, 3.48, and 2.92.</p>
+<p>The four-times-daily group has the highest sample mean cholesterol reduction, and the once-daily group has the lowest. The standard deviations are reasonably similar, although the twice-daily group has somewhat greater variation.</p>
+<p>b. In the Rguroo <span class="fun">Boxplot</span> function, select <span class="var">response</span> from the <span class="des">Numerical Variables</span> column and <span class="var">trt</span> from the <span class="des">Factor Variables</span> column. Include the group means in the plot by selecting the checkbox <span class="des">Show Mean</span> in the <span class="dialog">Boxplot</span> dialog.</p>
+<p><a href="#fig-cholesterol-boxplot" class="quarto-xref">Figure&nbsp;<span>13.5</span></a> shows the resulting side-by-side boxplots. The red diamonds represent the sample means.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-cholesterol-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Side-by-side boxplots of cholesterol reduction for once-daily, twice-daily, and four-times-daily dosing. Both means and medians increase across these schedules. The twice-daily group has a narrower box but two observations marked as potential outliers, one low and one high." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cholesterol-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Rguroo_outputs/ANOVA/cholestrol_boxplot.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Side-by-side boxplots of cholesterol reduction for once-daily, twice-daily, and four-times-daily dosing. Both means and medians increase across these schedules. The twice-daily group has a narrower box but two observations marked as potential outliers, one low and one high.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cholesterol-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.5: Cholesterol reduction by dosing schedule. Red diamonds indicate sample means.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Both the medians and the sample means are lowest for once-daily dosing and highest for four-times-daily dosing. The twice-daily group falls between them.</p>
+<p>The twice-daily group has a narrower box, indicating less variation among its middle 50% of observations, but it also has a low and a high observation marked as potential outliers. These observations help explain why this group has the largest standard deviation despite its narrower box.</p>
+<p>The plots suggest differences among the group centers, but a formal test is needed to assess whether the differences among sample means provide evidence of differences among population means.</p>
+<p>c. Let <span class="math inline">\(\mu_1\)</span>, <span class="math inline">\(\mu_2\)</span>, and <span class="math inline">\(\mu_3\)</span> denote the population mean cholesterol reductions under once-daily, twice-daily, and four-times-daily dosing, respectively. The hypotheses are</p>
+<p><span class="math display">\[
+\begin{cases}
+H_0: \mu_1 = \mu_2 = \mu_3 \\
+H_a: \text{not all population means are equal.}
+\end{cases}
+\]</span></p>
+<p>d. Click to expand the box below to see how to use the <span class="fun">ANOVA</span> function in Rguroo to answer this question.</p>
+<div id="anova-cholesterol" class="callout callout-style-simple callout-note callout-titled" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} ANOVA - Cholesterol example">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<img src="Rguroo_Icons/R_circle_logo.svg" class="img-fluid" style="vertical-align:middle;" width="22"> ANOVA - Cholesterol example
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Open the <strong>Analytics</strong> toolbox in Rguroo.</li>
+<li>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</li>
+<li>From the <span class="dpd">Dataset</span> dropdown, select <span class="data">Cholesterol</span>.</li>
+<li>From the <span class="dpd">Response</span> dropdown, select <span class="var">response</span>.</li>
+<li>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown, select <span class="var">trt</span>.</li>
+<li>Enter <span class="typein">0.05</span> in the <span class="des">Significance Level</span> textbox.</li>
+<li>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon"> to view the output.</li>
+<li>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">ANOVA_Cholesterol</span>.</li>
+</ol>
+<div class="inner-callout callout callout-style-default callout-tip callout-titled" title="Rguroo ANOVA dialog">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Rguroo ANOVA dialog
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-17" class="callout-17-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Rguroo_dialogs/ANOVA/cholestrol_dialog.png" class="img-fluid figure-img" style="width:100.0%" alt="Rguroo ANOVA dialog configured for a one-way analysis of the Cholesterol dataset, with response as the response variable, trt as the factor, and a significance level of 0.05."></p>
+<figcaption>Rguroo setup for comparing mean cholesterol reduction across three dosing schedules.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="inner-callout callout callout-style-default callout-tip callout-titled" title="Rguroo Output: Cholesterol ANOVA">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Rguroo Output: Cholesterol ANOVA
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="rg-iframe-wrapper" tabindex="0">
+<p><iframe src="Rguroo_html_output/ANOVA/ANOVA_Cholesterol_docx/ANOVA_Cholesterol.html" class="rg-iframe" title="Rguroo output: ANOVA - Cholesterol Example"> </iframe></p>
+</div>
+</div>
+</div>
+</div>
+<p><a href="#tbl-cholesterol-anova" class="quarto-xref">Table&nbsp;<span>13.9</span></a> shows the ANOVA table from the Rguroo output.</p>
+<div class="cell">
+<div id="tbl-cholesterol-anova" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cholesterol-anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;13.9: ANOVA table for cholesterol reduction by dosing schedule.
+</figcaption>
+<div aria-describedby="tbl-cholesterol-anova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Rguroo_outputs/ANOVA/cholestrol_anova_table.png" class="img-fluid figure-img" style="width:100.0%" alt="One-way ANOVA table for cholesterol reduction by dosing schedule. The mean square between groups is approximately 108.73449, and the mean square within groups is 9.65328. The F-statistic is approximately 11.26 with 2 and 27 degrees of freedom. The p-value is approximately 0.000277."></p>
+</figure>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The mean square between groups appears in the row labeled <em>trt</em> and is approximately 108.73. The mean square within groups appears in the row labeled <em>Residual</em> and is approximately 9.65. Using the unrounded values, the <span class="math inline">\(F\)</span>-statistic is</p>
+<p><span class="math display">\[
+F=\frac{108.73449}{9.65328}\approx 11.26.
+\]</span></p>
+<p>The mean square between groups is about 11.26 times the mean square within groups. Rguroo reports a p-value of approximately 0.000277 under the column labeled <em>Pr&gt;F</em>. This small p-value indicates that an <span class="math inline">\(F\)</span>-statistic this large or larger would be unusual if all three population means were equal and the ANOVA assumptions held.</p>
+<p>e. Since the p-value of approximately 0.000277 is less than the significance level <span class="math inline">\(\alpha = 0.05\)</span>, we reject <span class="math inline">\(H_0\)</span>. At the 5% significance level, there is evidence that population mean cholesterol reduction is not the same under all three dosing schedules.</p>
+<p>All three schedules provide the same total daily dose, so the comparison concerns how that dose is divided throughout the day. The ANOVA result indicates that at least two population means differ, but it does not identify which pairs differ. Although four-times-daily dosing has the highest sample mean, ANOVA alone does not establish that its population mean is higher than both other population means.</p>
+<p>The available documentation does not describe random assignment to dosing schedules, so we should not make a causal claim based on the information provided. In <a href="#sec-multiple-comparisons" class="quarto-xref"><span>Section 13.2</span></a>, we will use Tukey’s HSD comparisons to investigate which pairs of population means differ.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="homework-for-sec-one-way-anova" class="level3" data-number="13.1.5">
+<h3 data-number="13.1.5" class="anchored" data-anchor-id="homework-for-sec-one-way-anova"><span class="header-section-number">13.1.5</span> Homework for <a href="#sec-one-way-anova" class="quarto-xref"><span>Section 13.1</span></a></h3>
 <p>For each exercise below, import the specified dataset into Rguroo from the <span class="repo">Intro to Stats with Rguroo</span> dataset repository and complete parts (a)–(e). Each exercise identifies the response variable, the grouping variable, and the significance level to use. Some exercises include an additional question.</p>
 <ol type="a">
 <li><p>Use the Rguroo <span class="fun">Numerical Summaries</span> function to obtain the sample size, mean, and standard deviation of the response variable for each group.</p></li>
@@ -1079,14 +1323,14 @@ F = \frac{19{,}054.7}{4{,}093.64} \approx 4.65.
 <li><p>Based on the p-value and the specified significance level, state whether you reject the null hypothesis and give your conclusion in the context of the problem. Then explain whether the data allow you to conclude that the grouping variable <em>causes</em> any differences in the population means.</p></li>
 </ol>
 <ol type="1">
-<li><p><strong>Cuckoo Egg Lengths</strong> Cuckoo birds lay their eggs in the nests of other bird species, which then incubate and hatch the eggs. The <span class="data">Eggs</span> dataset contains the lengths of cuckoo eggs found in the nests of six host bird species. Use <span class="var">length</span>, measured in millimeters, as the response variable and <span class="var">bird</span> as the grouping variable. Determine whether the data provide evidence that the population mean cuckoo egg lengths differ among the six host species. Use a 5% significance level. The first two rows for each host species are shown in <a href="#tbl-Eggs" class="quarto-xref">Table&nbsp;<span>13.8</span></a>.</p>
+<li><p><strong>Cuckoo Egg Lengths</strong> Cuckoo birds lay their eggs in the nests of other bird species, which then incubate and hatch the eggs. The <span class="data">Eggs</span> dataset contains the lengths of cuckoo eggs found in the nests of six host bird species. Use <span class="var">length</span>, measured in millimeters, as the response variable and <span class="var">bird</span> as the grouping variable. Determine whether the data provide evidence that the population mean cuckoo egg lengths differ among the six host species. Use a 5% significance level. The first two rows for each host species are shown in <a href="#tbl-Eggs" class="quarto-xref">Table&nbsp;<span>13.10</span></a>.</p>
 <p>In addition to parts (a)–(e), answer the following: if you compared the mean egg lengths for every pair of host species using separate two-sample tests, how many comparisons would you need to make? Why does this make a single ANOVA test useful?</p></li>
 </ol>
 <div class="cell">
 <div id="tbl-Eggs" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-Eggs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;13.8: First two cuckoo egg lengths (mm) for each host bird species.
+Table&nbsp;13.10: First two cuckoo egg lengths (mm) for each host bird species.
 </figcaption>
 <div aria-describedby="tbl-Eggs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1158,7 +1402,7 @@ Table&nbsp;13.8: First two cuckoo egg lengths (mm) for each host bird species.
 <p><strong>Codebook for Dataset Eggs is given <a href="#code-book-eggs">here</a>.</strong></p>
 </div>
 <div id="code-book-eggs" class="codebook callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1167,7 +1411,7 @@ Code book for Dataset Eggs
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div id="callout-21" class="callout-21-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Dataset Name: <span class="data">Eggs</span></p>
 <p>Cuckoo birds lay their eggs in the nests of other bird species, which then incubate and hatch the eggs. This dataset contains the lengths of 105 cuckoo eggs found in the nests of six host bird species. The data were originally collected by O. H. Latter to study how the size of a cuckoo egg is related to the species of the host bird.</p>
@@ -1182,13 +1426,13 @@ Code book for Dataset Eggs
 </div>
 </div>
 <ol start="2" type="1">
-<li><strong>Fabric Waste at Levi Strauss &amp; Co.</strong> Levi Strauss &amp; Co.&nbsp;monitors fabric waste at its suppliers. Each week, its quality control department records run-up: the percentage difference between the fabric waste predicted by the computer layout and the actual waste during production. Negative values indicate that the supplier arranged the pattern more efficiently than the computer. The <span class="data">Levi</span> dataset contains 95 weekly run-up measurements from 5 suppliers. Use <span class="var">run_up</span> as the response variable and <span class="var">plant</span> as the grouping variable. Determine whether the data provide evidence that the population mean run-up differs among the suppliers. Use a 1% significance level. The first two rows for each supplier are shown in <a href="#tbl-Levi" class="quarto-xref">Table&nbsp;<span>13.9</span></a>.</li>
+<li><strong>Fabric Waste at Levi Strauss &amp; Co.</strong> Levi Strauss &amp; Co.&nbsp;monitors fabric waste at its suppliers. Each week, its quality control department records run-up: the percentage difference between the fabric waste predicted by the computer layout and the actual waste during production. Negative values indicate that the supplier arranged the pattern more efficiently than the computer. The <span class="data">Levi</span> dataset contains 95 weekly run-up measurements from 5 suppliers. Use <span class="var">run_up</span> as the response variable and <span class="var">plant</span> as the grouping variable. Determine whether the data provide evidence that the population mean run-up differs among the suppliers. Use a 1% significance level. The first two rows for each supplier are shown in <a href="#tbl-Levi" class="quarto-xref">Table&nbsp;<span>13.11</span></a>.</li>
 </ol>
 <div class="cell">
 <div id="tbl-Levi" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-Levi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;13.9: First two weekly fabric waste run-up measurements (%) for each supplier.
+Table&nbsp;13.11: First two weekly fabric waste run-up measurements (%) for each supplier.
 </figcaption>
 <div aria-describedby="tbl-Levi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1252,7 +1496,7 @@ Table&nbsp;13.9: First two weekly fabric waste run-up measurements (%) for each 
 <p><strong>Codebook for Dataset Levi is given <a href="#code-book-levi">here</a>.</strong></p>
 </div>
 <div id="code-book-levi" class="codebook callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-17-contents" aria-controls="callout-17" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1261,7 +1505,7 @@ Code book for Dataset Levi
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-17" class="callout-17-contents callout-collapse collapse">
+<div id="callout-22" class="callout-22-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Dataset Name: <span class="data">Levi</span></p>
 <p>Levi Strauss &amp; Co.&nbsp;manufactures clothing. Its quality control department collects weekly measurements from its suppliers of the percentage difference between the fabric waste predicted by the computer layout and the actual waste when the clothing is made. This difference is called run-up. The dataset contains 95 measurements from 5 suppliers.</p>
@@ -1274,13 +1518,13 @@ Code book for Dataset Levi
 </div>
 </div>
 <ol start="3" type="1">
-<li><strong>Readability of Magazine Advertisements</strong> Magazines were grouped into three categories based on the education level of their intended readers: high, medium, or low. Advertisements were sampled from magazines in each category, and for each advertisement the number of words with three or more syllables in its copy was recorded. The <span class="data">Advertising</span> dataset contains 54 advertisements. Use <span class="var">number</span> as the response variable and <span class="var">education</span> as the grouping variable. Determine whether the data provide evidence that the population mean number of words with three or more syllables per advertisement differs among the three education categories. Use a 5% significance level. The first two rows for each education category are shown in <a href="#tbl-Advertising" class="quarto-xref">Table&nbsp;<span>13.10</span></a>.</li>
+<li><strong>Readability of Magazine Advertisements</strong> Magazines were grouped into three categories based on the education level of their intended readers: high, medium, or low. Advertisements were sampled from magazines in each category, and for each advertisement the number of words with three or more syllables in its copy was recorded. The <span class="data">Advertising</span> dataset contains 54 advertisements. Use <span class="var">number</span> as the response variable and <span class="var">education</span> as the grouping variable. Determine whether the data provide evidence that the population mean number of words with three or more syllables per advertisement differs among the three education categories. Use a 5% significance level. The first two rows for each education category are shown in <a href="#tbl-Advertising" class="quarto-xref">Table&nbsp;<span>13.12</span></a>.</li>
 </ol>
 <div class="cell">
 <div id="tbl-Advertising" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-Advertising-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;13.10: First two advertisements in each education category: number of words with three or more syllables.
+Table&nbsp;13.12: First two advertisements in each education category: number of words with three or more syllables.
 </figcaption>
 <div aria-describedby="tbl-Advertising-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1328,7 +1572,7 @@ Table&nbsp;13.10: First two advertisements in each education category: number of
 <p><strong>Codebook for Dataset Advertising is given <a href="#code-book-advertising">here</a>.</strong></p>
 </div>
 <div id="code-book-advertising" class="codebook callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-18-contents" aria-controls="callout-18" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1337,7 +1581,7 @@ Code book for Dataset Advertising
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-18" class="callout-18-contents callout-collapse collapse">
+<div id="callout-23" class="callout-23-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Dataset Name: <span class="data">Advertising</span></p>
 <p>Magazines were grouped into three categories based on the education level of their intended readers: high, medium, or low. Several magazines were selected from each category, and several advertisements were selected from each magazine. For each advertisement, the number of words with three or more syllables in its copy was recorded. Each row of the dataset is one advertisement. Because several advertisements come from the same magazine, advertisements from the same magazine may be more similar to one another than advertisements from different magazines.</p>
@@ -1350,13 +1594,13 @@ Code book for Dataset Advertising
 </div>
 </div>
 <ol start="4" type="1">
-<li><strong>Accuracy of Calorie Labels</strong> A study examined the accuracy of calorie labeling for foods marketed as reduced calorie. Researchers measured the calorie content of each food item and calculated the percent difference between the measured and labeled calorie counts, so positive values mean that the food contained more calories than its label stated. Foods were classified as nationally advertised, regionally distributed, or locally prepared. Use the <span class="data">Food</span> dataset with <span class="var">percent_diff</span> as the response variable and <span class="var">category</span> as the grouping variable. Determine whether the data provide evidence that the population mean percent difference between measured and labeled calorie counts differs among the three food categories. Use a 5% significance level. The first two rows for each food category are shown in <a href="#tbl-Food" class="quarto-xref">Table&nbsp;<span>13.11</span></a>.</li>
+<li><strong>Accuracy of Calorie Labels</strong> A study examined the accuracy of calorie labeling for foods marketed as reduced calorie. Researchers measured the calorie content of each food item and calculated the percent difference between the measured and labeled calorie counts, so positive values mean that the food contained more calories than its label stated. Foods were classified as nationally advertised, regionally distributed, or locally prepared. Use the <span class="data">Food</span> dataset with <span class="var">percent_diff</span> as the response variable and <span class="var">category</span> as the grouping variable. Determine whether the data provide evidence that the population mean percent difference between measured and labeled calorie counts differs among the three food categories. Use a 5% significance level. The first two rows for each food category are shown in <a href="#tbl-Food" class="quarto-xref">Table&nbsp;<span>13.13</span></a>.</li>
 </ol>
 <div class="cell">
 <div id="tbl-Food" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-Food-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;13.11: First two foods in each category: percent difference between measured and labeled calorie counts.
+Table&nbsp;13.13: First two foods in each category: percent difference between measured and labeled calorie counts.
 </figcaption>
 <div aria-describedby="tbl-Food-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1404,7 +1648,7 @@ Table&nbsp;13.11: First two foods in each category: percent difference between m
 <p><strong>Codebook for Dataset Food is given <a href="#code-book-food">here</a>.</strong></p>
 </div>
 <div id="code-book-food" class="codebook callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1413,7 +1657,7 @@ Code book for Dataset Food
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div id="callout-24" class="callout-24-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Dataset Name: <span class="data">Food</span></p>
 <p>A study examined the accuracy of calorie labeling for foods marketed as reduced calorie. Researchers measured the calorie content of each food item and calculated the percent difference between the measured and labeled calorie counts. Foods were classified as nationally advertised, regionally distributed, or locally prepared.</p>
@@ -1430,13 +1674,13 @@ Code book for Dataset Food
 </div>
 </div>
 <ol start="5" type="1">
-<li><strong>Sodium Content of Hot Dogs</strong> The <span class="data">HotDogs</span> dataset contains the calorie and sodium content of hot dogs classified as Beef, Meat, or Poultry. Use <span class="var">sodium</span>, measured in milligrams per hot dog, as the response variable and <span class="var">type</span> as the grouping variable. Determine whether the data provide evidence that the population mean sodium content differs among the three types of hot dogs. Use a 5% significance level. The first two rows for each type of hot dog are shown in <a href="#tbl-hotdogs" class="quarto-xref">Table&nbsp;<span>13.12</span></a>.</li>
+<li><strong>Sodium Content of Hot Dogs</strong> The <span class="data">HotDogs</span> dataset contains the calorie and sodium content of hot dogs classified as Beef, Meat, or Poultry. Use <span class="var">sodium</span>, measured in milligrams per hot dog, as the response variable and <span class="var">type</span> as the grouping variable. Determine whether the data provide evidence that the population mean sodium content differs among the three types of hot dogs. Use a 5% significance level. The first two rows for each type of hot dog are shown in <a href="#tbl-hotdogs" class="quarto-xref">Table&nbsp;<span>13.14</span></a>.</li>
 </ol>
 <div class="cell">
 <div id="tbl-hotdogs" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-hotdogs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;13.12: First two hot dogs of each type: calories and sodium (mg) per hot dog.
+Table&nbsp;13.14: First two hot dogs of each type: calories and sodium (mg) per hot dog.
 </figcaption>
 <div aria-describedby="tbl-hotdogs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1491,7 +1735,7 @@ Table&nbsp;13.12: First two hot dogs of each type: calories and sodium (mg) per 
 <p><strong>Codebook for Dataset HotDogs is given <a href="#code-book-hotdogs">here</a>.</strong></p>
 </div>
 <div id="code-book-hotdogs" class="codebook callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-20-contents" aria-controls="callout-20" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1500,7 +1744,7 @@ Code book for Dataset HotDogs
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-20" class="callout-20-contents callout-collapse collapse">
+<div id="callout-25" class="callout-25-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Dataset Name: <span class="data">HotDogs</span></p>
 <p>This dataset contains the calorie and sodium content of 54 hot dog brands analyzed by Consumer Reports. The hot dogs are classified into three types: beef, meat, and poultry.</p>
@@ -1522,14 +1766,16 @@ Code book for Dataset HotDogs
 <p>In <a href="#sec-one-way-anova" class="quarto-xref"><span>Section 13.1</span></a>, we introduced the ANOVA test for assessing whether the data provide evidence that not all population means are equal. When the test is significant, we have evidence that at least two population means differ, but it does not tell us which means differ. To investigate differences between specific pairs of population means, we can use <strong>multiple comparison procedures</strong>.</p>
 <p>As noted in the chapter introduction, conducting separate two-sample tests for every pair of groups without adjusting for multiple comparisons increases the chance of making at least one Type I error. Here, a Type I error means concluding that two population means differ when they are actually equal. We therefore need a procedure that accounts for all the comparisons we make.</p>
 <p>One such method is <strong>Tukey’s Honestly Significant Difference (HSD)</strong> test, which compares every pair of population means while controlling the overall chance of making at least one Type I error. This overall probability is called the <strong>family-wise error rate</strong>, where “family” refers to the entire set of comparisons. For example, at a 5% significance level, Tukey’s method keeps the chance of incorrectly declaring one or more pairs of population means different at no more than 5%, provided the one-way ANOVA assumptions hold (see <a href="#sec-anova-assumptions" class="quarto-xref"><span>Section 13.3</span></a>).<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Tukey’s method uses these same assumptions; no additional set of assumptions is needed. The 5% limit applies to the comparisons collectively, rather than separately to each comparison. Similarly, at a 1% significance level, the overall chance of making at least one Type I error is kept at no more than 1%.</p>
-<p>In this chapter, we use Tukey’s HSD test as a follow-up to a significant ANOVA test. When the ANOVA test is not significant, we will stop with the ANOVA conclusion because we have insufficient evidence that the population means differ. For example, in the Adélie penguin example (<a href="#exm-anova-adelie" class="quarto-xref">Example&nbsp;<span>13.2</span></a>), the ANOVA test was not significant, so we would not proceed with Tukey’s HSD test. However, the ANOVA tests were significant for both <span class="data">PlantGrowth</span> at the 5% level (<a href="#exm-anova-plant-growth" class="quarto-xref">Example&nbsp;<span>13.1</span></a>) and <span class="data">ChickWeight21</span> at the 1% level (<a href="#exm-anova-chickweight21" class="quarto-xref">Example&nbsp;<span>13.3</span></a>). We will therefore use Tukey’s HSD comparisons to investigate which experimental conditions differ in population mean dried plant weight and which diets differ in population mean chick body weight at 21 days. There are three pairwise comparisons among the three plant groups and six pairwise comparisons among the four diets. Each dataset’s comparisons form a separate family.</p>
+<p>In this chapter, we use Tukey’s HSD test as a follow-up to a significant ANOVA test. When the ANOVA test is not significant, we stop with the ANOVA conclusion, because we have insufficient evidence that the population means differ. For example, the ANOVA test for the Adélie penguin data (<a href="#exm-anova-adelie" class="quarto-xref">Example&nbsp;<span>13.2</span></a>) was not significant, so we do not proceed with Tukey’s HSD test for that dataset.</p>
+<p>In contrast, the ANOVA tests for the other two datasets were significant. For the <span class="data">PlantGrowth</span> data (<a href="#exm-anova-plant-growth" class="quarto-xref">Example&nbsp;<span>13.1</span></a>), the test was significant at the 5% level, so we will use Tukey’s HSD test to investigate which experimental conditions differ in population mean dried plant weight. With three groups, there are three pairwise comparisons. For the <span class="data">ChickWeight21</span> data (<a href="#exm-anova-chickweight21" class="quarto-xref">Example&nbsp;<span>13.3</span></a>), the test was significant at the 1% level, so we will use Tukey’s HSD test to investigate which diets differ in population mean chick body weight at 21 days. With four diets, there are six pairwise comparisons.</p>
+<p>The comparisons for each dataset form a separate family, so Tukey’s method controls the family-wise error rate separately for the plant growth comparisons and for the chick weight comparisons.</p>
 <p>Occasionally, the ANOVA test is significant but no pair of means is significantly different in Tukey’s procedure. This can happen because the two procedures answer slightly different questions: ANOVA asks whether the means differ overall, while Tukey’s procedure asks which specific pairs differ. When this happens, it usually means that the differences among the means are too small to attribute to any specific pair.</p>
 <p>Rguroo provides Tukey’s HSD comparisons as part of its ANOVA analysis. The output includes the estimated differences between group means, confidence intervals, and adjusted p-values for each pairwise comparison. The adjusted p-values account for the multiple comparisons and can be compared directly with our chosen significance level. For <span class="data">PlantGrowth</span>, we compare each adjusted p-value with 0.05. For <span class="data">ChickWeight21</span>, we compare each adjusted p-value with 0.01. An adjusted p-value below the chosen significance level provides evidence that the corresponding population means differ.</p>
-<p>Rguroo also produces a graph that shows the confidence intervals for the differences between population means, allowing us to assess the size and direction of the differences. We use Tukey’s 95% confidence intervals for comparisons at the 5% significance level and 99% confidence intervals for comparisons at the 1% significance level. At the corresponding significance level, a pair is significantly different if its interval does not include zero. An interval that includes zero does not provide sufficient evidence that the two population means differ. These intervals account for multiple comparisons as well.</p>
+<p>Rguroo also produces a graph that shows the confidence intervals for the differences between population means, allowing us to assess the size and direction of the differences. We use Tukey’s 95% confidence intervals for comparisons at the 5% significance level and 99% confidence intervals for comparisons at the 1% significance level. At the corresponding significance level, a pair is significantly different if its interval does not include zero. An interval that includes zero does not provide sufficient evidence that the two population means differ. This is the same reasoning we used with confidence intervals for the difference between two population proportions (<a href="proportion inference.html#sec-confidence-interval-two-prop" class="quarto-xref"><span>Section 9.8</span></a>) and between two population means (<a href="mean inference.html#sec-mean-independent" class="quarto-xref"><span>Section 10.9</span></a>). The difference here is that Tukey’s intervals account for multiple comparisons, so the confidence level applies to the whole set of intervals rather than to each interval separately.</p>
 <p>The adjusted p-values and the confidence intervals always lead to the same conclusion. For each pair, the interval excludes zero exactly when the adjusted p-value is below the significance level. The p-value tells us whether a difference is significant, and the interval also tells us the direction of the difference and how large it might be.</p>
 <p>The following two examples illustrate how to perform and interpret Tukey’s HSD comparisons in Rguroo, first for the <span class="data">PlantGrowth</span> dataset at the 5% significance level and then for the <span class="data">ChickWeight21</span> dataset at the 1% significance level.</p>
 <div id="exm-tukey-plant-growth" class="callout-example theorem example">
-<p><span class="theorem-title"><strong>Example 13.4 (Comparing pairs of mean dried plant weights)</strong></span> In <a href="#exm-anova-plant-growth" class="quarto-xref">Example&nbsp;<span>13.1</span></a>, the one-way ANOVA test provided evidence at the 5% significance level that not all three experimental conditions have the same population mean dried plant weight. We now use the <span class="data">PlantGrowth</span> dataset to investigate which population means differ.</p>
+<p><span class="theorem-title"><strong>Example 13.5 (Comparing pairs of mean dried plant weights)</strong></span> In <a href="#exm-anova-plant-growth" class="quarto-xref">Example&nbsp;<span>13.1</span></a>, the one-way ANOVA test provided evidence at the 5% significance level that not all three experimental conditions have the same population mean dried plant weight. We now use the <span class="data">PlantGrowth</span> dataset to investigate which population means differ.</p>
 <ol type="a">
 <li><p>Use Tukey’s HSD test in Rguroo to compare all pairs of population means at the 5% significance level. Display the multiple comparison table, including the estimated differences, 95% confidence intervals, and adjusted p-values. Identify which pairs differ significantly.</p></li>
 <li><p>Display the graph of Tukey’s confidence intervals. Explain how the graph supports your conclusions and interpret the confidence interval for any statistically significant difference.</p></li>
@@ -1540,7 +1786,7 @@ Code book for Dataset HotDogs
 </div>
 </div>
 <div class="solution-callout callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-23-contents" aria-controls="callout-23" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1549,11 +1795,11 @@ Code book for Dataset HotDogs
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-23" class="callout-23-contents callout-collapse collapse">
+<div id="callout-28" class="callout-28-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>a. Click to expand the box below to see how to obtain Tukey’s HSD comparisons using the <span class="fun">ANOVA</span> function in Rguroo.</p>
 <div id="tukey-plant-growth" class="callout callout-style-simple callout-note callout-titled" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} Tukey’s HSD - Plant Growth example">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-22-contents" aria-controls="callout-22" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1562,23 +1808,23 @@ Code book for Dataset HotDogs
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-22" class="callout-22-contents callout-collapse collapse">
+<div id="callout-27" class="callout-27-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Before you begin, import the <span class="data">PlantGrowth</span> dataset from the <span class="repo">Intro to Stats with Rguroo</span> repository. If you saved the ANOVA analysis from <a href="#exm-anova-plant-growth" class="quarto-xref">Example&nbsp;<span>13.1</span></a> as <span class="typein">ANOVA_PlantGrowth</span>, open it, keep its settings, and proceed to Step 7.</p>
 <ol type="1">
-<li><p>Open the <strong>Analytics</strong> toolbox in Rguroo.</p></li>
-<li><p>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</p></li>
-<li><p>From the <span class="dpd">Dataset</span> dropdown, select the <span class="data">PlantGrowth</span> dataset.</p></li>
-<li><p>From the <span class="dpd">Response</span> dropdown, select <span class="var">weight</span>.</p></li>
-<li><p>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown, select <span class="var">group</span>.</p></li>
-<li><p>Enter <span class="typein">0.05</span> in the <span class="des">Significance Level</span> textbox.</p></li>
-<li><p>Select the checkbox next to the <span class="tab">Post-hoc Test</span> button. Tukey’s HSD is selected by default.</p></li>
-<li><p>(Optional) Click the <span class="tab">Post-hoc Test</span> button to open the <span class="dialog">ANOVA Post-Hoc</span> dialog and view the selected method. Leave <span class="des">Tukey’s HSD</span> selected.</p></li>
-<li><p>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon">, or press Enter, to view the output.</p></li>
-<li><p>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">HSD_PlantGrowth</span>.</p></li>
+<li>Open the <strong>Analytics</strong> toolbox in Rguroo.</li>
+<li>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</li>
+<li>From the <span class="dpd">Dataset</span> dropdown, select the <span class="data">PlantGrowth</span> dataset.</li>
+<li>From the <span class="dpd">Response</span> dropdown, select <span class="var">weight</span>.</li>
+<li>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown, select <span class="var">group</span>.</li>
+<li>Enter <span class="typein">0.05</span> in the <span class="des">Significance Level</span> textbox.</li>
+<li>Select the checkbox next to the <span class="tab">Post-hoc Test</span> button. Tukey’s HSD is selected by default.</li>
+<li>(Optional) Click the <span class="tab">Post-hoc Test</span> button to open the <span class="dialog">ANOVA Post-Hoc</span> dialog and view the selected method. Leave <span class="des">Tukey’s HSD</span> selected.</li>
+<li>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon">, or press Enter, to view the output.</li>
+<li>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">HSD_PlantGrowth</span>.</li>
 </ol>
 <div class="inner-callout callout callout-style-default callout-tip callout-titled" title="Rguroo Tukey’s HSD dialogs">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-21-contents" aria-controls="callout-21" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1587,7 +1833,7 @@ Rguroo Tukey’s HSD dialogs
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-21" class="callout-21-contents callout-collapse collapse show">
+<div id="callout-26" class="callout-26-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="cell-output-display">
@@ -1605,12 +1851,12 @@ Rguroo Tukey’s HSD dialogs
 </div>
 </div>
 </div>
-<p><a href="#tbl-plant-growth-tukey" class="quarto-xref">Table&nbsp;<span>13.13</span></a> shows the multiple comparison table.</p>
+<p><a href="#tbl-plant-growth-tukey" class="quarto-xref">Table&nbsp;<span>13.15</span></a> shows the multiple comparison table.</p>
 <div class="cell">
 <div id="tbl-plant-growth-tukey" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-plant-growth-tukey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;13.13: Tukey’s HSD comparisons of mean dried plant weights, with 95% simultaneous confidence intervals.
+Table&nbsp;13.15: Tukey’s HSD comparisons of mean dried plant weights, with 95% simultaneous confidence intervals.
 </figcaption>
 <div aria-describedby="tbl-plant-growth-tukey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1633,16 +1879,16 @@ Table&nbsp;13.13: Tukey’s HSD comparisons of mean dried plant weights, with 95
 </ul>
 <p>Thus, treatment 2 and treatment 1 are the only pair identified as significantly different at the 5% level. The nonsignificant comparisons do not establish that either treatment has the same population mean as the control.</p>
 <p>Notice that although the ANOVA test was significant, we do not have evidence that either treatment differs from the control. The significant ANOVA result is explained by the difference between the two treatments, whose sample means lie on opposite sides of the control mean: 4.66 for treatment 1, 5.03 for the control, and 5.53 for treatment 2.</p>
-<p>b. <a href="#fig-plant-growth-tukey" class="quarto-xref">Figure&nbsp;<span>13.4</span></a> shows the confidence intervals for the three pairwise differences.</p>
+<p>b. <a href="#fig-plant-growth-tukey" class="quarto-xref">Figure&nbsp;<span>13.6</span></a> shows the confidence intervals for the three pairwise differences.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-plant-growth-tukey" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Three horizontal Tukey confidence intervals for differences in population mean dried plant weights. The intervals for treatment 1 minus control and treatment 2 minus control cross the vertical zero line. The interval for treatment 2 minus treatment 1 lies entirely to the right of zero, from approximately 0.174 to 1.556.">
+<div id="fig-plant-growth-tukey" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three horizontal Tukey confidence intervals for differences in population mean dried plant weights. The intervals for treatment 1 minus control and treatment 2 minus control cross the vertical zero line. The interval for treatment 2 minus treatment 1 lies entirely to the right of zero, from approximately 0.174 to 1.556." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plant-growth-tukey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Rguroo_outputs/ANOVA/plant_ci_graph.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Three horizontal Tukey confidence intervals for differences in population mean dried plant weights. The intervals for treatment 1 minus control and treatment 2 minus control cross the vertical zero line. The interval for treatment 2 minus treatment 1 lies entirely to the right of zero, from approximately 0.174 to 1.556.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plant-growth-tukey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.4: Tukey’s 95% simultaneous confidence intervals for differences in population mean dried plant weights.
+Figure&nbsp;13.6: Tukey’s 95% simultaneous confidence intervals for differences in population mean dried plant weights.
 </figcaption>
 </figure>
 </div>
@@ -1663,7 +1909,7 @@ Figure&nbsp;13.4: Tukey’s 95% simultaneous confidence intervals for difference
 </div>
 </div>
 <div id="exm-tukey-chickweight21" class="callout-example theorem example">
-<p><span class="theorem-title"><strong>Example 13.5 (Comparing pairs of mean chick body weights)</strong></span> In <a href="#exm-anova-chickweight21" class="quarto-xref">Example&nbsp;<span>13.3</span></a>, the one-way ANOVA test provided evidence at the 1% significance level that the population mean chick body weight at 21 days is not the same under all four diets. We now use the <span class="data">ChickWeight21</span> dataset to investigate which diets differ in population mean body weight.</p>
+<p><span class="theorem-title"><strong>Example 13.6 (Comparing pairs of mean chick body weights)</strong></span> In <a href="#exm-anova-chickweight21" class="quarto-xref">Example&nbsp;<span>13.3</span></a>, the one-way ANOVA test provided evidence at the 1% significance level that the population mean chick body weight at 21 days is not the same under all four diets. We now use the <span class="data">ChickWeight21</span> dataset to investigate which diets differ in population mean body weight.</p>
 <ol type="a">
 <li><p>Use Tukey’s HSD test in Rguroo to compare all pairs of population means at the 1% significance level. Display the multiple comparison table, including the estimated differences, 99% confidence intervals, and adjusted p-values. Identify which pairs differ significantly.</p></li>
 <li><p>Display the graph of Tukey’s confidence intervals. Explain how the graph supports your conclusions and interpret the confidence interval for any statistically significant difference.</p></li>
@@ -1674,7 +1920,7 @@ Figure&nbsp;13.4: Tukey’s 95% simultaneous confidence intervals for difference
 </div>
 </div>
 <div class="solution-callout callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-26-contents" aria-controls="callout-26" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1683,11 +1929,11 @@ Figure&nbsp;13.4: Tukey’s 95% simultaneous confidence intervals for difference
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-26" class="callout-26-contents callout-collapse collapse">
+<div id="callout-31" class="callout-31-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>a. Click to expand the box below to see how to obtain Tukey’s HSD comparisons using the <span class="fun">ANOVA</span> function in Rguroo.</p>
 <div id="tukey-chickweight21" class="callout callout-style-simple callout-note callout-titled" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} Tukey’s HSD - Chick Weight example">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-25-contents" aria-controls="callout-25" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1696,23 +1942,23 @@ Figure&nbsp;13.4: Tukey’s 95% simultaneous confidence intervals for difference
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-25" class="callout-25-contents callout-collapse collapse">
+<div id="callout-30" class="callout-30-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Before you begin, import the <span class="data">ChickWeight21</span> dataset from the <span class="repo">Intro to Stats with Rguroo</span> repository. If you saved the ANOVA analysis from <a href="#exm-anova-chickweight21" class="quarto-xref">Example&nbsp;<span>13.3</span></a> as <span class="typein">ANOVA_ChickWeight21</span>, open it, keep its settings, and proceed to Step 7.</p>
 <ol type="1">
-<li><p>Open the <strong>Analytics</strong> toolbox in Rguroo.</p></li>
-<li><p>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</p></li>
-<li><p>From the <span class="dpd">Dataset</span> dropdown, select the <span class="data">ChickWeight21</span> dataset.</p></li>
-<li><p>From the <span class="dpd">Response</span> dropdown, select <span class="var">weight</span>.</p></li>
-<li><p>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown, select <span class="var">Diet</span>.</p></li>
-<li><p>Enter <span class="typein">0.01</span> in the <span class="des">Significance Level</span> textbox.</p></li>
-<li><p>Select the checkbox next to the <span class="tab">Post-hoc Test</span> button. Tukey’s HSD is selected by default.</p></li>
-<li><p>(Optional) Click the <span class="tab">Post-hoc Test</span> button to open the <span class="dialog">ANOVA Post-Hoc</span> dialog and view the selected method. Leave <span class="des">Tukey’s HSD</span> selected.</p></li>
-<li><p>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon">, or press Enter, to view the output.</p></li>
-<li><p>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">HSD_ChickWeight21</span>.</p></li>
+<li>Open the <strong>Analytics</strong> toolbox in Rguroo.</li>
+<li>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</li>
+<li>From the <span class="dpd">Dataset</span> dropdown, select the <span class="data">ChickWeight21</span> dataset.</li>
+<li>From the <span class="dpd">Response</span> dropdown, select <span class="var">weight</span>.</li>
+<li>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown, select <span class="var">Diet</span>.</li>
+<li>Enter <span class="typein">0.01</span> in the <span class="des">Significance Level</span> textbox.</li>
+<li>Select the checkbox next to the <span class="tab">Post-hoc Test</span> button. Tukey’s HSD is selected by default.</li>
+<li>(Optional) Click the <span class="tab">Post-hoc Test</span> button to open the <span class="dialog">ANOVA Post-Hoc</span> dialog and view the selected method. Leave <span class="des">Tukey’s HSD</span> selected.</li>
+<li>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon">, or press Enter, to view the output.</li>
+<li>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">HSD_ChickWeight21</span>.</li>
 </ol>
 <div class="inner-callout callout callout-style-default callout-tip callout-titled" title="Rguroo Tukey’s HSD dialogs">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-24-contents" aria-controls="callout-24" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1721,7 +1967,7 @@ Rguroo Tukey’s HSD dialogs
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-24" class="callout-24-contents callout-collapse collapse show">
+<div id="callout-29" class="callout-29-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="cell-output-display">
@@ -1739,12 +1985,12 @@ Rguroo Tukey’s HSD dialogs
 </div>
 </div>
 </div>
-<p><a href="#tbl-chickweight21-tukey" class="quarto-xref">Table&nbsp;<span>13.14</span></a> shows the multiple comparison table for the six pairs of diets.</p>
+<p><a href="#tbl-chickweight21-tukey" class="quarto-xref">Table&nbsp;<span>13.16</span></a> shows the multiple comparison table for the six pairs of diets.</p>
 <div class="cell">
 <div id="tbl-chickweight21-tukey" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chickweight21-tukey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;13.14: Tukey’s HSD comparisons of mean chick body weights at 21 days, with 99% simultaneous confidence intervals.
+Table&nbsp;13.16: Tukey’s HSD comparisons of mean chick body weights at 21 days, with 99% simultaneous confidence intervals.
 </figcaption>
 <div aria-describedby="tbl-chickweight21-tukey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -1768,33 +2014,162 @@ Table&nbsp;13.14: Tukey’s HSD comparisons of mean chick body weights at 21 day
 \]</span></p>
 <p>The positive difference indicates that chicks receiving Diet 3 have a higher sample mean body weight than those receiving Diet 1.</p>
 <p>The other five comparisons have adjusted p-values greater than 0.01. We therefore have insufficient evidence of differences between those pairs of population means. In particular, although Diet 3 has the highest sample mean, these comparisons do not establish that its population mean is higher than those for Diets 2 and 4.</p>
-<p>b. <a href="#fig-chickweight21-tukey" class="quarto-xref">Figure&nbsp;<span>13.5</span></a> shows the confidence intervals for all six pairwise differences.</p>
+<p>b. <a href="#fig-chickweight21-tukey" class="quarto-xref">Figure&nbsp;<span>13.7</span></a> shows the confidence intervals for all six pairwise differences.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-chickweight21-tukey" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Six horizontal Tukey confidence intervals for differences in population mean chick body weights. Only the interval for Diet 3 minus Diet 1 lies entirely to the right of the vertical zero line, extending from approximately 7.06 to 178.04 grams. The other five intervals cross zero.">
+<div id="fig-chickweight21-tukey" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Six horizontal Tukey confidence intervals for differences in population mean chick body weights. Only the interval for Diet 3 minus Diet 1 lies entirely to the right of the vertical zero line, extending from approximately 7.06 to 178.04 grams. The other five intervals cross zero." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chickweight21-tukey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Rguroo_outputs/ANOVA/chick_CI_graph.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Six horizontal Tukey confidence intervals for differences in population mean chick body weights. Only the interval for Diet 3 minus Diet 1 lies entirely to the right of the vertical zero line, extending from approximately 7.06 to 178.04 grams. The other five intervals cross zero.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chickweight21-tukey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.5: Tukey’s 99% simultaneous confidence intervals for differences in population mean chick body weights at 21 days.
+Figure&nbsp;13.7: Tukey’s 99% simultaneous confidence intervals for differences in population mean chick body weights at 21 days.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Only the interval for <em>Diet 3-Diet 1</em> excludes zero, in agreement with its significant adjusted p-value. The entire interval is positive, indicating a higher population mean body weight under Diet 3 than under Diet 1.</p>
-<p>The interval is approximately</p>
+<p>Each horizontal bar represents a confidence interval for the difference between two population means. The short vertical marks at its left and right ends indicate the lower and upper confidence limits. The vertical mark in the middle represents the difference between the two sample means, which is the point estimate of the population mean difference. All differences are measured in grams. The intervals have a simultaneous confidence level of 99%, applying to the complete set of six comparisons.</p>
+<p>The dashed vertical line at zero represents equal population means. A bar that crosses this line includes zero in its confidence interval; a bar entirely to one side excludes zero.</p>
+<p>Only the interval for <em>Diet 3-Diet 1</em> excludes zero, in agreement with its significant adjusted p-value. Its middle mark is at 92.55 g, and its endpoints are approximately 7.06 g and 178.04 g. Using Tukey’s simultaneous confidence procedure, we estimate with 99% confidence that the population mean body weight at 21 days is between 7.06 g and 178.04 g higher under Diet 3 than under Diet 1.</p>
+<p>The interval is fairly wide, showing that there is considerable uncertainty about the size of the difference. Factors contributing to this width include the high 99% confidence level, the small number of chicks in each diet group, the large variation in body weight among chicks receiving the same diet, and the adjustment for multiple comparisons.</p>
+<p>The remaining five intervals include zero, so they do not provide sufficient evidence of differences at the 1% significance level.</p>
+</div>
+</div>
+</div>
+<div id="exm-tukey-cholesterol" class="callout-example theorem example">
+<p><span class="theorem-title"><strong>Example 13.7 (Comparing pairs of mean cholesterol reductions)</strong></span> In <a href="#exm-anova-cholesterol" class="quarto-xref">Example&nbsp;<span>13.4</span></a>, the one-way ANOVA test provided evidence at the 5% significance level that population mean cholesterol reduction is not the same under all three dosing schedules. We now use the <span class="data">Cholesterol</span> dataset to investigate which schedules differ in population mean cholesterol reduction.</p>
+<p>Recall that the three schedules provide the same total daily dose: 20 mg once daily, 10 mg twice daily, or 5 mg four times daily.</p>
+<ol type="a">
+<li><p>Use Tukey’s HSD test in Rguroo to compare all pairs of population means at the 5% significance level. Display the multiple comparison table, including the estimated differences, 95% confidence intervals, and adjusted p-values. Identify which pairs differ significantly.</p></li>
+<li><p>Display the graph of Tukey’s confidence intervals. Explain how the graph supports your conclusions and interpret the confidence interval for any statistically significant difference.</p></li>
+</ol>
+<div tabindex="0" style="width:85%; margin:auto;">
+<p><img src="Rguroo_Icons/Rguroo_repo_logo.png" class="img-fluid" alt="Rguroo dataset logo"> The dataset for this exercise is available in the Rguroo dataset repository <span class="repo">Intro to Stats with Rguroo</span>, with the dataset name <span class="data">Cholesterol</span>.</p>
+<p><strong>Code book for Dataset Cholesterol is given <a href="#code-book-cholesterol">here</a>.</strong></p>
+</div>
+</div>
+<div class="solution-callout callout callout-style-default callout-tip no-icon callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+🔎 Solution
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-34" class="callout-34-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>a. Click to expand the box below to see how to obtain Tukey’s HSD comparisons using the <span class="fun">ANOVA</span> function in Rguroo.</p>
+<div id="tukey-cholesterol" class="callout callout-style-simple callout-note callout-titled" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} Tukey’s HSD - Cholesterol example">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<img src="Rguroo_Icons/R_circle_logo.svg" class="img-fluid" style="vertical-align:middle;" width="22"> Tukey’s HSD - Cholesterol example
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-33" class="callout-33-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Before you begin, import the <span class="data">Cholesterol</span> dataset from the <span class="repo">Intro to Stats with Rguroo</span> repository. If you saved the ANOVA analysis from <a href="#exm-anova-cholesterol" class="quarto-xref">Example&nbsp;<span>13.4</span></a> as <span class="typein">ANOVA_Cholesterol</span>, open it, keep its settings, and proceed to Step 7.</p>
+<ol type="1">
+<li>Open the <strong>Analytics</strong> toolbox in Rguroo.</li>
+<li>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</li>
+<li>From the <span class="dpd">Dataset</span> dropdown, select <span class="data">Cholesterol</span>.</li>
+<li>From the <span class="dpd">Response</span> dropdown, select <span class="var">response</span>.</li>
+<li>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown, select <span class="var">trt</span>.</li>
+<li>Enter <span class="typein">0.05</span> in the <span class="des">Significance Level</span> textbox.</li>
+<li>Select the checkbox next to the <span class="tab">Post-hoc Test</span> button. Tukey’s HSD is selected by default.</li>
+<li>(Optional) Click the <span class="tab">Post-hoc Test</span> button to open the <span class="dialog">ANOVA Post-Hoc</span> dialog and view the selected method. Leave <span class="des">Tukey’s HSD</span> selected.</li>
+<li>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon">, or press Enter, to view the output.</li>
+<li>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">HSD_Cholesterol</span>.</li>
+</ol>
+<div class="inner-callout callout callout-style-default callout-tip callout-titled" title="Rguroo Tukey’s HSD dialogs">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Rguroo Tukey’s HSD dialogs
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-32" class="callout-32-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="Rguroo_dialogs/ANOVA/cholestrol_HSD_dialog.png" class="img-fluid figure-img" style="width:100.0%" alt="Rguroo ANOVA dialog for Cholesterol with response as the response variable, trt as the factor, significance level 0.05, and the Post-hoc Test checkbox selected. The accompanying ANOVA Post-Hoc dialog shows Tukey’s HSD selected."></p>
+<figcaption>Rguroo setup for Tukey’s HSD comparisons of mean cholesterol reduction.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p><a href="#tbl-cholesterol-tukey" class="quarto-xref">Table&nbsp;<span>13.17</span></a> shows the multiple comparison table for the three pairs of dosing schedules.</p>
+<div class="cell">
+<div id="tbl-cholesterol-tukey" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cholesterol-tukey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;13.17: Tukey’s HSD comparisons of mean cholesterol reduction, with 95% simultaneous confidence intervals.
+</figcaption>
+<div aria-describedby="tbl-cholesterol-tukey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Rguroo_outputs/ANOVA/cholestrol_HSD_table.png" class="img-fluid figure-img" style="width:100.0%" alt="Tukey’s HSD table for three dosing-schedule comparisons. Twice daily minus once daily: estimated difference 3.44300, confidence interval -0.00210 to 6.88810, adjusted p-value 0.05016. Four times daily minus once daily: difference 6.59281, interval 3.14771 to 10.03791, adjusted p-value 0.000174. Four times daily minus twice daily: difference 3.14981, interval -0.29529 to 6.59491, adjusted p-value 0.07803."></p>
+</figure>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>The labels in the <em>Difference Levels</em> column specify the order of subtraction. For example, <em>4times-1time</em> represents four-times-daily dosing minus once-daily dosing. The <em>Mean</em> column gives the difference between the two sample means.</p>
+<p>We compare each adjusted p-value with <span class="math inline">\(\alpha = 0.05\)</span>:</p>
+<ul>
+<li><strong>Twice daily versus once daily:</strong> The adjusted p-value is approximately 0.05016, slightly greater than 0.05. We do not identify this pair as significantly different at the 5% level.</li>
+<li><strong>Four times daily versus once daily:</strong> The adjusted p-value is approximately 0.000174, less than 0.05. There is evidence that the population mean cholesterol reductions differ.</li>
+<li><strong>Four times daily versus twice daily:</strong> The adjusted p-value is approximately 0.07803, greater than 0.05. There is insufficient evidence that the population mean cholesterol reductions differ.</li>
+</ul>
+<p>Thus, four-times-daily and once-daily dosing are the only pair identified as significantly different at the 5% level. Their estimated difference is</p>
 <p><span class="math display">\[
-7.06\text{ g}
-&lt;
-\mu_{\text{Diet 3}}-\mu_{\text{Diet 1}}
-&lt;
-178.04\text{ g}.
+\bar{x}_{\text{4times}}-\bar{x}_{\text{1time}}
+=12.37478-5.78197
+=6.59281.
 \]</span></p>
-<p>Using Tukey’s simultaneous confidence procedure, we estimate with 99% confidence that the population mean body weight at 21 days is between 7.06 g and 178.04 g higher under Diet 3 than under Diet 1.</p>
-<p>The interval is fairly wide, showing that there is considerable uncertainty about the size of the difference. Three factors contribute to this width: the high 99% confidence level, the small number of chicks in each diet group, and the large variation in body weight among chicks receiving the same diet.</p>
-<p>The 99% confidence level applies to the complete set of six intervals. The remaining five intervals include zero, so they do not provide sufficient evidence of differences at the 1% significance level.</p>
+<p>The positive difference indicates greater sample mean cholesterol reduction under four-times-daily dosing.</p>
+<p>Although four-times-daily dosing has the highest sample mean, the results do not establish that its population mean exceeds that for twice-daily dosing. Similarly, the nonsignificant comparisons do not establish equality of the corresponding population means.</p>
+<p>The adjusted p-value for twice-daily versus once-daily dosing should not be rounded to 0.05 before making the decision. Its unrounded value is slightly above the chosen significance level.</p>
+<p>b. <a href="#fig-cholesterol-tukey" class="quarto-xref">Figure&nbsp;<span>13.8</span></a> shows the confidence intervals for all three pairwise differences.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-cholesterol-tukey" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Three horizontal Tukey confidence intervals for differences in population mean cholesterol reduction. Only four times daily minus once daily lies entirely to the right of zero, from approximately 3.15 to 10.04. Twice daily minus once daily extends just below zero, while four times daily minus twice daily also includes zero." data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cholesterol-tukey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="Rguroo_outputs/ANOVA/Cholestrol_tukeyHSD_1g_1way.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Three horizontal Tukey confidence intervals for differences in population mean cholesterol reduction. Only four times daily minus once daily lies entirely to the right of zero, from approximately 3.15 to 10.04. Twice daily minus once daily extends just below zero, while four times daily minus twice daily also includes zero.">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cholesterol-tukey-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;13.8: Tukey’s 95% simultaneous confidence intervals for differences in population mean cholesterol reduction.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Each horizontal bar represents a confidence interval for the difference between two population means. The short vertical marks at its ends indicate the lower and upper confidence limits. The vertical mark in the middle represents the difference between the two sample means—the point estimate of the population mean difference. The intervals have a simultaneous confidence level of 95%, applying to the complete set of three comparisons.</p>
+<p>The dashed vertical line at zero represents equal population means. An interval that crosses this line includes zero; an interval entirely to one side excludes zero.</p>
+<p>Only the interval for <em>4times-1time</em> excludes zero, agreeing with its significant adjusted p-value. Using Tukey’s simultaneous confidence procedure, we estimate with 95% confidence that population mean cholesterol reduction is between approximately 3.15 and 10.04 units greater under four-times-daily dosing than under once-daily dosing. The measurement units are not specified in the dataset documentation.</p>
+<p>The interval for <em>2times-1time</em> extends from approximately -0.00210 to 6.88810. Its lower limit is just below zero, so it includes zero even if that is difficult to see in the graph. This agrees with its adjusted p-value being just above 0.05.</p>
+<p>The interval for <em>4times-2times</em> also includes zero. Therefore, neither of these two comparisons provides sufficient evidence of a difference at the 5% significance level. The closeness of the first comparison to the cutoff also illustrates why we should consider the estimated differences and confidence intervals alongside the significance decisions.</p>
 </div>
 </div>
 </div>
@@ -1856,7 +2231,7 @@ Figure&nbsp;13.5: Tukey’s 99% simultaneous confidence intervals for difference
 <h3 data-number="13.3.1" class="anchored" data-anchor-id="checking-independence"><span class="header-section-number">13.3.1</span> Checking independence</h3>
 <p>We assess independence primarily by examining the study design and how the data were collected. Independence is most plausible when individuals are randomly assigned to groups in an experiment or randomly sampled from each population in an observational study.</p>
 <p>Repeated measurements on the same individual are generally related and should not be treated as independent observations. In the original chick growth study, each chick was weighed repeatedly. In <span class="data">ChickWeight21</span>, we use only one weight per chick, avoiding the dependence caused by treating repeated weights from the same chick as separate observations. We should still consider whether other aspects of the study design could make the observations related.</p>
-<p>Observations that share a setting may also be related. For example, students in the same classroom or members of the same household may be more similar to one another than to individuals in other settings. Similarly, in the <span class="data">Advertising</span> dataset from the homework, several advertisements come from the same magazine, so advertisements from the same magazine may be more similar to one another than advertisements from different magazines.</p>
+<p>Observations that share a setting may also be related. For example, students in the same classroom or members of the same household may be more similar to one another than to individuals in other settings. Similarly, in the <span class="data">Advertising</span> dataset from the homework (see the data <a href="#code-book-advertising">codebook</a>), several advertisements come from the same magazine, so advertisements from the same magazine may be more similar to one another than advertisements from different magazines.</p>
 </section>
 <section id="understanding-residuals" class="level3" data-number="13.3.2">
 <h3 data-number="13.3.2" class="anchored" data-anchor-id="understanding-residuals"><span class="header-section-number">13.3.2</span> Understanding residuals</h3>
@@ -1892,7 +2267,7 @@ H_a: \text{not all population variances are equal.}
 <p>Rguroo provides residual plots, Q-Q plots, and Levene’s test as part of the ANOVA analysis. These tools should be considered together rather than used as a checklist that automatically approves or rejects an analysis.</p>
 <p>We will illustrate how to check the assumptions using three datasets used earlier in the chapter: <span class="data">PlantGrowth</span>, <span class="data">ChickWeight21</span>, and <span class="data">palmerpenguins_Adelie</span>.</p>
 <div id="exm-anova-assumptions-plant-growth" class="callout-example theorem example">
-<p><span class="theorem-title"><strong>Example 13.6 (Checking ANOVA assumptions for dried plant weights)</strong></span> In <a href="#exm-anova-plant-growth" class="quarto-xref">Example&nbsp;<span>13.1</span></a>, we compared population mean dried plant weights under a control condition and two treatment conditions. We now examine whether the assumptions underlying that analysis are reasonable.</p>
+<p><span class="theorem-title"><strong>Example 13.8 (Checking ANOVA assumptions for dried plant weights)</strong></span> In <a href="#exm-anova-plant-growth" class="quarto-xref">Example&nbsp;<span>13.1</span></a>, we compared population mean dried plant weights under a control condition and two treatment conditions. We now examine whether the assumptions underlying that analysis are reasonable.</p>
 <p>The <span class="data">PlantGrowth</span> dataset contains 30 observations, with 10 observations in each group. The available documentation describes an experiment but does not explain how plants were assigned to conditions or whether their growing arrangements could have made their weights related. We therefore have limited information for assessing independence.</p>
 <ol type="a">
 <li><p>Using the description of data collection above, discuss whether independence can be established. What additional information would help?</p></li>
@@ -1907,7 +2282,7 @@ H_a: \text{not all population variances are equal.}
 </div>
 </div>
 <div class="solution-callout callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-29-contents" aria-controls="callout-29" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-37-contents" aria-controls="callout-37" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -1916,13 +2291,13 @@ H_a: \text{not all population variances are equal.}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-29" class="callout-29-contents callout-collapse collapse">
+<div id="callout-37" class="callout-37-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>a. Independence cannot be established from the information provided. Although the data come from an experiment, we do not know how the plants were assigned to conditions or whether they shared pots, trays, or other growing arrangements that could have made their weights related.</p>
 <p>Information about the experimental units, treatment assignment, and growing arrangements would help us assess independence. We will treat independence as an assumption for this example, rather than claim that the diagnostic plots verify it.</p>
 <p>b. Click to expand the box below to see how to obtain the diagnostic plots and Levene’s test in Rguroo.</p>
 <div id="diagnostics-plant-growth" class="callout callout-style-simple callout-note callout-titled" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} ANOVA Diagnostics - Plant Growth example">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-28-contents" aria-controls="callout-28" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-36-contents" aria-controls="callout-36" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1931,23 +2306,23 @@ H_a: \text{not all population variances are equal.}
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-28" class="callout-28-contents callout-collapse collapse">
+<div id="callout-36" class="callout-36-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Before you begin, import the <span class="data">PlantGrowth</span> dataset from the <span class="repo">Intro to Stats with Rguroo</span> repository. If you have already opened the ANOVA analysis from <a href="#exm-anova-plant-growth" class="quarto-xref">Example&nbsp;<span>13.1</span></a>, retain its settings and proceed to Step 7.</p>
 <ol type="1">
-<li><p>Open the <strong>Analytics</strong> toolbox in Rguroo.</p></li>
-<li><p>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</p></li>
-<li><p>From the <span class="dpd">Dataset</span> dropdown, select <span class="data">PlantGrowth</span>.</p></li>
-<li><p>From the <span class="dpd">Response</span> dropdown, select <span class="var">weight</span>.</p></li>
-<li><p>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown, select <span class="var">group</span>.</p></li>
-<li><p>Enter <span class="typein">0.05</span> in the <span class="des">Significance Level</span> textbox.</p></li>
-<li><p>Select the checkbox next to the <span class="tab">Diagnostics</span> button. By default, Rguroo includes the response boxplots, residual-versus-fitted plot, residual Q-Q plot, and Levene’s test.</p></li>
-<li><p>Optionally, click the <span class="tab">Diagnostics</span> button to view these selections and the other available diagnostics. Keep the default selections for this example.</p></li>
-<li><p>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon"> to view the output.</p></li>
-<li><p>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">Diagnostics_PlantGrowth</span>.</p></li>
+<li>Open the <strong>Analytics</strong> toolbox in Rguroo.</li>
+<li>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</li>
+<li>From the <span class="dpd">Dataset</span> dropdown, select <span class="data">PlantGrowth</span>.</li>
+<li>From the <span class="dpd">Response</span> dropdown, select <span class="var">weight</span>.</li>
+<li>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown, select <span class="var">group</span>.</li>
+<li>Enter <span class="typein">0.05</span> in the <span class="des">Significance Level</span> textbox.</li>
+<li>Select the checkbox next to the <span class="tab">Diagnostics</span> button. By default, Rguroo includes the response boxplots, residual-versus-fitted plot, residual Q-Q plot, and Levene’s test.</li>
+<li>Optionally, click the <span class="tab">Diagnostics</span> button to view these selections and the other available diagnostics. Keep the default selections for this example.</li>
+<li>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon"> to view the output.</li>
+<li>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">Diagnostics_PlantGrowth</span>.</li>
 </ol>
 <div class="inner-callout callout callout-style-default callout-tip callout-titled" title="Rguroo ANOVA diagnostics dialogs">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-27-contents" aria-controls="callout-27" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1956,7 +2331,7 @@ Rguroo ANOVA diagnostics dialogs
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-27" class="callout-27-contents callout-collapse collapse show">
+<div id="callout-35" class="callout-35-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="cell-output-display">
@@ -1974,32 +2349,32 @@ Rguroo ANOVA diagnostics dialogs
 </div>
 </div>
 </div>
-<p><a href="#fig-plant-growth-diagnostic-boxplot" class="quarto-xref">Figure&nbsp;<span>13.6</span></a> shows the response boxplots for the three groups.</p>
+<p><a href="#fig-plant-growth-diagnostic-boxplot" class="quarto-xref">Figure&nbsp;<span>13.9</span></a> shows the response boxplots for the three groups.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-plant-growth-diagnostic-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Boxplots of dried plant weights for control, treatment 1, and treatment 2. Treatment 1 has a longer upper whisker and one high observation marked as a potential outlier. Treatment 2 has a smaller box than the other groups.">
+<div id="fig-plant-growth-diagnostic-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Boxplots of dried plant weights for control, treatment 1, and treatment 2. Treatment 1 has a longer upper whisker and one high observation marked as a potential outlier. Treatment 2 has a smaller box than the other groups." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plant-growth-diagnostic-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Rguroo_outputs/ANOVA/plant_boxplot_1way.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Boxplots of dried plant weights for control, treatment 1, and treatment 2. Treatment 1 has a longer upper whisker and one high observation marked as a potential outlier. Treatment 2 has a smaller box than the other groups.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plant-growth-diagnostic-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.6: Boxplots of dried plant weights by experimental condition.
+Figure&nbsp;13.9: Boxplots of dried plant weights by experimental condition.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>The treatment 1 boxplot has a longer upper whisker and one high observation marked as a potential outlier. These features suggest some asymmetry and deserve attention. An observation marked as a potential outlier is not necessarily an error; it should be investigated rather than automatically removed.</p>
-<p><a href="#fig-plant-growth-residual-qq" class="quarto-xref">Figure&nbsp;<span>13.7</span></a> shows the Q-Q plot of the residuals from all three groups.</p>
+<p><a href="#fig-plant-growth-residual-qq" class="quarto-xref">Figure&nbsp;<span>13.10</span></a> shows the Q-Q plot of the residuals from all three groups.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-plant-growth-residual-qq" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Normal Q-Q plot of plant growth residuals. Most points in the lower and middle portions follow the reference line reasonably closely, while several of the largest residuals lie above the line, indicating an upper-tail departure from normality.">
+<div id="fig-plant-growth-residual-qq" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Normal Q-Q plot of plant growth residuals. Most points in the lower and middle portions follow the reference line reasonably closely, while several of the largest residuals lie above the line, indicating an upper-tail departure from normality." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plant-growth-residual-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Rguroo_outputs/ANOVA/plant_res_qq_plot_1way.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Normal Q-Q plot of plant growth residuals. Most points in the lower and middle portions follow the reference line reasonably closely, while several of the largest residuals lie above the line, indicating an upper-tail departure from normality.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plant-growth-residual-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.7: Normal Q-Q plot of residuals from the plant growth ANOVA.
+Figure&nbsp;13.10: Normal Q-Q plot of residuals from the plant growth ANOVA.
 </figcaption>
 </figure>
 </div>
@@ -2016,16 +2391,16 @@ Figure&nbsp;13.7: Normal Q-Q plot of residuals from the plant growth ANOVA.
 \approx 1.79.
 \]</span></p>
 <p>This ratio is below the guideline of 2. Although the group spreads are not identical, this check does not suggest a severe difference in population variances. The equal sample sizes also make ANOVA less sensitive to moderate differences in variances than it would be with unequal sample sizes.</p>
-<p><a href="#fig-plant-growth-residual-fit" class="quarto-xref">Figure&nbsp;<span>13.8</span></a> shows the residuals plotted against the fitted values.</p>
+<p><a href="#fig-plant-growth-residual-fit" class="quarto-xref">Figure&nbsp;<span>13.11</span></a> shows the residuals plotted against the fitted values.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-plant-growth-residual-fit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Residual-versus-fitted plot with three vertical columns at the group sample means, approximately 4.66, 5.03, and 5.53. Treatment 1, at 4.66, has the widest residual spread; treatment 2, at 5.53, has the narrowest. Residuals occur above and below zero in all three groups.">
+<div id="fig-plant-growth-residual-fit" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Residual-versus-fitted plot with three vertical columns at the group sample means, approximately 4.66, 5.03, and 5.53. Treatment 1, at 4.66, has the widest residual spread; treatment 2, at 5.53, has the narrowest. Residuals occur above and below zero in all three groups." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-plant-growth-residual-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Rguroo_outputs/ANOVA/plant_res_fit_plot_1way.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Residual-versus-fitted plot with three vertical columns at the group sample means, approximately 4.66, 5.03, and 5.53. Treatment 1, at 4.66, has the widest residual spread; treatment 2, at 5.53, has the narrowest. Residuals occur above and below zero in all three groups.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plant-growth-residual-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.8: Residuals versus fitted values for the plant growth ANOVA.
+Figure&nbsp;13.11: Residuals versus fitted values for the plant growth ANOVA.
 </figcaption>
 </figure>
 </div>
@@ -2040,12 +2415,12 @@ H_0: \text{all population variances are equal} \\
 H_a: \text{not all population variances are equal.}
 \end{cases}
 \]</span></p>
-<p><a href="#tbl-plant-growth-levene" class="quarto-xref">Table&nbsp;<span>13.15</span></a> shows the Rguroo output.</p>
+<p><a href="#tbl-plant-growth-levene" class="quarto-xref">Table&nbsp;<span>13.18</span></a> shows the Rguroo output.</p>
 <div class="cell">
 <div id="tbl-plant-growth-levene" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-plant-growth-levene-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;13.15: Levene’s test of equality of population variances for dried plant weights.
+Table&nbsp;13.18: Levene’s test of equality of population variances for dried plant weights.
 </figcaption>
 <div aria-describedby="tbl-plant-growth-levene-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -2067,7 +2442,7 @@ Table&nbsp;13.15: Levene’s test of equality of population variances for dried 
 </div>
 </div>
 <div id="exm-anova-assumptions-chickweight21" class="callout-example theorem example">
-<p><span class="theorem-title"><strong>Example 13.7 (Checking ANOVA assumptions for chick body weights)</strong></span> In <a href="#exm-anova-chickweight21" class="quarto-xref">Example&nbsp;<span>13.3</span></a>, we compared population mean chick body weights at 21 days under four protein diets. We now examine whether the assumptions underlying that analysis are reasonable.</p>
+<p><span class="theorem-title"><strong>Example 13.9 (Checking ANOVA assumptions for chick body weights)</strong></span> In <a href="#exm-anova-chickweight21" class="quarto-xref">Example&nbsp;<span>13.3</span></a>, we compared population mean chick body weights at 21 days under four protein diets. We now examine whether the assumptions underlying that analysis are reasonable.</p>
 <p>The original chick growth experiment recorded repeated weights for each chick. The <span class="data">ChickWeight21</span> dataset includes only the day-21 observations, so each chick contributes one measurement. There are 45 chicks: 16 received Diet 1, 10 received Diet 2, 10 received Diet 3, and 9 received Diet 4. The available documentation does not describe how the chicks were assigned to diets or whether they shared housing that could have made their weights related.</p>
 <ol type="a">
 <li><p>Using the description of data collection above, discuss whether independence can be established. What source of dependence has been avoided by using only day-21 observations, and what additional information would help?</p></li>
@@ -2082,7 +2457,7 @@ Table&nbsp;13.15: Levene’s test of equality of population variances for dried 
 </div>
 </div>
 <div class="solution-callout callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-32-contents" aria-controls="callout-32" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-40-contents" aria-controls="callout-40" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -2091,13 +2466,13 @@ Table&nbsp;13.15: Levene’s test of equality of population variances for dried 
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-32" class="callout-32-contents callout-collapse collapse">
+<div id="callout-40" class="callout-40-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>a. Using one measurement per chick avoids treating repeated weights from the same chick as independent observations. However, this does not establish independence among different chicks.</p>
 <p>For example, chicks sharing a pen might experience similar conditions, making their weights related. Information about housing arrangements and whether diets were assigned to individual chicks or entire pens would help us assess independence. For this example, we treat independence as an assumption rather than claim that it has been verified.</p>
 <p>b. Click to expand the box below to see how to obtain the diagnostic plots and Levene’s test in Rguroo.</p>
 <div id="diagnostics-chickweight21" class="callout callout-style-simple callout-note callout-titled" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} ANOVA Diagnostics - Chick Weight example">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-31-contents" aria-controls="callout-31" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-39-contents" aria-controls="callout-39" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2106,23 +2481,23 @@ Table&nbsp;13.15: Levene’s test of equality of population variances for dried 
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-31" class="callout-31-contents callout-collapse collapse">
+<div id="callout-39" class="callout-39-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Before you begin, import the <span class="data">ChickWeight21</span> dataset from the <span class="repo">Intro to Stats with Rguroo</span> repository. If you saved the ANOVA analysis from <a href="#exm-anova-chickweight21" class="quarto-xref">Example&nbsp;<span>13.3</span></a> as <span class="typein">ANOVA_ChickWeight21</span>, open it, keep its settings, and proceed to Step 7.</p>
 <ol type="1">
-<li><p>Open the <strong>Analytics</strong> toolbox in Rguroo.</p></li>
-<li><p>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</p></li>
-<li><p>From the <span class="dpd">Dataset</span> dropdown, select <span class="data">ChickWeight21</span>.</p></li>
-<li><p>From the <span class="dpd">Response</span> dropdown, select <span class="var">weight</span>.</p></li>
-<li><p>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown, select <span class="var">Diet</span>.</p></li>
-<li><p>Enter <span class="typein">0.01</span> in the <span class="des">Significance Level</span> textbox.</p></li>
-<li><p>Select the checkbox next to the <span class="tab">Diagnostics</span> button. By default, Rguroo includes the response boxplots, residual-versus-fitted plot, residual Q-Q plot, and Levene’s test.</p></li>
-<li><p>Optionally, click the <span class="tab">Diagnostics</span> button to view these selections and the other available diagnostics. Keep the default selections for this example.</p></li>
-<li><p>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon"> to view the output.</p></li>
-<li><p>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">Diagnostics_ChickWeight21</span>.</p></li>
+<li>Open the <strong>Analytics</strong> toolbox in Rguroo.</li>
+<li>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</li>
+<li>From the <span class="dpd">Dataset</span> dropdown, select <span class="data">ChickWeight21</span>.</li>
+<li>From the <span class="dpd">Response</span> dropdown, select <span class="var">weight</span>.</li>
+<li>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown, select <span class="var">Diet</span>.</li>
+<li>Enter <span class="typein">0.01</span> in the <span class="des">Significance Level</span> textbox.</li>
+<li>Select the checkbox next to the <span class="tab">Diagnostics</span> button. By default, Rguroo includes the response boxplots, residual-versus-fitted plot, residual Q-Q plot, and Levene’s test.</li>
+<li>Optionally, click the <span class="tab">Diagnostics</span> button to view these selections and the other available diagnostics. Keep the default selections for this example.</li>
+<li>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon"> to view the output.</li>
+<li>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">Diagnostics_ChickWeight21</span>.</li>
 </ol>
 <div class="inner-callout callout callout-style-default callout-tip callout-titled" title="Rguroo ANOVA diagnostics dialogs">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-30-contents" aria-controls="callout-30" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-38-contents" aria-controls="callout-38" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2131,7 +2506,7 @@ Rguroo ANOVA diagnostics dialogs
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-30" class="callout-30-contents callout-collapse collapse show">
+<div id="callout-38" class="callout-38-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="cell-output-display">
@@ -2149,32 +2524,32 @@ Rguroo ANOVA diagnostics dialogs
 </div>
 </div>
 </div>
-<p><a href="#fig-chickweight21-diagnostic-boxplot" class="quarto-xref">Figure&nbsp;<span>13.9</span></a> shows the response boxplots for the four diets.</p>
+<p><a href="#fig-chickweight21-diagnostic-boxplot" class="quarto-xref">Figure&nbsp;<span>13.12</span></a> shows the response boxplots for the four diets.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-chickweight21-diagnostic-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Boxplots of chick body weights for four diets. No observations are marked as potential outliers. Diets 1 and 4 have long upper whiskers, and Diet 4 has a very short lower whisker. Diet 2 has a long lower whisker extending to about 74 grams. Diet 3 appears roughly symmetric. Diets 2 and 3 have taller boxes than Diets 1 and 4.">
+<div id="fig-chickweight21-diagnostic-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Boxplots of chick body weights for four diets. No observations are marked as potential outliers. Diets 1 and 4 have long upper whiskers, and Diet 4 has a very short lower whisker. Diet 2 has a long lower whisker extending to about 74 grams. Diet 3 appears roughly symmetric. Diets 2 and 3 have taller boxes than Diets 1 and 4." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chickweight21-diagnostic-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Rguroo_outputs/ANOVA/chick_boxplot_1way.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Boxplots of chick body weights for four diets. No observations are marked as potential outliers. Diets 1 and 4 have long upper whiskers, and Diet 4 has a very short lower whisker. Diet 2 has a long lower whisker extending to about 74 grams. Diet 3 appears roughly symmetric. Diets 2 and 3 have taller boxes than Diets 1 and 4.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chickweight21-diagnostic-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.9: Boxplots of chick body weights at 21 days by diet.
+Figure&nbsp;13.12: Boxplots of chick body weights at 21 days by diet.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>None of the boxplots marks observations as potential outliers. Some asymmetry is visible: Diets 1 and 4 have long upper whiskers, while Diet 2 has a long lower whisker extending to about 74 g. Diet 3 appears roughly symmetric. With 9 to 16 chicks per diet, this amount of asymmetry is not unusual, and the plots do not suggest extreme departures from normality.</p>
-<p><a href="#fig-chickweight21-residual-qq" class="quarto-xref">Figure&nbsp;<span>13.10</span></a> shows the Q-Q plot of the residuals from all four groups.</p>
+<p><a href="#fig-chickweight21-residual-qq" class="quarto-xref">Figure&nbsp;<span>13.13</span></a> shows the Q-Q plot of the residuals from all four groups.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-chickweight21-residual-qq" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Normal Q-Q plot of chick weight residuals. The points follow the reference line reasonably closely overall. Several of the largest residuals lie above the line, and the two smallest residuals, about -140 and -123, lie below the line.">
+<div id="fig-chickweight21-residual-qq" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Normal Q-Q plot of chick weight residuals. The points follow the reference line reasonably closely overall. Several of the largest residuals lie above the line, and the two smallest residuals, about -140 and -123, lie below the line." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chickweight21-residual-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Rguroo_outputs/ANOVA/chick_res_qq_plot_1way.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Normal Q-Q plot of chick weight residuals. The points follow the reference line reasonably closely overall. Several of the largest residuals lie above the line, and the two smallest residuals, about -140 and -123, lie below the line.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chickweight21-residual-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.10: Normal Q-Q plot of residuals from the chick body weight ANOVA.
+Figure&nbsp;13.13: Normal Q-Q plot of residuals from the chick body weight ANOVA.
 </figcaption>
 </figure>
 </div>
@@ -2192,16 +2567,16 @@ Figure&nbsp;13.10: Normal Q-Q plot of residuals from the chick body weight ANOVA
 \]</span></p>
 <p>This ratio is below the guideline of 2. Diets 2 and 3 have greater variation than Diet 4, but this check does not suggest an extreme difference in spread.</p>
 <p>Because the group sample sizes are unequal, we also check whether the smaller groups have the larger standard deviations. Diets 2 and 3, with 10 chicks each, have larger standard deviations than Diet 1, with 16 chicks. However, Diet 4, the smallest group, has the smallest standard deviation. There is no strong pattern of smaller groups having larger spreads.</p>
-<p><a href="#fig-chickweight21-residual-fit" class="quarto-xref">Figure&nbsp;<span>13.11</span></a> shows the residuals plotted against the fitted values.</p>
+<p><a href="#fig-chickweight21-residual-fit" class="quarto-xref">Figure&nbsp;<span>13.14</span></a> shows the residuals plotted against the fitted values.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-chickweight21-residual-fit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Residual-versus-fitted plot with four vertical columns at mean chick weights of approximately 177.75, 214.70, 238.56, and 270.30 grams. These correspond to Diets 1, 2, 4, and 3. Diet 2 has the widest overall residual range, from about -140 to 117, and Diet 4 has the narrowest, from about -42 to 84.">
+<div id="fig-chickweight21-residual-fit" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Residual-versus-fitted plot with four vertical columns at mean chick weights of approximately 177.75, 214.70, 238.56, and 270.30 grams. These correspond to Diets 1, 2, 4, and 3. Diet 2 has the widest overall residual range, from about -140 to 117, and Diet 4 has the narrowest, from about -42 to 84." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-chickweight21-residual-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Rguroo_outputs/ANOVA/chick_res_fit_plot_1way.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Residual-versus-fitted plot with four vertical columns at mean chick weights of approximately 177.75, 214.70, 238.56, and 270.30 grams. These correspond to Diets 1, 2, 4, and 3. Diet 2 has the widest overall residual range, from about -140 to 117, and Diet 4 has the narrowest, from about -42 to 84.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chickweight21-residual-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.11: Residuals versus fitted values for the chick body weight ANOVA.
+Figure&nbsp;13.14: Residuals versus fitted values for the chick body weight ANOVA.
 </figcaption>
 </figure>
 </div>
@@ -2215,12 +2590,12 @@ H_0: \text{all population variances are equal} \\
 H_a: \text{not all population variances are equal.}
 \end{cases}
 \]</span></p>
-<p><a href="#tbl-chickweight21-levene" class="quarto-xref">Table&nbsp;<span>13.16</span></a> shows the Rguroo output.</p>
+<p><a href="#tbl-chickweight21-levene" class="quarto-xref">Table&nbsp;<span>13.19</span></a> shows the Rguroo output.</p>
 <div class="cell">
 <div id="tbl-chickweight21-levene" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-chickweight21-levene-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;13.16: Levene’s test of equality of population variances for chick body weights.
+Table&nbsp;13.19: Levene’s test of equality of population variances for chick body weights.
 </figcaption>
 <div aria-describedby="tbl-chickweight21-levene-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -2242,7 +2617,7 @@ Table&nbsp;13.16: Levene’s test of equality of population variances for chick 
 </div>
 </div>
 <div id="exm-anova-assumptions-adelie" class="callout-example theorem example">
-<p><span class="theorem-title"><strong>Example 13.8 (Checking ANOVA assumptions for Adélie penguin body mass)</strong></span> In <a href="#exm-anova-adelie" class="quarto-xref">Example&nbsp;<span>13.2</span></a>, we compared population mean body masses of Adélie penguins on Biscoe, Dream, and Torgersen islands. We now examine whether the assumptions underlying that analysis are reasonable.</p>
+<p><span class="theorem-title"><strong>Example 13.10 (Checking ANOVA assumptions for Adélie penguin body mass)</strong></span> In <a href="#exm-anova-adelie" class="quarto-xref">Example&nbsp;<span>13.2</span></a>, we compared population mean body masses of Adélie penguins on Biscoe, Dream, and Torgersen islands. We now examine whether the assumptions underlying that analysis are reasonable.</p>
 <p>The <span class="data">palmerpenguins_Adelie</span> dataset contains 151 penguins with recorded body masses: 44 from Biscoe, 56 from Dream, and 51 from Torgersen. In the original study, researchers selected and monitored nests on the three islands and measured both adults from sampled nests. Penguins were observed in their existing locations rather than randomly assigned to islands. Additional details are available in the <a href="https://doi.org/10.1371/journal.pone.0090081">original study</a>.</p>
 <ol type="a">
 <li><p>Using the description of data collection above, discuss whether independence is reasonable. Identify a possible source of dependence among observations.</p></li>
@@ -2257,7 +2632,7 @@ Table&nbsp;13.16: Levene’s test of equality of population variances for chick 
 </div>
 </div>
 <div class="solution-callout callout callout-style-default callout-tip no-icon callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-35-contents" aria-controls="callout-35" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-43-contents" aria-controls="callout-43" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
@@ -2266,13 +2641,13 @@ Table&nbsp;13.16: Levene’s test of equality of population variances for chick 
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-35" class="callout-35-contents callout-collapse collapse">
+<div id="callout-43" class="callout-43-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>a. Measuring both adults from the same nest creates a possible source of dependence. Penguins sharing a nest may have related body masses because of shared conditions or characteristics of breeding pairs. Thus, observations from different penguins are not automatically independent simply because each observation represents a different animal.</p>
 <p>The study description gives us a reason to question independence, although it does not tell us the strength or direction of any relationship between the body masses of nesting partners. Additional information about the pairing of observations would help us investigate this concern. The diagnostic plots below cannot establish independence.</p>
 <p>b. Click to expand the box below to see how to obtain the diagnostic plots and Levene’s test in Rguroo.</p>
 <div id="diagnostics-adelie" class="callout callout-style-simple callout-note callout-titled" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} ANOVA Diagnostics - Adélie Penguins example">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-34-contents" aria-controls="callout-34" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-42-contents" aria-controls="callout-42" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2281,23 +2656,23 @@ Table&nbsp;13.16: Levene’s test of equality of population variances for chick 
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-34" class="callout-34-contents callout-collapse collapse">
+<div id="callout-42" class="callout-42-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Before you begin, import the <span class="data">palmerpenguins_Adelie</span> dataset from the <span class="repo">Intro to Stats with Rguroo</span> repository. If you saved the ANOVA analysis from <a href="#exm-anova-adelie" class="quarto-xref">Example&nbsp;<span>13.2</span></a> as <span class="typein">ANOVA_adelie</span>, open it, keep its settings, and proceed to Step 7.</p>
 <ol type="1">
-<li><p>Open the <strong>Analytics</strong> toolbox in Rguroo.</p></li>
-<li><p>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</p></li>
-<li><p>From the <span class="dpd">Dataset</span> dropdown, select <span class="data">palmerpenguins_Adelie</span>.</p></li>
-<li><p>From the <span class="dpd">Response</span> dropdown, select <span class="var">body_mass_g</span>.</p></li>
-<li><p>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown, select <span class="var">island</span>.</p></li>
-<li><p>Enter <span class="typein">0.05</span> in the <span class="des">Significance Level</span> textbox.</p></li>
-<li><p>Select the checkbox next to the <span class="tab">Diagnostics</span> button. By default, Rguroo includes the response boxplots, residual-versus-fitted plot, residual Q-Q plot, and Levene’s test.</p></li>
-<li><p>Optionally, click the <span class="tab">Diagnostics</span> button to view these selections and the other available diagnostics. Keep the default selections for this example.</p></li>
-<li><p>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon"> to view the output.</p></li>
-<li><p>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">Diagnostics_Adelie</span>.</p></li>
+<li>Open the <strong>Analytics</strong> toolbox in Rguroo.</li>
+<li>From the <span class="dpd">Analysis</span> dropdown, select <span class="fun">ANOVA</span>. This opens the <span class="dialog">ANOVA</span> dialog.</li>
+<li>From the <span class="dpd">Dataset</span> dropdown, select <span class="data">palmerpenguins_Adelie</span>.</li>
+<li>From the <span class="dpd">Response</span> dropdown, select <span class="var">body_mass_g</span>.</li>
+<li>In the <span class="tab">One-Way</span> tab, from the <span class="dpd">Factor</span> dropdown, select <span class="var">island</span>.</li>
+<li>Enter <span class="typein">0.05</span> in the <span class="des">Significance Level</span> textbox.</li>
+<li>Select the checkbox next to the <span class="tab">Diagnostics</span> button. By default, Rguroo includes the response boxplots, residual-versus-fitted plot, residual Q-Q plot, and Levene’s test.</li>
+<li>Optionally, click the <span class="tab">Diagnostics</span> button to view these selections and the other available diagnostics. Keep the default selections for this example.</li>
+<li>Click the preview icon <img src="Rguroo_Icons/preview_inline.png" class="img-fluid" alt="preview icon"> to view the output.</li>
+<li>Click the <img src="Rguroo_Icons/save_as.png" class="img-fluid" alt="Save as"> button and save the result as <span class="typein">Diagnostics_Adelie</span>.</li>
 </ol>
 <div class="inner-callout callout callout-style-default callout-tip callout-titled" title="Rguroo ANOVA diagnostics dialogs">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-33-contents" aria-controls="callout-33" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-41-contents" aria-controls="callout-41" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -2306,7 +2681,7 @@ Rguroo ANOVA diagnostics dialogs
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-33" class="callout-33-contents callout-collapse collapse show">
+<div id="callout-41" class="callout-41-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <div class="cell">
 <div class="cell-output-display">
@@ -2324,32 +2699,32 @@ Rguroo ANOVA diagnostics dialogs
 </div>
 </div>
 </div>
-<p><a href="#fig-adelie-diagnostic-boxplot" class="quarto-xref">Figure&nbsp;<span>13.12</span></a> shows the response boxplots for the three islands.</p>
+<p><a href="#fig-adelie-diagnostic-boxplot" class="quarto-xref">Figure&nbsp;<span>13.15</span></a> shows the response boxplots for the three islands.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-adelie-diagnostic-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Boxplots of Adélie penguin body mass on Biscoe, Dream, and Torgersen islands. The boxes have similar heights, no observations are marked as potential outliers, and some asymmetry is visible, particularly for Dream, whose median is close to the lower edge of its box.">
+<div id="fig-adelie-diagnostic-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Boxplots of Adélie penguin body mass on Biscoe, Dream, and Torgersen islands. The boxes have similar heights, no observations are marked as potential outliers, and some asymmetry is visible, particularly for Dream, whose median is close to the lower edge of its box." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-adelie-diagnostic-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Rguroo_outputs/ANOVA/adelie_boxplot_1way.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Boxplots of Adélie penguin body mass on Biscoe, Dream, and Torgersen islands. The boxes have similar heights, no observations are marked as potential outliers, and some asymmetry is visible, particularly for Dream, whose median is close to the lower edge of its box.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adelie-diagnostic-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.12: Boxplots of Adélie penguin body mass by island.
+Figure&nbsp;13.15: Boxplots of Adélie penguin body mass by island.
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>None of the boxplots marks observations as potential outliers. Some asymmetry is visible, particularly for Dream, where the median is closer to the lower edge of the box. However, the boxplots do not suggest extreme skewness or unusually isolated observations.</p>
-<p><a href="#fig-adelie-residual-qq" class="quarto-xref">Figure&nbsp;<span>13.13</span></a> shows the Q-Q plot of the residuals from all three groups.</p>
+<p><a href="#fig-adelie-residual-qq" class="quarto-xref">Figure&nbsp;<span>13.16</span></a> shows the Q-Q plot of the residuals from all three groups.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-adelie-residual-qq" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Normal Q-Q plot of Adélie penguin body mass residuals. Most points follow the reference line closely. Departures occur near both ends, with the smallest residuals above the line and the largest residuals below it, indicating tails shorter than those of a normal distribution.">
+<div id="fig-adelie-residual-qq" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Normal Q-Q plot of Adélie penguin body mass residuals. Most points follow the reference line closely. Departures occur near both ends, with the smallest residuals above the line and the largest residuals below it, indicating tails shorter than those of a normal distribution." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-adelie-residual-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Rguroo_outputs/ANOVA/adelie_res_qq_plot_1way.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Normal Q-Q plot of Adélie penguin body mass residuals. Most points follow the reference line closely. Departures occur near both ends, with the smallest residuals above the line and the largest residuals below it, indicating tails shorter than those of a normal distribution.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adelie-residual-qq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.13: Normal Q-Q plot of residuals from the Adélie penguin ANOVA.
+Figure&nbsp;13.16: Normal Q-Q plot of residuals from the Adélie penguin ANOVA.
 </figcaption>
 </figure>
 </div>
@@ -2366,16 +2741,16 @@ Figure&nbsp;13.13: Normal Q-Q plot of residuals from the Adélie penguin ANOVA.
 \approx 1.10.
 \]</span></p>
 <p>This ratio is close to 1 and well below the guideline of 2, indicating similar sample standard deviations. The similar box heights also suggest comparable spreads among the middle 50% of observations.</p>
-<p><a href="#fig-adelie-residual-fit" class="quarto-xref">Figure&nbsp;<span>13.14</span></a> shows the residuals plotted against the fitted values.</p>
+<p><a href="#fig-adelie-residual-fit" class="quarto-xref">Figure&nbsp;<span>13.17</span></a> shows the residuals plotted against the fitted values.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div id="fig-adelie-residual-fit" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" alt="Residual-versus-fitted plot with three vertical columns at mean body masses of approximately 3688, 3706, and 3710 grams. From left to right, these represent Dream, Torgersen, and Biscoe. The columns have broadly similar vertical spreads, with residuals above and below zero.">
+<div id="fig-adelie-residual-fit" class="quarto-float quarto-figure quarto-figure-center anchored" alt="Residual-versus-fitted plot with three vertical columns at mean body masses of approximately 3688, 3706, and 3710 grams. From left to right, these represent Dream, Torgersen, and Biscoe. The columns have broadly similar vertical spreads, with residuals above and below zero." data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-adelie-residual-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="Rguroo_outputs/ANOVA/adelie_res_fit_plot_1way.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Residual-versus-fitted plot with three vertical columns at mean body masses of approximately 3688, 3706, and 3710 grams. From left to right, these represent Dream, Torgersen, and Biscoe. The columns have broadly similar vertical spreads, with residuals above and below zero.">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-adelie-residual-fit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;13.14: Residuals versus fitted values for the Adélie penguin ANOVA.
+Figure&nbsp;13.17: Residuals versus fitted values for the Adélie penguin ANOVA.
 </figcaption>
 </figure>
 </div>
@@ -2391,12 +2766,12 @@ H_0: \text{all population variances are equal} \\
 H_a: \text{not all population variances are equal.}
 \end{cases}
 \]</span></p>
-<p><a href="#tbl-adelie-levene" class="quarto-xref">Table&nbsp;<span>13.17</span></a> shows the Rguroo output.</p>
+<p><a href="#tbl-adelie-levene" class="quarto-xref">Table&nbsp;<span>13.20</span></a> shows the Rguroo output.</p>
 <div class="cell">
 <div id="tbl-adelie-levene" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-adelie-levene-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;13.17: Levene’s test of equality of population variances for Adélie penguin body mass.
+Table&nbsp;13.20: Levene’s test of equality of population variances for Adélie penguin body mass.
 </figcaption>
 <div aria-describedby="tbl-adelie-levene-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -2482,6 +2857,14 @@ Table&nbsp;13.17: Levene’s test of equality of population variances for Adéli
 <div tabindex="0" style="width:85%; margin:auto;">
 <p><img src="Rguroo_Icons/Rguroo_repo_logo.png" class="img-fluid" alt="Rguroo dataset logo"> The dataset for this exercise is available in the Rguroo dataset repository <span class="repo">Intro to Stats with Rguroo</span>, with the dataset name <span class="data">HotDogs</span>.</p>
 <p><strong>Codebook for Dataset HotDogs is given <a href="#code-book-hotdogs">here</a>.</strong></p>
+</div>
+<ol start="6" type="1">
+<li><p><strong>Cholesterol Reduction Under Different Dosing Schedules</strong> The <span class="data">Cholesterol</span> dataset contains cholesterol reductions for 30 patients receiving one of three dosing schedules of the same drug: 20 mg once daily (<span class="cat">1time</span>), 10 mg twice daily (<span class="cat">2times</span>), or 5 mg four times daily (<span class="cat">4times</span>). Each schedule provides the same total daily dose, and each group contains 10 patients. Use <span class="var">response</span> as the response variable and <span class="var">trt</span> as the grouping variable. Complete parts (a)–(e) to assess normality and equality of population variances. Use a 5% significance level for Levene’s test.</p>
+<p>Use the summaries and results from <a href="#exm-anova-cholesterol" class="quarto-xref">Example&nbsp;<span>13.4</span></a> and <a href="#exm-tukey-cholesterol" class="quarto-xref">Example&nbsp;<span>13.7</span></a> when answering parts (c) and (e). Discuss whether your diagnostic findings support the use of ANOVA and Tukey’s HSD comparisons in those examples.</p></li>
+</ol>
+<div tabindex="0" style="width:85%; margin:auto;">
+<p><img src="Rguroo_Icons/Rguroo_repo_logo.png" class="img-fluid" alt="Rguroo dataset logo"> The dataset for this exercise is available in the Rguroo dataset repository <span class="repo">Intro to Stats with Rguroo</span>, with the dataset name <span class="data">Cholesterol</span>.</p>
+<p><strong>Codebook for Dataset Cholesterol is given <a href="#code-book-cholesterol">here</a>.</strong></p>
 </div>
 
 

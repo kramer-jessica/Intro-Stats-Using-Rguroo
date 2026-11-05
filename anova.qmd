@@ -20,10 +20,10 @@ number-offset: 11
 
 Analysis of variance (ANOVA) is a statistical method used to compare the population means of three or more groups. In @sec-mean-independent, we learned how to compare two means using two-sample tests or confidence intervals for the difference between means. When we have three or more groups, one approach would be to compare the means of each pair of groups. For example, suppose that a researcher wants to know whether mean quiz scores differ among students randomly assigned to study with an AI tutor, use only a textbook, or use only class notes. In this example, we have three groups, and comparing each pair of means would require three comparisons, namely, AI tutor vs. textbook, AI tutor vs. class notes, and textbook vs. class notes. As another example, suppose that a researcher wants to know whether mean body weight at 21 days of age differs among chicks receiving four different protein diets. In this example, we have four groups, and comparing each pair of means would require six comparisons, namely, diet 1 vs. diet 2, diet 1 vs. diet 3, diet 1 vs. diet 4, diet 2 vs. diet 3, diet 2 vs. diet 4, and diet 3 vs. diet 4.
 
-As you can see from the examples above, as the number of groups increases, the number of pairwise comparisons increases rapidly. In general, with $k$ groups there are
+As you can see from the examples above, as the number of groups increases, the number of pairwise comparisons increases rapidly. In general, using the counting method that we learned in Chapter 4, with $k$ groups there are
 
 $$
-\frac{k(k-1)}{2}
+{}_kC_2=\binom{k}{2}=\frac{k(k-1)}{2}
 $$
 
 pairwise comparisons. For example, if there are 5 groups, there are 10 pairwise comparisons, and if there are 6 groups, there are 15 pairwise comparisons. Conducting many separate tests without accounting for multiple comparisons increases the chance of making at least one Type I error—rejecting a true null hypothesis. Specifically, if we conduct tests each at the 5% level of significance, each test has a 5% chance of rejecting its null hypothesis when that hypothesis is true. Across several tests, however, the probability of making at least one Type I error can be greater than 5%.
@@ -36,7 +36,7 @@ $$
 
 So, for 3 tests this probability is about 14%, for 6 tests it is about 26%, and for 15 tests it is about 54%. Pairwise comparisons involving the same groups are not independent, so these percentages do not apply directly to our examples. Nevertheless, they illustrate how conducting many tests can substantially increase the overall chance of a Type I error. Thus, setting a 5% significance level for each individual test does not keep the overall chance of a Type I error at 5%.
 
-ANOVA addresses the overall question with a single test of whether all the population means are equal. If the ANOVA test is significant, we have evidence that not all the population means are equal. We can then use multiple comparison procedures to investigate which means differ while controlling the overall chance of a Type I error. In this chapter, we focus on one-way ANOVA, which compares means across groups defined by one categorical variable, such as study method or diet. In @sec-one-way-anova we will learn how to conduct a one-way ANOVA test, and in @sec-multiple-comparisons we will learn how to use multiple comparison procedures to investigate which means differ.
+ANOVA addresses the overall question with a single test of whether all the population means are equal. If the ANOVA test is significant, we have evidence that not all the population means are equal. We can then use multiple comparison procedures to investigate which means differ while controlling the overall chance of a Type I error. In this chapter, we focus on one-way ANOVA, which compares means across groups defined by one categorical variable, such as study method or diet. In @sec-one-way-anova we will learn how to conduct a one-way ANOVA test, in @sec-multiple-comparisons we will learn how to use multiple comparison procedures to investigate which means differ, and in @sec-anova-assumptions we will learn about the assumptions underlying ANOVA and how to check them.
 
 ## Comparing Means with One-Way ANOVA {#sec-one-way-anova}
 
@@ -45,7 +45,7 @@ In this section we introduce one-way ANOVA, a method for testing whether the pop
 $$
 \begin{cases}
 H_0: & \text{All population means are equal.} \\
-H_a: & \text{Not all population means are equal.}
+H_a: & \text{At least one population mean is different.}
 \end{cases}
 $$
 
@@ -54,11 +54,13 @@ Using the notation $\mu_1, \mu_2, \ldots, \mu_k$ to represent the population mea
 $$
 \begin{cases}
 H_0: & \mu_1 = \mu_2 = \cdots = \mu_k \\
-H_a: & \text{not all population means are equal}
+H_a: & \text{at least one population mean is different}
 \end{cases}
 $$
 
 Note that the alternative hypothesis does **not** say that all the population means are different from one another. $H_a$ is true if even one population mean differs from the others.
+
+### Exploring the Data
 
 To introduce the concepts of one-way ANOVA, we will use the [PlantGrowth]{.data} dataset, which compares dried plant weights under a control condition and two treatment conditions. The dataset contains 30 observations, with 10 observations in each group. This dataset is available in the Rguroo dataset repository [Intro to Stats with Rguroo]{.repo}, with the dataset name [PlantGrowth]{.data}.
 
@@ -129,7 +131,7 @@ For this example, $\mu_1$, $\mu_2$, and $\mu_3$ represent the population mean dr
 $$
 \begin{cases}
 H_0: & \mu_1 = \mu_2 = \mu_3 \\
-H_a: & \text{not all three population means are equal}
+H_a: & \text{At least one of the three population means is different}
 \end{cases}
 $$
 
@@ -157,6 +159,8 @@ knitr::include_graphics("Rguroo_outputs/ANOVA/plant_growth_boxplot.svg")
 
 The mean markers show that treatment 2 has the highest sample mean weight, followed by the control group and then treatment 1. Notice that the mean and median are not the same within a group. In the control group the mean is below the median, while in treatment 1 the mean is above the median. Treatment 1 also has one unusually large observation, shown as an open circle, which pulls its mean upward. We will return to outliers when we discuss the ANOVA assumptions in @sec-anova-assumptions.
 
+### Variation Between and Within Groups
+
 The boxplots also show that individual plant weights vary within each group. To understand how ANOVA evaluates the differences among the sample means, we need to distinguish two sources of variation:
 
 - **Variation between groups** refers to differences among the group means.
@@ -167,6 +171,8 @@ Differences among group means are easier to detect when the observations within 
 In the plant growth example, the differences among the sample means of 5.03, 4.66, and 5.53 reflect variation between groups. The sample standard deviations of 0.58 for the control group, 0.79 for treatment 1, and 0.43 for treatment 2 describe variation in individual plant weights within each group. Treatment 1 has the largest spread, which agrees with its taller box and longer whiskers in @fig-boxplot-plant-growth.
 
 The sample means alone do not tell us whether the differences are statistically significant. We will use a one-way ANOVA test to assess whether the differences among the means, relative to the variation within groups, provide evidence that not all population means are equal.
+
+### The $F$-Statistic and the ANOVA Test
 
 One-way ANOVA compares variation between groups with variation within groups using a statistic called the **$F$-statistic**. The $F$-statistic is a ratio:
 
@@ -183,7 +189,23 @@ To see why the $F$-statistic is useful, suppose the ANOVA assumptions hold (see 
 
 Because both mean squares estimate the same variance under the null hypothesis, an $F$-statistic near 1 is consistent with equal population means. A large $F$-statistic indicates that the differences among sample means are greater than we would expect from the variation within groups alone, providing evidence against the null hypothesis.
 
-Because large values provide evidence against the null hypothesis, the p-value for the ANOVA test is the area to the **right** of the observed $F$-statistic under the $F$ distribution. We use Rguroo to calculate the p-value and compare it with the significance level to decide whether to reject the null hypothesis.
+When the null hypothesis is true and the ANOVA assumptions hold, the $F$-statistic follows an **$F$ distribution**. An $F$ distribution is determined by two degrees of freedom: the **numerator degrees of freedom**, $d_1$, associated with the mean square between groups, and the **denominator degrees of freedom**, $d_2$, associated with the mean square within groups. For one-way ANOVA with $k$ groups and $n$ total observations, $d_1 = k - 1$ and $d_2 = n - k$. For example, the plant growth data have $k = 3$ groups and $n = 30$ observations, so $d_1 = 2$ and $d_2 = 27$.
+
+@fig-f-distribution shows several $F$ distributions. Because the $F$-statistic is a ratio of two mean squares, it cannot be negative, and every $F$ distribution is skewed to the right. Notice that as the degrees of freedom increase, the distribution becomes more concentrated around 1, consistent with our earlier observation that the $F$-statistic tends to be near 1 when the null hypothesis is true.
+
+```{r}
+#| label: fig-f-distribution
+#| fig-cap: "Probability density functions of $F$ distributions for several combinations of numerator degrees of freedom ($d_1$) and denominator degrees of freedom ($d_2$)."
+#| fig-alt: "Four F distribution density curves plotted from 0 to 5. The curve with 2 and 10 degrees of freedom starts at its highest point at zero and decreases. The curves with 3 and 41, 5 and 20, and 10 and 50 degrees of freedom rise to a peak below 1 and then decrease with a long right tail. As the degrees of freedom increase, the curves become taller and more concentrated near 1. All curves are skewed to the right and take only nonnegative values."
+#| out-width: "80%"
+#| fig-align: center
+#| echo: false
+knitr::include_graphics("Rguroo_outputs/ANOVA/f_distribution.svg")
+```
+
+Because large values provide evidence against the null hypothesis, the p-value for the ANOVA test is the area under the $F$ distribution to the **right** of the observed $F$-statistic. We use Rguroo to calculate the p-value and compare it with the significance level to decide whether to reject the null hypothesis.
+
+### Performing One-Way ANOVA in Rguroo
 
 The following example presents a complete one-way ANOVA analysis of the plant growth data using Rguroo, from stating the hypotheses to making a decision and interpreting the results in context.
 
@@ -194,7 +216,7 @@ Consider the [PlantGrowth]{.data} dataset, which contains dried plant weights un
 $$
 \begin{cases}
 H_0: \mu_1 = \mu_2 = \mu_3 \\
-H_a: \text{not all means are equal.}\end{cases}
+H_a: \text{At least one population mean is different.}\end{cases}
 $$
 
 a. Use Rguroo to test the hypotheses at the 5% significance level. Report the mean square between groups, the mean square within groups, the F-statistic, and the p-value.
@@ -221,19 +243,12 @@ a\. Click to expand the box below to see how to use the [ANOVA]{.fun} function i
 Before you begin, make sure to import the [PlantGrowth]{.data} dataset from the [Intro to Stats with Rguroo]{.repo} repository.
 
 1. Open the **Analytics** toolbox in Rguroo.  
-
 2. From the [Analysis]{.dpd} dropdown, select [ANOVA]{.fun}. This opens the [ANOVA]{.dialog} dialog.
-
 3. From the [Dataset]{.dpd} dropdown, select the [PlantGrowth]{.data} dataset.
-
 4. From the [Response]{.dpd} dropdown, select the variable [weight]{.var}.
-
 5. In the [One-Way]{.tab} tab, from the [Factor]{.dpd} dropdown select the categorical variable [group]{.var}.
-
 6. Enter [0.05]{.typein} in the [Significance level]{.des} textbox.
-
 7. Click the preview icon ![preview icon](Rguroo_Icons/preview_inline.png) to view the output.
-
 8. Click the ![Save as](Rguroo_Icons/save_as.png) button and save the result as [ANOVA_PlantGrowth]{.typein}.
 
 ::: {.callout-tip .inner-callout collapse="false" title="Rguroo ANOVA dialog"}
@@ -276,8 +291,7 @@ $F$-statistic is the ratio of these two mean squares, $F = 4.85$, with 2 and 27
 degrees of freedom. (Rguroo computes $F$ from the unrounded mean squares, so
 dividing the rounded values gives a slightly different result.) The mean square
 between groups is almost five times the mean square within groups, much larger
-than the value near 1 we would expect if $H_0$ were true. Rounded to three decimal
-places, the p-value is 0.016.
+than the value near 1 we would expect if $H_0$ were true. Rounded to three decimal places, the p-value is 0.016. Note that the p-value is shown under the column labeled _Pr>F_ in the Rguroo output.
 
 b\. Since the p-value of 0.016 is less than the significance level
 $\alpha = 0.05$, we reject $H_0$. At the 5% significance level, there is evidence
@@ -304,13 +318,13 @@ Consider the [palmerpenguins_Adelie]{.data} dataset, available in the [Intro to 
 
 We want to investigate whether the population mean body mass of Adélie penguins differs among the three islands. 
 
-a. Use the Rguroo [Numerical Summaries]{.fun} function to obtain the sample size, mean, and standard deviation of body mass for each island.
+a. Use Rguroo to obtain the sample size, mean, and standard deviation of body mass for each island.
 
-b. Use the Rguroo [Boxplot]{.fun} function to create side-by-side boxplots of body mass by island. Describe the centers and variation of the three distributions.
+b. Use Rguroo to create side-by-side boxplots of body mass by island. Describe the centers and variation of the three distributions.
 
 c. State the null and alternative hypotheses for testing whether the population mean body mass is the same on all three islands.
 
-d. Use the Rguroo [ANOVA]{.fun} function to perform a one-way ANOVA test at the 5% significance level. Report the mean square between groups, the mean square within groups, the $F$-statistic, and the p-value.
+d. Use the Rguroo to perform a one-way ANOVA test at the 5% significance level. Report the mean square between groups, the mean square within groups, the $F$-statistic, and the p-value.
 
 e. Based on the p-value, state your conclusion in the context of the problem.
 
@@ -344,7 +358,7 @@ knitr::include_graphics("Rguroo_outputs/ANOVA/adelie_summary.png")
 
 Rounded to the nearest gram, the sample means are 3,710 g for Biscoe, 3,688 g for Dream, and 3,706 g for Torgersen. The corresponding standard deviations are 487 g, 455 g, and 445 g. The sample means are close to one another, with a difference of only about 21 g between the largest and smallest means. In comparison, the standard deviation within each island is more than 440 g.
 
-b\. In the Rguroo [Boxplot]{.fun} function, select [body_mass_g]{.var} as the numerical variable and [island]{.var} as the grouping variable. Include the group means in the plot by selecting the checkbox [Show Mean]{.des} in the [Boxplot]{.dialog} dialog.
+b\. In the Rguroo [Boxplot]{.fun} function, select [body_mass_g]{.var} from the [Numerical Variables]{.des} column and [island]{.var} from the [Factor Variables]{.des} column. Include the group means in the plot by selecting the checkbox [Show Mean]{.des} in the [Boxplot]{.dialog} dialog.
 
 @fig-adelie-boxplot shows the resulting side-by-side boxplots. The red diamonds represent the sample means.
 
@@ -365,7 +379,7 @@ c\. Let $\mu_1$, $\mu_2$, and $\mu_3$ denote the population mean body masses of 
 $$
 \begin{cases}
 H_0: \mu_1 = \mu_2 = \mu_3 \\
-H_a: \text{not all population means are equal.}
+H_a: \text{At least one population mean is different.}
 \end{cases}
 $$
 
@@ -374,19 +388,12 @@ d\. Click to expand the box below to see how to use the [ANOVA]{.fun} function i
 ::: {#anova-adelie .callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} ANOVA - Adélie Penguins example"}
 
 1. Open the **Analytics** toolbox in Rguroo.
-
 2. From the [Analysis]{.dpd} dropdown, select [ANOVA]{.fun}. This opens the [ANOVA]{.dialog} dialog.
-
 3. From the [Dataset]{.dpd} dropdown, select the [palmerpenguins_Adelie]{.data} dataset.
-
 4. From the [Response]{.dpd} dropdown, select the variable [body_mass_g]{.var}.
-
 5. In the [One-Way]{.tab} tab, from the [Factor]{.dpd} dropdown, select the categorical variable [island]{.var}.
-
 6. Enter [0.05]{.typein} in the [Significance Level]{.des} textbox.
-
 7. Click the preview icon ![preview icon](Rguroo_Icons/preview_inline.png) to view the output.
-
 8. Click the ![Save as](Rguroo_Icons/save_as.png) button and save the result as [ANOVA_adelie]{.typein}.
 
 ::: {.callout-tip .inner-callout collapse="false" title="Rguroo ANOVA dialog"}
@@ -431,7 +438,7 @@ $$
 F = \frac{6{,}827.3}{213{,}032} \approx 0.032.
 $$
 
-The mean square between groups is much smaller than the mean square within groups. Recall that large values of $F$ provide evidence against $H_0$; this small value does not. In fact values of F far below 1 simply indicate chance variation. Rounded to three decimal places, the p-value is 0.968.
+The mean square between groups is much smaller than the mean square within groups. Recall that large values of $F$ provide evidence against $H_0$; this small value does not. In fact values of F far below 1 simply indicate chance variation. Rounded to three decimal places, the p-value is 0.968. Note that the p-value is shown under the column labeled _Pr>F_ in the Rguroo output.
 
 e\. Since the p-value of 0.968 is greater than the significance level $\alpha = 0.05$, we fail to reject $H_0$. At the 5% significance level, there is insufficient evidence that the population mean body mass of Adélie penguins differs among Biscoe, Dream, and Torgersen islands. This conclusion does not establish that the population means are equal; it means that these data do not provide sufficient evidence of a difference.
 
@@ -446,13 +453,13 @@ Consider the [ChickWeight21]{.data} dataset, available in the [Intro to Stats wi
 
 We want to investigate whether the population mean body weight at 21 days differs among the four diets.
 
-a. Use the Rguroo [Numerical Summaries]{.fun} function to obtain the sample size, mean, and standard deviation of body weight for each diet.
+a. Use Rguroo to obtain the sample size, mean, and standard deviation of body weight for each diet.
 
-b. Use the Rguroo [Boxplot]{.fun} function to create side-by-side boxplots of body weight by diet. Describe the centers and variation of the four distributions.
+b. Use Rguroo to create side-by-side boxplots of body weight by diet. Describe the centers and variation of the four distributions.
 
 c. State the null and alternative hypotheses for testing whether the population mean body weight at 21 days is the same under all four diets.
 
-d. Use the Rguroo [ANOVA]{.fun} function to perform a one-way ANOVA test at the 1% significance level. Report the mean square between groups, the mean square within groups, the $F$-statistic, and the p-value. Assume that the ANOVA assumptions hold (see @sec-anova-assumptions).
+d. Use the Rguroo to perform a one-way ANOVA test at the 1% significance level. Report the mean square between groups, the mean square within groups, the $F$-statistic, and the p-value. Assume that the ANOVA assumptions hold (see @sec-anova-assumptions).
 
 e. Based on the p-value, state your conclusion in the context of the problem.
 
@@ -517,7 +524,7 @@ The dataset includes 45 chicks, with 16, 10, 10, and 9 chicks receiving Diets 1 
 
 Diet 3 has the highest sample mean weight, and Diet 1 has the lowest. Diet 2 has the largest standard deviation, while Diet 4 has the smallest.
 
-b\. In the Rguroo [Boxplot]{.fun} function, select [weight]{.var} as the numerical variable and [Diet]{.var} as the grouping variable. Include the group means in the plot by selecting the checkbox [Show Mean]{.des} in the [Boxplot]{.dialog} dialog.
+b\. In the Rguroo [Boxplot]{.fun} function, select [weight]{.var} from the [Numerical Variables]{.des} column and [Diet]{.var} from the [Factor Variables]{.des} column. Include the group means in the plot by selecting the checkbox [Show Mean]{.des} in the [Boxplot]{.dialog} dialog.
 
 @fig-chickweight21-boxplot shows the resulting side-by-side boxplots. The red diamonds represent the sample means.
 
@@ -540,7 +547,7 @@ c\. Let $\mu_1$, $\mu_2$, $\mu_3$, and $\mu_4$ denote the population mean body w
 $$
 \begin{cases}
 H_0: \mu_1 = \mu_2 = \mu_3 = \mu_4 \\
-H_a: \text{not all population means are equal.}
+H_a: \text{At least one population mean is different.}
 \end{cases}
 $$
 
@@ -549,19 +556,12 @@ d\. Click to expand the box below to see how to use the [ANOVA]{.fun} function i
 ::: {#anova-chickweight21 .callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} ANOVA - Chick Weight example"}
 
 1. Open the **Analytics** toolbox in Rguroo.
-
 2. From the [Analysis]{.dpd} dropdown, select [ANOVA]{.fun}. This opens the [ANOVA]{.dialog} dialog.
-
 3. From the [Dataset]{.dpd} dropdown, select the [ChickWeight21]{.data} dataset.
-
 4. From the [Response]{.dpd} dropdown, select the variable [weight]{.var}.
-
 5. In the [One-Way]{.tab} tab, from the [Factor]{.dpd} dropdown, select the categorical variable [Diet]{.var}.
-
 6. Enter [0.01]{.typein} in the [Significance Level]{.des} textbox.
-
 7. Click the preview icon ![preview icon](Rguroo_Icons/preview_inline.png) to view the output.
-
 8. Click the ![Save as](Rguroo_Icons/save_as.png) button and save the result as [ANOVA_ChickWeight21]{.typein}.
 
 ::: {.callout-tip .inner-callout collapse="false" title="Rguroo ANOVA dialog"}
@@ -606,11 +606,190 @@ $$
 F = \frac{19{,}054.7}{4{,}093.64} \approx 4.65.
 $$
 
-The mean square between groups is about 4.65 times the mean square within groups. To determine whether this ratio is sufficiently large to reject $H_0$, we use the p-value. Rguroo reports a p-value of approximately 0.00686.
+The mean square between groups is about 4.65 times the mean square within groups. To determine whether this ratio is sufficiently large to reject $H_0$, we use the p-value. Rguroo reports a p-value of approximately 0.00686. Note that the p-value is shown under the column labeled _Pr>F_ in the Rguroo output.
 
 e\. Since the p-value of approximately 0.00686 is less than the significance level $\alpha = 0.01$, we reject $H_0$. At the 1% significance level, there is evidence that the population mean body weight at 21 days is not the same under all four diets. This does not mean that all four population means differ from one another; it means that at least two population means differ.
 
 Because these data come from an experiment, if the chicks were randomly assigned to the diets, this result would support the conclusion that diet caused differences in mean body weight at 21 days. The ANOVA test does not tell us which population means differ. In @sec-multiple-comparisons, we will use multiple comparison procedures to investigate this question.
+
+::::
+
+The following example uses the [Cholesterol]{.data} dataset to compare mean cholesterol reduction under three dosing schedules of the same drug, from exploring the data to conducting a one-way ANOVA test and interpreting the results.
+
+::: {#exm-anova-cholesterol .callout-example}
+## Comparing mean cholesterol reduction under three dosing schedules
+
+Consider the [Cholesterol]{.data} dataset, available in the [Intro to Stats with Rguroo]{.repo} repository. This dataset contains cholesterol reductions from a clinical study comparing three dosing schedules of the same drug:
+
+- [1time]{.var}: 20 mg once daily
+- [2times]{.var}: 10 mg twice daily
+- [4times]{.var}: 5 mg four times daily
+
+Each schedule provides the same total daily dose of 20 mg. The variables [response]{.var} and [trt]{.var} give each patient's cholesterol reduction and dosing schedule, respectively. The dataset includes 30 patients, with 10 patients in each group.
+
+We want to investigate whether population mean cholesterol reduction differs among the three dosing schedules.
+
+a. Use Rguroo to obtain the sample size, mean, and standard deviation of cholesterol reduction for each dosing schedule.
+
+b. Use Rguroo to create side-by-side boxplots of cholesterol reduction by dosing schedule. Describe the centers and variation of the three distributions.
+
+c. State the null and alternative hypotheses for testing whether population mean cholesterol reduction is the same under all three dosing schedules.
+
+d. Use Rguroo to perform a one-way ANOVA test at the 5% significance level. Report the mean square between groups, the mean square within groups, the $F$-statistic, and the p-value. Assume that the ANOVA assumptions hold (see @sec-anova-assumptions).
+
+e. Based on the p-value, state your conclusion in the context of the problem.
+
+<div tabindex="0" style="width:85%; margin:auto;">
+
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Intro to Stats with Rguroo]{.repo}, with the dataset name [Cholesterol]{.data}.
+
+**Code book for Dataset Cholesterol is given [here](#code-book-cholesterol).**
+
+</div>
+
+:::
+
+::: {#code-book-cholesterol .callout-tip .codebook collapse="true"}
+
+## Code book for Dataset Cholesterol
+
+Dataset Name: [Cholesterol]{.data}
+
+This dataset contains cholesterol reductions from a clinical study comparing three dosing schedules of the same drug. Each schedule provides a total daily dose of 20 mg: 20 mg once daily, 10 mg twice daily, or 5 mg four times daily.
+
+This subset excludes the two competing-drug groups in the original dataset. It can be used to investigate whether population mean cholesterol reduction differs among the three dosing schedules.
+
+The variables included in this dataset are described below.
+
+[trt]{.var}: Dosing schedule for the cholesterol-lowering drug
+
+- 1time: 20 mg once daily
+- 2times: 10 mg twice daily
+- 4times: 5 mg four times daily
+
+[response]{.var}: Cholesterol reduction (measurement units are not specified in the dataset documentation)
+
+Source
+
+Adapted from the [cholesterol dataset](https://search.r-project.org/CRAN/refmans/multcomp/html/cholesterol.html) in the R package multcomp, retaining only the three dosing schedules.
+
+Westfall, P. H., Tobias, R. D., Rom, D., Wolfinger, R. D., & Hochberg, Y. (1999). *Multiple Comparisons and Multiple Tests Using the SAS System*. SAS Institute Inc., p. 153.
+
+:::
+
+:::: {.callout-tip .solution-callout collapse="true" icon=false}
+## 🔎 Solution
+
+Before you begin, import the [Cholesterol]{.data} dataset from the [Intro to Stats with Rguroo]{.repo} repository.
+
+a\. In the Rguroo [Numerical Summary]{.fun} function, select [response]{.var} as the numerical variable and [trt]{.var} from the [Factor]{.dpd} dropdown. Then click the [Univariate]{.tab} button and select [Mean]{.des} and [Sample Std. Dev.]{.des} to obtain summaries separately for each value of [trt]{.var}.
+
+@tbl-cholesterol-summary shows the resulting summaries.
+
+```{r}
+#| label: tbl-cholesterol-summary
+#| tbl-cap: "Summary statistics for cholesterol reduction by dosing schedule."
+#| fig-alt: "Cholesterol reduction summaries for three dosing schedules, with 10 patients per group. Once daily: mean 5.78197, standard deviation 2.87811. Twice daily: mean 9.22497, standard deviation 3.48305. Four times daily: mean 12.37478, standard deviation 2.92312."
+#| out-width: "100%"
+#| echo: false
+knitr::include_graphics('Rguroo_outputs/ANOVA/cholestrol_summary.png')
+```
+
+Rounded to two decimal places, the sample mean cholesterol reductions are 5.78 for once-daily dosing, 9.22 for twice-daily dosing, and 12.37 for four-times-daily dosing. The corresponding standard deviations are 2.88, 3.48, and 2.92.
+
+The four-times-daily group has the highest sample mean cholesterol reduction, and the once-daily group has the lowest. The standard deviations are reasonably similar, although the twice-daily group has somewhat greater variation. 
+
+b\. In the Rguroo [Boxplot]{.fun} function, select [response]{.var} from the [Numerical Variables]{.des} column and [trt]{.var} from the [Factor Variables]{.des} column. Include the group means in the plot by selecting the checkbox [Show Mean]{.des} in the [Boxplot]{.dialog} dialog.
+
+@fig-cholesterol-boxplot shows the resulting side-by-side boxplots. The red diamonds represent the sample means.
+
+```{r}
+#| label: fig-cholesterol-boxplot
+#| fig-cap: "Cholesterol reduction by dosing schedule. Red diamonds indicate sample means."
+#| fig-alt: "Side-by-side boxplots of cholesterol reduction for once-daily, twice-daily, and four-times-daily dosing. Both means and medians increase across these schedules. The twice-daily group has a narrower box but two observations marked as potential outliers, one low and one high."
+#| out-width: "80%"
+#| fig-align: center
+#| echo: false
+knitr::include_graphics('Rguroo_outputs/ANOVA/cholestrol_boxplot.svg')
+```
+
+Both the medians and the sample means are lowest for once-daily dosing and highest for four-times-daily dosing. The twice-daily group falls between them.
+
+The twice-daily group has a narrower box, indicating less variation among its middle 50% of observations, but it also has a low and a high observation marked as potential outliers. These observations help explain why this group has the largest standard deviation despite its narrower box.
+
+The plots suggest differences among the group centers, but a formal test is needed to assess whether the differences among sample means provide evidence of differences among population means.
+
+c\. Let $\mu_1$, $\mu_2$, and $\mu_3$ denote the population mean cholesterol reductions under once-daily, twice-daily, and four-times-daily dosing, respectively. The hypotheses are
+
+$$
+\begin{cases}
+H_0: \mu_1 = \mu_2 = \mu_3 \\
+H_a: \text{not all population means are equal.}
+\end{cases}
+$$
+
+d\. Click to expand the box below to see how to use the [ANOVA]{.fun} function in Rguroo to answer this question.
+
+::: {#anova-cholesterol .callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} ANOVA - Cholesterol example"}
+
+1. Open the **Analytics** toolbox in Rguroo.
+2. From the [Analysis]{.dpd} dropdown, select [ANOVA]{.fun}. This opens the [ANOVA]{.dialog} dialog.
+3. From the [Dataset]{.dpd} dropdown, select [Cholesterol]{.data}.
+4. From the [Response]{.dpd} dropdown, select [response]{.var}.
+5. In the [One-Way]{.tab} tab, from the [Factor]{.dpd} dropdown, select [trt]{.var}.
+6. Enter [0.05]{.typein} in the [Significance Level]{.des} textbox.
+7. Click the preview icon ![preview icon](Rguroo_Icons/preview_inline.png) to view the output.
+8. Click the ![Save as](Rguroo_Icons/save_as.png) button and save the result as [ANOVA_Cholesterol]{.typein}.
+
+::: {.callout-tip .inner-callout collapse="false" title="Rguroo ANOVA dialog"}
+
+```{r}
+#| fig-alt: "Rguroo ANOVA dialog configured for a one-way analysis of the Cholesterol dataset, with response as the response variable, trt as the factor, and a significance level of 0.05."
+#| fig-cap: "Rguroo setup for comparing mean cholesterol reduction across three dosing schedules."
+#| out-width: "100%"
+#| echo: false
+knitr::include_graphics('Rguroo_dialogs/ANOVA/cholestrol_dialog.png')
+```
+
+:::
+:::
+
+::: {.callout-tip .inner-callout collapse="true" title="Rguroo Output: Cholesterol ANOVA"}
+
+<div tabindex="0" class="rg-iframe-wrapper">
+  <iframe
+    src='Rguroo_html_output/ANOVA/ANOVA_Cholesterol_docx/ANOVA_Cholesterol.html'
+    class="rg-iframe"
+    title="Rguroo output: ANOVA - Cholesterol Example">
+  </iframe>
+</div>
+
+:::
+
+@tbl-cholesterol-anova shows the ANOVA table from the Rguroo output.
+
+```{r}
+#| label: tbl-cholesterol-anova
+#| tbl-cap: "ANOVA table for cholesterol reduction by dosing schedule."
+#| fig-alt: "One-way ANOVA table for cholesterol reduction by dosing schedule. The mean square between groups is approximately 108.73449, and the mean square within groups is 9.65328. The F-statistic is approximately 11.26 with 2 and 27 degrees of freedom. The p-value is approximately 0.000277."
+#| out-width: "100%"
+#| echo: false
+knitr::include_graphics('Rguroo_outputs/ANOVA/cholestrol_anova_table.png')
+```
+
+The mean square between groups appears in the row labeled *trt* and is approximately 108.73. The mean square within groups appears in the row labeled *Residual* and is approximately 9.65. Using the unrounded values, the $F$-statistic is
+
+$$
+F=\frac{108.73449}{9.65328}\approx 11.26.
+$$
+
+The mean square between groups is about 11.26 times the mean square within groups. Rguroo reports a p-value of approximately 0.000277 under the column labeled *Pr>F*. This small p-value indicates that an $F$-statistic this large or larger would be unusual if all three population means were equal and the ANOVA assumptions held.
+
+e\. Since the p-value of approximately 0.000277 is less than the significance level $\alpha = 0.05$, we reject $H_0$. At the 5% significance level, there is evidence that population mean cholesterol reduction is not the same under all three dosing schedules.
+
+All three schedules provide the same total daily dose, so the comparison concerns how that dose is divided throughout the day. The ANOVA result indicates that at least two population means differ, but it does not identify which pairs differ. Although four-times-daily dosing has the highest sample mean, ANOVA alone does not establish that its population mean is higher than both other population means.
+
+The available documentation does not describe random assignment to dosing schedules, so we should not make a causal claim based on the information provided. In @sec-multiple-comparisons, we will use Tukey’s HSD comparisons to investigate which pairs of population means differ.
 
 ::::
 
@@ -860,13 +1039,17 @@ As noted in the chapter introduction, conducting separate two-sample tests for e
 
 One such method is **Tukey’s Honestly Significant Difference (HSD)** test, which compares every pair of population means while controlling the overall chance of making at least one Type I error. This overall probability is called the **family-wise error rate**, where “family” refers to the entire set of comparisons. For example, at a 5% significance level, Tukey’s method keeps the chance of incorrectly declaring one or more pairs of population means different at no more than 5%, provided the one-way ANOVA assumptions hold (see @sec-anova-assumptions).^[When the groups have different sample sizes, the procedure is sometimes called the Tukey–Kramer method. In this case, the family-wise error rate is at most the chosen significance level rather than exactly equal to it.] Tukey’s method uses these same assumptions; no additional set of assumptions is needed. The 5% limit applies to the comparisons collectively, rather than separately to each comparison. Similarly, at a 1% significance level, the overall chance of making at least one Type I error is kept at no more than 1%.
 
-In this chapter, we use Tukey’s HSD test as a follow-up to a significant ANOVA test. When the ANOVA test is not significant, we will stop with the ANOVA conclusion because we have insufficient evidence that the population means differ. For example, in the Adélie penguin example (@exm-anova-adelie), the ANOVA test was not significant, so we would not proceed with Tukey’s HSD test. However, the ANOVA tests were significant for both [PlantGrowth]{.data} at the 5% level (@exm-anova-plant-growth) and [ChickWeight21]{.data} at the 1% level (@exm-anova-chickweight21). We will therefore use Tukey’s HSD comparisons to investigate which experimental conditions differ in population mean dried plant weight and which diets differ in population mean chick body weight at 21 days. There are three pairwise comparisons among the three plant groups and six pairwise comparisons among the four diets. Each dataset’s comparisons form a separate family.
+In this chapter, we use Tukey’s HSD test as a follow-up to a significant ANOVA test. When the ANOVA test is not significant, we stop with the ANOVA conclusion, because we have insufficient evidence that the population means differ. For example, the ANOVA test for the Adélie penguin data (@exm-anova-adelie) was not significant, so we do not proceed with Tukey’s HSD test for that dataset.
+
+In contrast, the ANOVA tests for the other two datasets were significant. For the [PlantGrowth]{.data} data (@exm-anova-plant-growth), the test was significant at the 5% level, so we will use Tukey’s HSD test to investigate which experimental conditions differ in population mean dried plant weight. With three groups, there are three pairwise comparisons. For the [ChickWeight21]{.data} data (@exm-anova-chickweight21), the test was significant at the 1% level, so we will use Tukey’s HSD test to investigate which diets differ in population mean chick body weight at 21 days. With four diets, there are six pairwise comparisons.
+
+The comparisons for each dataset form a separate family, so Tukey’s method controls the family-wise error rate separately for the plant growth comparisons and for the chick weight comparisons.
 
 Occasionally, the ANOVA test is significant but no pair of means is significantly different in Tukey’s procedure. This can happen because the two procedures answer slightly different questions: ANOVA asks whether the means differ overall, while Tukey’s procedure asks which specific pairs differ. When this happens, it usually means that the differences among the means are too small to attribute to any specific pair.
 
 Rguroo provides Tukey’s HSD comparisons as part of its ANOVA analysis. The output includes the estimated differences between group means, confidence intervals, and adjusted p-values for each pairwise comparison. The adjusted p-values account for the multiple comparisons and can be compared directly with our chosen significance level. For [PlantGrowth]{.data}, we compare each adjusted p-value with 0.05. For [ChickWeight21]{.data}, we compare each adjusted p-value with 0.01. An adjusted p-value below the chosen significance level provides evidence that the corresponding population means differ.
 
-Rguroo also produces a graph that shows the confidence intervals for the differences between population means, allowing us to assess the size and direction of the differences. We use Tukey’s 95% confidence intervals for comparisons at the 5% significance level and 99% confidence intervals for comparisons at the 1% significance level. At the corresponding significance level, a pair is significantly different if its interval does not include zero. An interval that includes zero does not provide sufficient evidence that the two population means differ. These intervals account for multiple comparisons as well.
+Rguroo also produces a graph that shows the confidence intervals for the differences between population means, allowing us to assess the size and direction of the differences. We use Tukey’s 95% confidence intervals for comparisons at the 5% significance level and 99% confidence intervals for comparisons at the 1% significance level. At the corresponding significance level, a pair is significantly different if its interval does not include zero. An interval that includes zero does not provide sufficient evidence that the two population means differ. This is the same reasoning we used with confidence intervals for the difference between two population proportions (@sec-confidence-interval-two-prop) and between two population means (@sec-mean-independent). The difference here is that Tukey’s intervals account for multiple comparisons, so the confidence level applies to the whole set of intervals rather than to each interval separately.
 
 The adjusted p-values and the confidence intervals always lead to the same conclusion. For each pair, the interval excludes zero exactly when the adjusted p-value is below the significance level. The p-value tells us whether a difference is significant, and the interval also tells us the direction of the difference and how large it might be.
 
@@ -901,23 +1084,14 @@ a\. Click to expand the box below to see how to obtain Tukey’s HSD comparisons
 Before you begin, import the [PlantGrowth]{.data} dataset from the [Intro to Stats with Rguroo]{.repo} repository. If you saved the ANOVA analysis from @exm-anova-plant-growth as [ANOVA_PlantGrowth]{.typein}, open it, keep its settings, and proceed to Step 7.
 
 1. Open the **Analytics** toolbox in Rguroo.
-
 2. From the [Analysis]{.dpd} dropdown, select [ANOVA]{.fun}. This opens the [ANOVA]{.dialog} dialog.
-
 3. From the [Dataset]{.dpd} dropdown, select the [PlantGrowth]{.data} dataset.
-
 4. From the [Response]{.dpd} dropdown, select [weight]{.var}.
-
 5. In the [One-Way]{.tab} tab, from the [Factor]{.dpd} dropdown, select [group]{.var}.
-
 6. Enter [0.05]{.typein} in the [Significance Level]{.des} textbox.
-
 7. Select the checkbox next to the [Post-hoc Test]{.tab} button. Tukey’s HSD is selected by default.
-
 8. (Optional) Click the [Post-hoc Test]{.tab} button to open the [ANOVA Post-Hoc]{.dialog} dialog and view the selected method. Leave [Tukey’s HSD]{.des} selected.
-
 9. Click the preview icon ![preview icon](Rguroo_Icons/preview_inline.png), or press Enter, to view the output.
-
 10. Click the ![Save as](Rguroo_Icons/save_as.png) button and save the result as [HSD_PlantGrowth]{.typein}.
 
 ::: {.callout-tip .inner-callout collapse="false" title="Rguroo Tukey’s HSD dialogs"}
@@ -1016,23 +1190,14 @@ a\. Click to expand the box below to see how to obtain Tukey’s HSD comparisons
 Before you begin, import the [ChickWeight21]{.data} dataset from the [Intro to Stats with Rguroo]{.repo} repository. If you saved the ANOVA analysis from @exm-anova-chickweight21 as [ANOVA_ChickWeight21]{.typein}, open it, keep its settings, and proceed to Step 7.
 
 1. Open the **Analytics** toolbox in Rguroo.
-
 2. From the [Analysis]{.dpd} dropdown, select [ANOVA]{.fun}. This opens the [ANOVA]{.dialog} dialog.
-
 3. From the [Dataset]{.dpd} dropdown, select the [ChickWeight21]{.data} dataset.
-
 4. From the [Response]{.dpd} dropdown, select [weight]{.var}.
-
 5. In the [One-Way]{.tab} tab, from the [Factor]{.dpd} dropdown, select [Diet]{.var}.
-
 6. Enter [0.01]{.typein} in the [Significance Level]{.des} textbox.
-
 7. Select the checkbox next to the [Post-hoc Test]{.tab} button. Tukey’s HSD is selected by default.
-
 8. (Optional) Click the [Post-hoc Test]{.tab} button to open the [ANOVA Post-Hoc]{.dialog} dialog and view the selected method. Leave [Tukey’s HSD]{.des} selected.
-
 9. Click the preview icon ![preview icon](Rguroo_Icons/preview_inline.png), or press Enter, to view the output.
-
 10. Click the ![Save as](Rguroo_Icons/save_as.png) button and save the result as [HSD_ChickWeight21]{.typein}.
 
 ::: {.callout-tip .inner-callout collapse="false" title="Rguroo Tukey’s HSD dialogs"}
@@ -1087,26 +1252,128 @@ b\. @fig-chickweight21-tukey shows the confidence intervals for all six pairwise
 knitr::include_graphics("Rguroo_outputs/ANOVA/chick_CI_graph.png")
 ```
 
-Only the interval for *Diet 3-Diet 1* excludes zero, in agreement with its significant adjusted p-value. The entire interval is positive, indicating a higher population mean body weight under Diet 3 than under Diet 1.
+Each horizontal bar represents a confidence interval for the difference between two population means. The short vertical marks at its left and right ends indicate the lower and upper confidence limits. The vertical mark in the middle represents the difference between the two sample means, which is the point estimate of the population mean difference. All differences are measured in grams. The intervals have a simultaneous confidence level of 99%, applying to the complete set of six comparisons.
 
-The interval is approximately
+The dashed vertical line at zero represents equal population means. A bar that crosses this line includes zero in its confidence interval; a bar entirely to one side excludes zero.
 
-$$
-7.06\text{ g}
-<
-\mu_{\text{Diet 3}}-\mu_{\text{Diet 1}}
-<
-178.04\text{ g}.
-$$
+Only the interval for *Diet 3-Diet 1* excludes zero, in agreement with its significant adjusted p-value. Its middle mark is at 92.55 g, and its endpoints are approximately 7.06 g and 178.04 g. Using Tukey’s simultaneous confidence procedure, we estimate with 99% confidence that the population mean body weight at 21 days is between 7.06 g and 178.04 g higher under Diet 3 than under Diet 1.
 
-Using Tukey’s simultaneous confidence procedure, we estimate with 99% confidence that the population mean body weight at 21 days is between 7.06 g and 178.04 g higher under Diet 3 than under Diet 1.
+The interval is fairly wide, showing that there is considerable uncertainty about the size of the difference. Factors contributing to this width include  the high 99% confidence level, the small number of chicks in each diet group, the large variation in body weight among chicks receiving the same diet, and the adjustment for multiple comparisons.
 
-The interval is fairly wide, showing that there is considerable uncertainty about the size of the difference. Three factors contribute to this width: the high 99% confidence level, the small number of chicks in each diet group, and the large variation in body weight among chicks receiving the same diet.
-
-The 99% confidence level applies to the complete set of six intervals. The remaining five intervals include zero, so they do not provide sufficient evidence of differences at the 1% significance level.
+The remaining five intervals include zero, so they do not provide sufficient evidence of differences at the 1% significance level.
 
 ::::
 
+::: {#exm-tukey-cholesterol .callout-example}
+## Comparing pairs of mean cholesterol reductions
+
+In @exm-anova-cholesterol, the one-way ANOVA test provided evidence at the 5% significance level that population mean cholesterol reduction is not the same under all three dosing schedules. We now use the [Cholesterol]{.data} dataset to investigate which schedules differ in population mean cholesterol reduction.
+
+Recall that the three schedules provide the same total daily dose: 20 mg once daily, 10 mg twice daily, or 5 mg four times daily.
+
+a. Use Tukey’s HSD test in Rguroo to compare all pairs of population means at the 5% significance level. Display the multiple comparison table, including the estimated differences, 95% confidence intervals, and adjusted p-values. Identify which pairs differ significantly.
+
+b. Display the graph of Tukey’s confidence intervals. Explain how the graph supports your conclusions and interpret the confidence interval for any statistically significant difference.
+
+<div tabindex="0" style="width:85%; margin:auto;">
+
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Intro to Stats with Rguroo]{.repo}, with the dataset name [Cholesterol]{.data}.
+
+**Code book for Dataset Cholesterol is given [here](#code-book-cholesterol).**
+
+</div>
+
+:::
+
+:::: {.callout-tip .solution-callout collapse="true" icon=false}
+## 🔎 Solution
+
+a\. Click to expand the box below to see how to obtain Tukey’s HSD comparisons using the [ANOVA]{.fun} function in Rguroo.
+
+::: {#tukey-cholesterol .callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} Tukey’s HSD - Cholesterol example"}
+
+Before you begin, import the [Cholesterol]{.data} dataset from the [Intro to Stats with Rguroo]{.repo} repository. If you saved the ANOVA analysis from @exm-anova-cholesterol as [ANOVA_Cholesterol]{.typein}, open it, keep its settings, and proceed to Step 7.
+
+1. Open the **Analytics** toolbox in Rguroo.
+2. From the [Analysis]{.dpd} dropdown, select [ANOVA]{.fun}. This opens the [ANOVA]{.dialog} dialog.
+3. From the [Dataset]{.dpd} dropdown, select [Cholesterol]{.data}.
+4. From the [Response]{.dpd} dropdown, select [response]{.var}.
+5. In the [One-Way]{.tab} tab, from the [Factor]{.dpd} dropdown, select [trt]{.var}.
+6. Enter [0.05]{.typein} in the [Significance Level]{.des} textbox.
+7. Select the checkbox next to the [Post-hoc Test]{.tab} button. Tukey’s HSD is selected by default.
+8. (Optional) Click the [Post-hoc Test]{.tab} button to open the [ANOVA Post-Hoc]{.dialog} dialog and view the selected method. Leave [Tukey’s HSD]{.des} selected.
+9. Click the preview icon ![preview icon](Rguroo_Icons/preview_inline.png), or press Enter, to view the output.
+10. Click the ![Save as](Rguroo_Icons/save_as.png) button and save the result as [HSD_Cholesterol]{.typein}.
+
+::: {.callout-tip .inner-callout collapse="false" title="Rguroo Tukey’s HSD dialogs"}
+
+```{r}
+#| fig-alt: "Rguroo ANOVA dialog for Cholesterol with response as the response variable, trt as the factor, significance level 0.05, and the Post-hoc Test checkbox selected. The accompanying ANOVA Post-Hoc dialog shows Tukey’s HSD selected."
+#| fig-cap: "Rguroo setup for Tukey’s HSD comparisons of mean cholesterol reduction."
+#| out-width: "100%"
+#| echo: false
+knitr::include_graphics('Rguroo_dialogs/ANOVA/cholestrol_HSD_dialog.png')
+```
+
+:::
+:::
+
+@tbl-cholesterol-tukey shows the multiple comparison table for the three pairs of dosing schedules.
+
+```{r}
+#| label: tbl-cholesterol-tukey
+#| tbl-cap: "Tukey’s HSD comparisons of mean cholesterol reduction, with 95% simultaneous confidence intervals."
+#| fig-alt: "Tukey’s HSD table for three dosing-schedule comparisons. Twice daily minus once daily: estimated difference 3.44300, confidence interval -0.00210 to 6.88810, adjusted p-value 0.05016. Four times daily minus once daily: difference 6.59281, interval 3.14771 to 10.03791, adjusted p-value 0.000174. Four times daily minus twice daily: difference 3.14981, interval -0.29529 to 6.59491, adjusted p-value 0.07803."
+#| out-width: "100%"
+#| echo: false
+knitr::include_graphics('Rguroo_outputs/ANOVA/cholestrol_HSD_table.png')
+```
+
+The labels in the *Difference Levels* column specify the order of subtraction. For example, *4times-1time* represents four-times-daily dosing minus once-daily dosing. The *Mean* column gives the difference between the two sample means.
+
+We compare each adjusted p-value with $\alpha = 0.05$:
+
+- **Twice daily versus once daily:** The adjusted p-value is approximately 0.05016, slightly greater than 0.05. We do not identify this pair as significantly different at the 5% level.
+- **Four times daily versus once daily:** The adjusted p-value is approximately 0.000174, less than 0.05. There is evidence that the population mean cholesterol reductions differ.
+- **Four times daily versus twice daily:** The adjusted p-value is approximately 0.07803, greater than 0.05. There is insufficient evidence that the population mean cholesterol reductions differ.
+
+Thus, four-times-daily and once-daily dosing are the only pair identified as significantly different at the 5% level. Their estimated difference is
+
+$$
+\bar{x}_{\text{4times}}-\bar{x}_{\text{1time}}
+=12.37478-5.78197
+=6.59281.
+$$
+
+The positive difference indicates greater sample mean cholesterol reduction under four-times-daily dosing.
+
+Although four-times-daily dosing has the highest sample mean, the results do not establish that its population mean exceeds that for twice-daily dosing. Similarly, the nonsignificant comparisons do not establish equality of the corresponding population means.
+
+The adjusted p-value for twice-daily versus once-daily dosing should not be rounded to 0.05 before making the decision. Its unrounded value is slightly above the chosen significance level.
+
+b\. @fig-cholesterol-tukey shows the confidence intervals for all three pairwise differences.
+
+```{r}
+#| label: fig-cholesterol-tukey
+#| fig-cap: "Tukey’s 95% simultaneous confidence intervals for differences in population mean cholesterol reduction."
+#| fig-alt: "Three horizontal Tukey confidence intervals for differences in population mean cholesterol reduction. Only four times daily minus once daily lies entirely to the right of zero, from approximately 3.15 to 10.04. Twice daily minus once daily extends just below zero, while four times daily minus twice daily also includes zero."
+#| out-width: "80%"
+#| fig-align: center
+#| echo: false
+knitr::include_graphics('Rguroo_outputs/ANOVA/Cholestrol_tukeyHSD_1g_1way.png')
+```
+
+Each horizontal bar represents a confidence interval for the difference between two population means. The short vertical marks at its ends indicate the lower and upper confidence limits. The vertical mark in the middle represents the difference between the two sample means—the point estimate of the population mean difference. The intervals have a simultaneous confidence level of 95%, applying to the complete set of three comparisons.
+
+The dashed vertical line at zero represents equal population means. An interval that crosses this line includes zero; an interval entirely to one side excludes zero.
+
+Only the interval for *4times-1time* excludes zero, agreeing with its significant adjusted p-value. Using Tukey’s simultaneous confidence procedure, we estimate with 95% confidence that population mean cholesterol reduction is between approximately 3.15 and 10.04 units greater under four-times-daily dosing than under once-daily dosing. The measurement units are not specified in the dataset documentation.
+
+The interval for *2times-1time* extends from approximately -0.00210 to 6.88810. Its lower limit is just below zero, so it includes zero even if that is difficult to see in the graph. This agrees with its adjusted p-value being just above 0.05.
+
+The interval for *4times-2times* also includes zero. Therefore, neither of these two comparisons provides sufficient evidence of a difference at the 5% significance level. The closeness of the first comparison to the cutoff also illustrates why we should consider the estimated differences and confidence intervals alongside the significance decisions.
+
+::::
 
 ### Homework for @sec-multiple-comparisons
 
@@ -1184,7 +1451,7 @@ We assess independence primarily by examining the study design and how the data 
 
 Repeated measurements on the same individual are generally related and should not be treated as independent observations. In the original chick growth study, each chick was weighed repeatedly. In [ChickWeight21]{.data}, we use only one weight per chick, avoiding the dependence caused by treating repeated weights from the same chick as separate observations. We should still consider whether other aspects of the study design could make the observations related.
 
-Observations that share a setting may also be related. For example, students in the same classroom or members of the same household may be more similar to one another than to individuals in other settings. Similarly, in the [Advertising]{.data} dataset from the homework, several advertisements come from the same magazine, so advertisements from the same magazine may be more similar to one another than advertisements from different magazines.
+Observations that share a setting may also be related. For example, students in the same classroom or members of the same household may be more similar to one another than to individuals in other settings. Similarly, in the [Advertising]{.data} dataset from the homework (see the data [codebook](#code-book-advertising)), several advertisements come from the same magazine, so advertisements from the same magazine may be more similar to one another than advertisements from different magazines.
 
 ### Understanding residuals
 
@@ -1275,23 +1542,14 @@ b\. Click to expand the box below to see how to obtain the diagnostic plots and 
 Before you begin, import the [PlantGrowth]{.data} dataset from the [Intro to Stats with Rguroo]{.repo} repository. If you have already opened the ANOVA analysis from @exm-anova-plant-growth, retain its settings and proceed to Step 7.
 
 1. Open the **Analytics** toolbox in Rguroo.
-
 2. From the [Analysis]{.dpd} dropdown, select [ANOVA]{.fun}. This opens the [ANOVA]{.dialog} dialog.
-
 3. From the [Dataset]{.dpd} dropdown, select [PlantGrowth]{.data}.
-
 4. From the [Response]{.dpd} dropdown, select [weight]{.var}.
-
 5. In the [One-Way]{.tab} tab, from the [Factor]{.dpd} dropdown, select [group]{.var}.
-
 6. Enter [0.05]{.typein} in the [Significance Level]{.des} textbox.
-
 7. Select the checkbox next to the [Diagnostics]{.tab} button. By default, Rguroo includes the response boxplots, residual-versus-fitted plot, residual Q-Q plot, and Levene’s test.
-
 8. Optionally, click the [Diagnostics]{.tab} button to view these selections and the other available diagnostics. Keep the default selections for this example.
-
 9. Click the preview icon ![preview icon](Rguroo_Icons/preview_inline.png) to view the output.
-
 10. Click the ![Save as](Rguroo_Icons/save_as.png) button and save the result as [Diagnostics_PlantGrowth]{.typein}.
 
 ::: {.callout-tip .inner-callout collapse="false" title="Rguroo ANOVA diagnostics dialogs"}
@@ -1436,23 +1694,14 @@ b\. Click to expand the box below to see how to obtain the diagnostic plots and 
 Before you begin, import the [ChickWeight21]{.data} dataset from the [Intro to Stats with Rguroo]{.repo} repository. If you saved the ANOVA analysis from @exm-anova-chickweight21 as [ANOVA_ChickWeight21]{.typein}, open it, keep its settings, and proceed to Step 7.
 
 1. Open the **Analytics** toolbox in Rguroo.
-
 2. From the [Analysis]{.dpd} dropdown, select [ANOVA]{.fun}. This opens the [ANOVA]{.dialog} dialog.
-
 3. From the [Dataset]{.dpd} dropdown, select [ChickWeight21]{.data}.
-
 4. From the [Response]{.dpd} dropdown, select [weight]{.var}.
-
 5. In the [One-Way]{.tab} tab, from the [Factor]{.dpd} dropdown, select [Diet]{.var}.
-
 6. Enter [0.01]{.typein} in the [Significance Level]{.des} textbox.
-
 7. Select the checkbox next to the [Diagnostics]{.tab} button. By default, Rguroo includes the response boxplots, residual-versus-fitted plot, residual Q-Q plot, and Levene’s test.
-
 8. Optionally, click the [Diagnostics]{.tab} button to view these selections and the other available diagnostics. Keep the default selections for this example.
-
 9. Click the preview icon ![preview icon](Rguroo_Icons/preview_inline.png) to view the output.
-
 10. Click the ![Save as](Rguroo_Icons/save_as.png) button and save the result as [Diagnostics_ChickWeight21]{.typein}.
 
 ::: {.callout-tip .inner-callout collapse="false" title="Rguroo ANOVA diagnostics dialogs"}
@@ -1597,23 +1846,14 @@ b\. Click to expand the box below to see how to obtain the diagnostic plots and 
 Before you begin, import the [palmerpenguins_Adelie]{.data} dataset from the [Intro to Stats with Rguroo]{.repo} repository. If you saved the ANOVA analysis from @exm-anova-adelie as [ANOVA_adelie]{.typein}, open it, keep its settings, and proceed to Step 7.
 
 1. Open the **Analytics** toolbox in Rguroo.
-
 2. From the [Analysis]{.dpd} dropdown, select [ANOVA]{.fun}. This opens the [ANOVA]{.dialog} dialog.
-
 3. From the [Dataset]{.dpd} dropdown, select [palmerpenguins_Adelie]{.data}.
-
 4. From the [Response]{.dpd} dropdown, select [body_mass_g]{.var}.
-
 5. In the [One-Way]{.tab} tab, from the [Factor]{.dpd} dropdown, select [island]{.var}.
-
 6. Enter [0.05]{.typein} in the [Significance Level]{.des} textbox.
-
 7. Select the checkbox next to the [Diagnostics]{.tab} button. By default, Rguroo includes the response boxplots, residual-versus-fitted plot, residual Q-Q plot, and Levene’s test.
-
 8. Optionally, click the [Diagnostics]{.tab} button to view these selections and the other available diagnostics. Keep the default selections for this example.
-
 9. Click the preview icon ![preview icon](Rguroo_Icons/preview_inline.png) to view the output.
-
 10. Click the ![Save as](Rguroo_Icons/save_as.png) button and save the result as [Diagnostics_Adelie]{.typein}.
 
 ::: {.callout-tip .inner-callout collapse="false" title="Rguroo ANOVA diagnostics dialogs"}
@@ -1803,5 +2043,17 @@ e. Considering the plots, group standard deviations, and Levene’s test togethe
 ![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Intro to Stats with Rguroo]{.repo}, with the dataset name [HotDogs]{.data}.
 
 **Codebook for Dataset HotDogs is given [here](#code-book-hotdogs).**
+
+</div>
+
+6. **Cholesterol Reduction Under Different Dosing Schedules** The [Cholesterol]{.data} dataset contains cholesterol reductions for 30 patients receiving one of three dosing schedules of the same drug: 20 mg once daily ([1time]{.cat}), 10 mg twice daily ([2times]{.cat}), or 5 mg four times daily ([4times]{.cat}). Each schedule provides the same total daily dose, and each group contains 10 patients. Use [response]{.var} as the response variable and [trt]{.var} as the grouping variable. Complete parts (a)–(e) to assess normality and equality of population variances. Use a 5% significance level for Levene’s test.
+
+    Use the summaries and results from @exm-anova-cholesterol and @exm-tukey-cholesterol when answering parts (c) and (e). Discuss whether your diagnostic findings support the use of ANOVA and Tukey’s HSD comparisons in those examples.
+
+<div tabindex="0" style="width:85%; margin:auto;">
+
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Intro to Stats with Rguroo]{.repo}, with the dataset name [Cholesterol]{.data}.
+
+**Codebook for Dataset Cholesterol is given [here](#code-book-cholesterol).**
 
 </div>
