@@ -5,15 +5,18 @@ title-block-style: none
 ---
 
 <style>
-h1.cover-heading {
-  display: none;
+#title-block-header {
+  display: none !important;
+}
+.cover-img,
+.cover-img img {
+  display: block;
+  max-height: 90vh;   /* never taller than 90% of the screen */
+  max-width: 100%;    /* never wider than the page on phones */
+  width: auto;
+  height: auto;
+  margin: 0 auto;     /* center it */
 }
 </style>
 
-# Cover {.unnumbered .unlisted .cover-heading}
-
-::: {.content-visible when-format="html"}
-::: {.cover-page}
-![](images/cover_page.jpg){fig-alt="Cover of Introductory Statistics: A Conceptual Approach Using Rguroo"}
-:::
-:::
+![](images/cover_page.jpg){.cover-img fig-alt="Cover of Introductory Statistics: A Conceptual Approach Using Rguroo"}
