@@ -9,9 +9,115 @@ format:
     include-in-header: _preamble.tex
     keep-tex: true
 ---
+# Preface {.unnumbered}
 
-## Preface {.unnumbered}
+## Our Approach to Learning Statistics
 
+This book is written primarily for students taking introductory statistics at community colleges and universities. High school students enrolled in AP Statistics may also find it useful. It grew out of our many years of teaching statistics: two of us have taught at the community college level, and one of us teaches at the university level. Those experiences have shaped how we explain concepts and how we support students with a wide range of backgrounds and goals.
+
+Our approach is guided by the American Statistical Association's [GAISE College Report](https://www.amstat.org/education/gaise/GAISECollege_Recommendations.pdf), which recommends:
+
+* Teaching statistical thinking.
+* Focusing on conceptual understanding.
+* Integrating real data with context and purpose.
+* Fostering active learning.
+* Using technology to explore concepts and analyze data.
+* Using assessments to improve and evaluate student learning.
+
+These recommendations shape the book throughout. Our emphasis is on understanding statistical concepts and learning how to use them to explore data. Wherever possible, we build intuition before introducing formulas, so that students first understand the idea behind a method and the kinds of questions it can answer. Examples and homework problems use real data in context, giving students the chance to apply statistical ideas, interpret results, and think critically about what the data do, and do not, reveal.
+
+The book also makes extensive use of statistical software, particularly [Rguroo](https://www.rguroo.com/), for exploring data, creating visualizations, and carrying out computations. Rguroo requires no programming; its intuitive, point-and-click interface makes it easy for students to start using right away, so they can focus on the statistics rather than on learning the software. Letting technology handle the calculations means students spend less time on repetitive arithmetic and more time developing concepts, interpreting results, and thinking statistically.
+
+## How the Book Is Organized
+
+The book begins with an introduction to Rguroo, followed by the foundations of statistical thinking: what statistics is, how data are collected, and how variables and datasets are organized. Students then learn to describe data using tables, graphs, and numerical summaries. Together, these early chapters build the skills needed to explore a dataset and understand what it can tell us.
+
+The next chapters introduce probability and probability distributions. Students move from basic probability ideas to discrete and continuous random variables, including the binomial and normal distributions. The study of sampling distributions and the Central Limit Theorem then connects probability to the behavior of statistics calculated from samples.
+
+With this foundation in place, the book develops the central ideas of statistical inference. Students learn hypothesis tests and confidence intervals for population proportions and means. Later chapters broaden their toolkit: regression for examining relationships between variables, chi-square tests for analyzing categorical data, and one-way ANOVA for comparing several population means.
+
+Throughout, students return to the same broad process: ask a question, explore the data, choose an appropriate method, and interpret the results in context. Seeing this process repeated across many kinds of problems helps students recognize that statistics is a coherent way of reasoning, not a collection of unrelated procedures.
+
+## Using Rguroo
+
+This book uses [Rguroo](https://www.rguroo.com/) for data exploration, visualization, simulation, and statistical analysis. Rguroo is a browser-based, point-and-click application, so students can get started without installing software or learning a programming language. Its easy-to-use interface lets students focus on the statistical questions and concepts they are learning rather than on the mechanics of the software. Rguroo is also designed to meet WCAG 2.1 Level AA accessibility guidelines; details are available on the [Rguroo accessibility page](https://www.rguroo.com/accessibility/).
+
+Rguroo produces clear visualizations and detailed reports that help students follow each step of an analysis and interpret the results. It also supports interactive exploration and simulation, giving students ways to see how statistical ideas work and how results can vary from sample to sample.
+
+Examples throughout the book include step-by-step instructions for carrying out analyses in Rguroo. Students can follow along as they read, then use the same tools to explore data and complete the exercises.
+
+Rguroo is low-cost for students. Current access options and pricing are available on the [Rguroo pricing page](https://www.rguroo.com/pricing/).
+
+*Disclosure:* One of the authors is a co-developer of Rguroo.
+
+## Features of the Book
+
+Several features are designed to help students connect statistical ideas with data and practice applying what they learn.
+
+* **Learning objectives.** Each chapter opens with learning objectives that tell students what they should be able to do by the end of the chapter and help them focus their reading and study.
+
+* **Concepts before computation.** Explanations build intuition for a statistical idea before introducing formulas or procedures, with an emphasis on what a method does, when it is useful, and how to interpret its results.
+
+* **Visual exploration and simulation.** Graphs and simulations help students explore patterns, variability, probability, and sampling behavior, making abstract ideas more concrete.
+
+* **Real data in context.** Examples and homework problems use real datasets, often with multiple variables. Each dataset comes with a codebook explaining what the variables represent and how their values are recorded, so students understand the data before analyzing them.
+
+* **Easy access to datasets.** All datasets used in the examples and homework are available in an Rguroo repository, where students can open them directly for their own analyses.
+
+* **Guided Rguroo instructions.** Examples include step-by-step directions for carrying out each analysis in Rguroo, so students can follow along and then apply the same methods to other data.
+
+* **Worked examples with click-to-reveal solutions.** In the online version, each example's solution is hidden in a callout box that students can open with a click. This encourages students to pause and work through the problem on their own before checking the solution.
+
+* **Practice throughout.** Homework problems are organized by section, giving students regular opportunities to revisit concepts, work with data, and interpret results in context.
+
+* **Accessibility.** We have worked to make the book accessible to students with a range of needs. Images include alternative text that conveys their content to readers using assistive technology, and because the book is available online, students can use their browser's and device's accessibility features, such as text resizing and screen readers.
+
+Together, these features give students repeated opportunities to explore data, apply statistical methods, and explain what their results mean.
+
+## To the Student
+
+Welcome to the study of statistics. Statistics is everywhere: in news reports, medical studies, sports, business decisions, and the choices we make in everyday life. This book is designed to help you understand how statistics can answer questions about the world around you and how to evaluate the statistical claims you encounter.
+
+You do not need to master every formula at once. As you meet each new idea, ask yourself what it means, what question it can help answer, and how its results should be interpreted. Formulas and procedures will make much more sense once you understand the ideas behind them.
+
+Before reading a chapter, look over its learning objectives so you know what to focus on. When you finish, return to them and check whether you can do what each one describes. If not, revisit the related sections.
+
+Statistics is best learned through active practice. Work through the examples with pencil and paper or in Rguroo, and try each problem yourself before opening the solution callout. Then work the homework problems on your own. If you get stuck, return to a similar example or review the relevant concept, and give yourself another chance to work it out.
+
+When you work with a dataset, start by reading its codebook so you know what each variable represents and how it is recorded. Understanding the data is the first step in any good analysis.
+
+As you use Rguroo, focus on the data and the reasoning behind your choices, not just on which buttons to click. Look at graphs, notice patterns, and ask what the results mean in context. The software handles many of the calculations, giving you more time to develop your statistical thinking.
+
+You will make mistakes as you learn new ideas; that is a normal part of the process. Take your time, stay curious, and keep asking questions, of yourself, your classmates, and your instructor. With practice, you will become more comfortable using data to make sense of the questions that matter to you.
+
+## To the Instructor
+
+This section highlights choices we made in the book that may affect how you plan your course.
+
+**Order of topics.** Chapter 8, "Foundations of Statistical Inference," introduces the core ideas of inference and should be taught before the inference chapters that follow. After that, the book offers some flexibility:
+
+* Chapter 9, "Inference for a Population Proportion," and Chapter 10, "Inference for a Population Mean," can be taught in either order.
+* Chapter 13, "Chi-Square Tests for Categorical Data," can be taught after Chapter 14, "Comparing Several Means: One-Way ANOVA."
+
+Within the inference material, hypothesis testing is introduced before confidence intervals.
+
+**Coverage and flexibility.** Some sections are marked optional. These sections offer additional mathematical rigor or further explanation of the ideas behind the material, and you may skip them without disrupting students' understanding of the remaining sections. In the chapter on inference for a population proportion, the book presents both the exact binomial method and large-sample methods. You may cover either approach or teach both, depending on your course goals.
+
+**Using Rguroo.** You may assign all of Chapter 0, "Getting Started with Rguroo," at the beginning of the course, or refer students to the relevant parts of the chapter as they are needed. Because Rguroo handles the computations, class time can focus on choosing appropriate methods, interpreting results, and drawing conclusions in context.
+
+**Adapting the book.** We encourage you to adapt the examples, datasets, and activities to the questions and interests of your students, and to use the technology to make room for discussion, exploration, and interpretation.
+
+We hope the book serves as a useful resource for your course.
+
+## Instructor Resources
+
+**Upcoming MyOpenMath course.** A [MyOpenMath](https://www.myopenmath.com/) course designed to accompany this book is in development. It will include PowerPoint notes, videos, and algorithmically generated homework assignments with automatic grading.
+
+**Rguroo support.** Instructors can obtain a free, perpetual Rguroo license for free. Rguroo offers [video tutorials](https://www.rguroo.com/video-tutorials/) that walk through its features, which you can use yourself or share with students. Rguroo also provides one-on-one training for faculty upon request; you can [request a training session](https://www.rguroo.com/request-training/) on the Rguroo website.
+
+## Acknowledgments
+
+<!--
 This is test of my macros:
 Inline examples (should be colored):
 - The variable is [x]{.var}.
@@ -23,83 +129,12 @@ Inline examples (should be colored):
 - The dialog name is [Descriptive Statistics]{.dialog}.
 - The repository is [Rguroo Datasets]{.repo}.
 - The answer is [42]{.ans}.
-
-
-I hope you find this book useful in teaching statistics. When writing this book, I tried to follow the [GAISE Standards (GAISE recommendations](Retrieved%20from%20http://www.amstat.org/education/gaise/GAISECollege_%20Recommendations.pdf).
-
--   Teach statistical thinking.
-
--   Focus on conceptual understanding.
-
--   Integrate real data with a context and a purpose.
-
--   Foster active learning.
-
--   Use technology to explore concepts and analyze data.
-
--   Use assessments to improve and evaluate student learning
-
-To this end, I ask students to interpret the results of their calculations. I incorporated the use of technology (R Studio) for most calculations. Because of that you will not find me using any of the computational formulas for standard deviations or correlation and regression since I prefer students understand the concept of these quantities. Also, because I utilize technology you will not find the standard normal table, Student's t-table, binomial table, chi-square distribution table, and F-distribution table in the book. Another difference between this book and other statistics books is the order of hypothesis testing and confidence intervals. Most books present confidence intervals first and then hypothesis tests. I find that presenting hypothesis testing first and then confidence intervals is more understandable for students. Lastly, I have de-emphasized the use of the z-test. In fact, I only use it to introduce hypothesis testing, and never utilize it again. Two samples should be emphasized over one sample test. Lastly, to aid student understanding and interest, most of the homework and examples utilize real data with multiple variables. The beauty of multiple variables, is that you can ask the students to investigate different analysis with different variables. This way students can work with data and come up with connections of asking questions and using data to answer the questions. Again, I hope you find this book useful for your introductory statistics class.
-
-## Mathematical Knowledge Assumed {.unnumbered}
-
-I want to make a comment about the mathematical knowledge that I assumed the students possess. The course for which I wrote this book has a higher prerequisite than most introductory statistics books. However, I do feel that students can read and understand this book as long as they can read critically. I do not show how to create most of the graphs, but all graphs are created with R Studio. So I hope the mathematical level is appropriate for your course.
-
-## Technology Used {.unnumbered}
-
-The technology that I utilized for creating the graphs and statistical analysis is R Studio. This is a statistical software that are used by statisticians and so using it gives students skills they may need in the future. Please feel free to use any other technology that is more appropriate for your students. Do make sure that you use some technology. I worked on the [StatPREP project](https://www.statprep.org/) and there are Little Apps that can be used to explore data. There are also activities that can be used in your classes that utilize the Little Apps on the website.
-
-## Acknowledgments {.unnumbered}
-
-I would like to thank the following people for taking their valuable time to review the book. Their comments and insights improved this book immensely.
-
--   Daniel Kaplan, Macalester College
-
--   Jane Tanner, Onondaga Community College
-
--   Rob Farinelli, College of Southern Maryland
-
--   Carrie Kinnison, retired engineer
-
--   Sean Simpson, Westchester Community College
-
--   Kim Sonier, Coconino Community College
-
--   Jim Ham, Delta College
-
--   Brian Birgen, Wartburg College
-
--   Christopher Cunningham, Elgin Community College
-
--   Kendra Feinstein, Tacoma Community College
-
--   David Straayer, Tacoma Community College
-
--   Students of Coconino Community College
-
--   Students of Elgin Community College
-
--   Students of Tacoma Community College
-
--   Students of Wartburg College
-
-I also want to thank Coconino Community College for granting me a sabbatical so that I would have the time to write the book. On a personal note, I wanted to thank my brother, John Matic, his wife Jenelle, and their children Hannah and Eli for their hospitality when writing the first edition. In addition to allowing my family access to their home, John provided numerous examples and data sets for business applications in this book. I inadvertently left this thank you out of the first edition of the book, His help and his family's hospitality were invaluable to me. Lastly, I want to thank my husband Rich and my son Dylan for supporting me in this project. Without their love and support, I would not have been able to complete the book.
-
-## New to the Fourth Edition {.unnumbered}
-
-The additions to this edition mostly involve format changes and other edits to make the textbook more accessible for students with visual disabilities. Have a textbook that is accessible to all is very important to me, so please let me know if more changes need to be made. Minor changes and corrections were also made. One change is that every hypothesis test and confidence interval has assumptions that must be true to make the inference valid. Instead of calling them assumptions though, I decided to call them conditions to remove confusion about other assumptions.
-
-## Packages Needed for r studio {.unnumbered}
-
-You will need the following packages installed and loaded in r Studio: arm, HNANES, MASS, mosaic, Weighted.Desc.Stat.
+ -->
 
 ## License {.unnumbered}
 
-Creative Commons Attribution Sharealike.
+Copyright © 2026 A. Frost, M. Jamshidian, and J. Kramer.
 
-2025 Kathryn Kozak
+This work is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
 
-![](Creative_commons.png){fig-alt="Creative Commons Attribution Sharealike"}
-
-ISBN:
-
+![](Creative_commons.png){fig-alt="Creative Commons Attribution-ShareAlike 4.0 International"}

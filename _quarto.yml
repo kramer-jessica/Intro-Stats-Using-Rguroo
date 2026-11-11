@@ -48,7 +48,6 @@ book:
     - proportion inference.qmd
     - mean inference.qmd
     - Regression.qmd
-#    - Chi-Square and ANOVA Tests.qmd
     - chi_square_inference.qmd
     - anova.qmd
     - References.qmd
