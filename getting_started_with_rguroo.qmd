@@ -9,7 +9,7 @@ number-sections: false
 
 Rguroo is a statistical software program designed to help students explore data and perform statistical analyses. Throughout this text, Rguroo will be used to carry out calculations, create graphs, and conduct statistical inferences. Using Rguroo allows us to focus on understanding statistical concepts and interpreting results rather than spending excessive time on complicated calculations. As new statistical methods are introduced, you will learn how to use the corresponding tools in Rguroo to perform the analysis and interpret the output.
 
-![Video icon](Rguroo_Icons/camera_inline.png)[Click Here](https://www.youtube.com/watch?v=gD-V-Jy8i-4) to watch a video overview of Rguroo.
+![Video icon](Rguroo_Icons/camera_inline.png)[ Click Here](https://www.youtube.com/watch?v=gD-V-Jy8i-4) to watch a video overview of Rguroo.
 
 ## 0.2 Creating a Student Account {#creating-student-account}
 
@@ -542,7 +542,7 @@ Data was collected for two semesters in a statistics class on students’ transp
 ![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset is available in the Rguroo dataset repository, with the dataset name [class_survey1]{.data}. @tbl-class-survey shows the variables and the first 6 rows of the data set. A complete description of the variables is provided in the [dataset code book](#code-book-class) that follows. 
 
 
-```{r class-data1-table,echo=FALSE}
+```{r,echo=FALSE}
 #| tbl-alt: "Table showing first 6 rows of statistics class survey dataset"
 #| label: tbl-class-survey
 #| tbl-cap: "Class Survey"

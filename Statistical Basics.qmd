@@ -89,7 +89,7 @@ There are two types of variables: categorical (also called qualitative or factor
 
 A **dataset** is built from the observations and variables you collect. In a well-organized dataset, each row represent a single observation, and each column represents a single variable. An example of a dataset that follows this structure is shown in @tbl-dataframe_example below.
 
-```{r dataframe}
+```{r}
 #| tbl-alt: "example of a clean dataset"
 #| label: tbl-dataframe_example
 #| tbl-cap: "Example of a Clean Dataset"
@@ -354,7 +354,7 @@ Data was collected for two semesters in a statistics class on students’ transp
 ![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [Intro to Stats with Rguroo]{.repo}, with the dataset name [class_survey1]{.data}. @tbl-Class shows the variables and the first 6 rows of the data set. A complete description of the variables is provided in the [dataset code book](#code-book-class) that follows.
 :::
 
-```{r class-data1-table,echo=FALSE}
+```{r,echo=FALSE}
 #| tbl-alt: "Table showing first 6 rows of statistics class survey dataset"
 #| label: tbl-Class
 #| tbl-cap: "Class Survey"
@@ -709,7 +709,7 @@ e.  The officer divides the batches made in a month into which day they were mad
 ![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [Intro to Stats with Rguroo]{.repo}, with the dataset name [tuition_4_year]{.data}. The first six rows of the dataset are in @tbl-Tuition. A complete description of the variables is provided in the [dataset code book](#code-book-tuition) that follows.
 :::
 
-```{r tuition-table,echo=FALSE}
+```{r,echo=FALSE}
 #| tbl-alt: "Table showing first 6 rows of Tuition dataset with difference column added"
 #| warning: FALSE
 #| label: tbl-Tuition

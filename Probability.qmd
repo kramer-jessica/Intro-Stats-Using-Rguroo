@@ -11,16 +11,14 @@ Eyeglasses<-read.csv( "https://krkozak.github.io/MAT160/eyglasses.csv")
 Defects<- read.csv( "https://krkozak.github.io/MAT160/defects.csv") 
 ```
 
-::: {#Importing-data-to-Rguroo .callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'}  Importing Data to Rguroo"} 
-
-1. Open the **Data** toolbox in Rguroo.  
-2. From the [Data Import]{.dpd} dropdown, select [Dataset Repository]{.fun}.  
-3. In the top search box, type [kozak]{.typein}, then select the [Statistics Using Technology – Kozak]{.repo} repository.  
-4. In the middle search box, type the first few letters of the dataset name, and choose your desired dataset name that appears in the lower panel.  
-5. Click [Import]{.button}. The dataset will be imported to your Rguroo account.
-6. Click [Close]{.button} to exit the dialog.  
-7. To view the dataset, double-click the dataset name under the **Data** toolbox list.
-
+::: {#Importing-data-to-Rguroo .callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'}  Importing Data to Rguroo"}
+1.  Open the **Data** toolbox in Rguroo.\
+2.  From the [Data Import]{.dpd} dropdown, select [Dataset Repository]{.fun}.\
+3.  In the top search box, type [kozak]{.typein}, then select the [Statistics Using Technology – Kozak]{.repo} repository.\
+4.  In the middle search box, type the first few letters of the dataset name, and choose your desired dataset name that appears in the lower panel.\
+5.  Click [Import]{.button}. The dataset will be imported to your Rguroo account.
+6.  Click [Close]{.button} to exit the dialog.\
+7.  To view the dataset, double-click the dataset name under the **Data** toolbox list.
 :::
 
 Every day you encounter uncertainty. Will it rain during your commute? Is a new medication likely to help a patient? Does a positive test result mean someone actually has a disease? Should a business stock more inventory before a holiday weekend? Although these questions cannot be answered with certainty, probability gives us a mathematical framework for measuring uncertainty and making informed decisions.
@@ -29,7 +27,7 @@ Probability is not just an abstract mathematical topic. It is the foundation of 
 
 Probability is the "language" that connects data to decisions. The ideas in this chapter form the foundation for everything that comes next in this course. Taking the time to build a solid foundation here will make the rest of the course much more meaningful.
 
-The ideas in this chapter appear across every discipline. A criminologist asks: what is the likelihood that an eyewitness identification is correct? A nurse asks: if I screen 100 patients, how many will test positive by chance alone? An economist asks: what is the probability that a recession will occur in the next two years? A political scientist asks: what is the chance that a polling  reflects the true opinions of voters? These are all probability questions.
+The ideas in this chapter appear across every discipline. A criminologist asks: what is the likelihood that an eyewitness identification is correct? A nurse asks: if I screen 100 patients, how many will test positive by chance alone? An economist asks: what is the probability that a recession will occur in the next two years? A political scientist asks: what is the chance that a polling reflects the true opinions of voters? These are all probability questions.
 
 This chapter begins with the fundamental vocabulary and rules of probability, then develops two major approaches to calculating probabilities, and introduces how technology — specifically **Rguroo** — can be used to simulate random processes and explore probability hands-on.
 
@@ -58,7 +56,6 @@ A **probability experiment** is any process whose outcome is determined by chanc
 
 ------------------------------------------------------------------------
 
-
 ### Outcomes, Sample Spaces, and Events
 
 Every probability experiment produces a result. An **outcome** is a single possible result of a probability experiment. When you roll a die, getting a 3 is one outcome; when you flip a coin, getting heads is one outcome. Outcomes must cover every possibility and cannot overlap --- no two outcomes can occur at the same time in a single trial.
@@ -74,15 +71,15 @@ Two special events come up often. A **certain event** contains every outcome in 
 
 An **outcome** is a single possible result of a probability experiment. Outcomes must cover every possibility and cannot overlap, which means no two outcomes can occur at the same time in a single trial.
 
-The **sample space** is the complete list of all possible outcomes. We write the sample space using set notation with curly braces and label it $S$. 
+The **sample space** is the complete list of all possible outcomes. We write the sample space using set notation with curly braces and label it $S$.
 
-An **event** is any group of outcomes of interest. Events are subsets of the sample space and are usually named with capital letters like $A$, $B$, or $C$. 
+An **event** is any group of outcomes of interest. Events are subsets of the sample space and are usually named with capital letters like $A$, $B$, or $C$.
 
-A **simple event** contains exactly one outcome. 
+A **simple event** contains exactly one outcome.
 
 A **compound event** contains more than one outcome.
 
-A **certain event** contains every outcome in the sample space and will always occur. 
+A **certain event** contains every outcome in the sample space and will always occur.
 
 An **impossible event** contains no outcomes at all and is written as the empty set, $\emptyset$.
 :::
@@ -91,15 +88,13 @@ An **impossible event** contains no outcomes at all and is written as the empty 
 
 Now that we know what outcomes, sample spaces, and events are, we can define probability itself, establish the rules every probability must follow, and understand how probabilities behave when an experiment is repeated many times.
 
-The **probability** of an event $A$, written $P(A)$ (read "probability of A"), is a number between 0 and 1 (inclusive) that represents how likely A is to occur.
-$$0 \leq P(A) \leq 1   \text{ for any event } A$$
+The **probability** of an event $A$, written $P(A)$ (read "probability of A"), is a number between 0 and 1 (inclusive) that represents how likely A is to occur. $$0 \leq P(A) \leq 1   \text{ for any event } A$$
 
 Probabilities can be expressed as fractions, decimals, or percentages. For example, $$P(A) = 1/4 = 0.25 = 25\%$$.
 
-When we say an event has a probability of 0.30, we mean that if we were to repeat this experiment a very large number of times under the same conditions, about 30\% of those repetitions would result in that event occurring. Probability does not tell us what will happen on any single trial; it tells us about long-run patterns.
+When we say an event has a probability of 0.30, we mean that if we were to repeat this experiment a very large number of times under the same conditions, about 30% of those repetitions would result in that event occurring. Probability does not tell us what will happen on any single trial; it tells us about long-run patterns.
 
 Before we can calculate a probability, we need to ask a key question: are the outcomes in our sample space equally likely? This matters because it determines how we find probabilities.
-
 
 Outcomes are **equally likely** when every outcome in the sample space has the same probability of occurring; no outcome is favored over any other. When rolling a fair six-sided die, for instance, each face has the same chance of occurring. In contrast, outcomes are **not equally likely** when some results are more probable than others. In a lottery, the outcome "you win" is far less likely than "you do not win," so the outcomes are clearly unequal.
 
@@ -107,18 +102,17 @@ To see this distinction more concretely, consider three quick examples. First, s
 
 A **probability model** lists the possible outcomes of a probability experiment and each outcome's probability. Every valid probability model must satisfy two rules. These are not optional; they are requirements that any set of numbers must meet in order to qualify as probabilities.
 
-**Rule 1: Probability is always between 0 and 1 (inclusive)**
-$$0 \leq P(A) \leq 1   \text{ for every event } A$$
+**Rule 1: Probability is always between 0 and 1 (inclusive)** $$0 \leq P(A) \leq 1   \text{ for every event } A$$
 
 No probability can be negative. No probability can be greater than 1. If you calculate a probability outside this range, you have made an error.
 
-**Rule 2: The probabilities of all outcomes in the sample space must sum to 1**
-$$\sum P(\text{all outcomes}) = 1$$
+**Rule 2: The probabilities of all outcomes in the sample space must sum to 1** $$\sum P(\text{all outcomes}) = 1$$
 
-This means that one of the outcomes in the sample space must occur when the experiment is performed. When you list all possible outcomes of an experiment, their probabilities must add up to exactly 1, or 100\%.
+This means that one of the outcomes in the sample space must occur when the experiment is performed. When you list all possible outcomes of an experiment, their probabilities must add up to exactly 1, or 100%.
 
 ::: {#exm-equally-likely}
 ## Verifying Probability Rules
+
 A psychology researcher studies the types of social media platforms used most frequently by college students. Based on survey data, she estimates the following probabilities:
 
 | Platform     | Estimated Probability |
@@ -131,25 +125,23 @@ A psychology researcher studies the types of social media platforms used most fr
 
 : Estimated probabilities for most-used social media platform {#tbl-socialmedia tbl-alt="Table showing estimated probabilities for five social media platform categories including Instagram, TikTok, Snapchat, X Twitter, and Other or None"}
 
-Verify this model satisifies the rules of probability model. 
+Verify this model satisifies the rules of probability model.
 :::
 
-
-:::{.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
-Verify Rule 1: Each probability is between 0 and 1. 
+Verify Rule 1: Each probability is between 0 and 1.
 
 Verify Rule 2: $0.34 + 0.28 + 0.18 + 0.11 + 0.09 = 1.00$
 
 Both rules are satisfied, so this is a valid probability model.
-
 :::
 
 ::: {#exm-missing-prob}
 ## Finding a Missing Probability
 
- A weather forecasting model gives the following probabilities for tomorrow's weather in a coastal city:
+A weather forecasting model gives the following probabilities for tomorrow's weather in a coastal city:
 
 | Weather       | Probability |
 |---------------|-------------|
@@ -163,8 +155,9 @@ Both rules are satisfied, so this is a valid probability model.
 Assuming that the four listed outcomes are all the possibilities for tomorrow's weather, what is the probability of overcast so the probability values define a probability model?
 :::
 
-:::{.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
+
 Since all probabilities must sum to 1:
 
 $$P(\text{Overcast}) = 1 - 0.45 - 0.30 - 0.12 = 0.13$$
@@ -180,148 +173,142 @@ There are two fundamental ways to determine the probability of an event.
 
 The first approach is based on observation and data. We either conduct the experiment many times, or use existing data, and measure how often the event occurs. The resulting probability estimate is called the **relative frequency** or **empirical probability**.
 
-Recall from Chapter 2 that the **relative frequency** of an event is the number of times it occurs out of the total number of trials:
-$$\text{Relative Frequency of A} = \dfrac{\text{Number of times A occurred}}{\text{Total number of trials}}$$
+Recall from Chapter 2 that the **relative frequency** of an event is the number of times it occurs out of the total number of trials: $$\text{Relative Frequency of A} = \dfrac{\text{Number of times A occurred}}{\text{Total number of trials}}$$
 
 This is the **empirical approach** to probability. It is based on observed data rather than assumptions. The relative frequency gives an estimate of the true probability, and that estimate improves as the number of trials increases.
 
 ::: {#exm-empirical-prob}
 ## Empirical Probability from Survey Data
+
 The General Social Survey (GSS) is a national survey conducted regularly in the United States. In a recent survey, 1,832 out of 2,867 respondents reported that they use social media daily. What is the probability a randomly selected U.S. adult uses social media?
 :::
 
-:::{.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 This estimate is based on observed data, so it is an empirical probability and we would use relative frequency to find the probability
 
 $$ P(\text{uses social media daily}) \approx \dfrac{1832}{2867} \approx 0.639$$
 
-We estimate there is about a 63.9\% chance that a randomly selected U.S. adult uses social media daily.
+We estimate there is about a 63.9% chance that a randomly selected U.S. adult uses social media daily.
 :::
-
 
 **When Would You Use Empirical Probability**
 
-Empirical probability (based on observed data) is most appropriate when: 
+Empirical probability (based on observed data) is most appropriate when:
 
-- Outcomes are not equally likely and you cannot determine the probabilities theoretically. For example, the probability that a randomly selected person prefers chocolate ice cream over vanilla cannot be calculated theoretically—it must be measured through observation or surveys. 
-- The outcomes depend on real-world behavior or complex systems with too many factors to model theoretically. Examples include the probability that a patient responds to a treatment, the probability that a customer returns a product, or the probability of rain tomorrow. These involve too many unknown factors to calculate theoretically. 
-
+-   Outcomes are not equally likely and you cannot determine the probabilities theoretically. For example, the probability that a randomly selected person prefers chocolate ice cream over vanilla cannot be calculated theoretically—it must be measured through observation or surveys.
+-   The outcomes depend on real-world behavior or complex systems with too many factors to model theoretically. Examples include the probability that a patient responds to a treatment, the probability that a customer returns a product, or the probability of rain tomorrow. These involve too many unknown factors to calculate theoretically.
 
 **Theoretical Probability**
 
 The second approach is used when we know the structure of the experiment and can assume that all outcomes in a sample space are equally likely. Rather than collecting data, we count outcomes.
 
-If all outcomes in the sample space, $S$, are *equally likely*, the probability of event $A$ is:
-$$P(A) = \dfrac{\text{Number of outcomes in } A}{\text{Total number of outcomes in }S}$$
+If all outcomes in the sample space, $S$, are *equally likely*, the probability of event $A$ is: $$P(A) = \dfrac{\text{Number of outcomes in } A}{\text{Total number of outcomes in }S}$$
 
 This is called the **classical** or **theoretical** probability. It is calculated by reasoning about the structure of the experiment; no data collection is required.
 
-We use theoretical (classical) probability when: 
+We use theoretical (classical) probability when:
 
-- The outcomes are equally likely and the sample space is well-defined, as in rolling a fair die or drawing cards from a well-shuffled deck.
-- The probability can be determined through logic and counting methods rather than observation. 
+-   The outcomes are equally likely and the sample space is well-defined, as in rolling a fair die or drawing cards from a well-shuffled deck.
+-   The probability can be determined through logic and counting methods rather than observation.
 
-The key difference: Empirical probability requires data collection and observation, while theoretical probability requires only logical analysis of equally likely outcomes. 
+The key difference: Empirical probability requires data collection and observation, while theoretical probability requires only logical analysis of equally likely outcomes.
 
 ::: {#exm-theoretical-prob}
 ## Theoretical Probability
+
 A fair six-sided die is rolled. Sample space: $S = \{1, 2, 3, 4, 5, 6\}$, with 6 equally likely outcomes. Find the following probabilities.
 
 **(a)** P(rolling a 4)
 
 **(b)** P(rolling an even number)
 
-**(c)** P(rolling a number > 4)
+**(c)** P(rolling a number \> 4)
 
-**(d)** P(rolling a number < 10)
+**(d)** P(rolling a number \< 10)
 
 **(e)** P(rolling a 7)
-
 :::
 
-:::{.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
-**(a)** The event space for the event "rolling a 4" is $A= \{4\}$. Using the theoretical probability formula, 
-$$P(\text{rolling a }4) = P(A) = \frac{1}{6} \approx 0.167$$
+**(a)** The event space for the event "rolling a 4" is $A= \{4\}$. Using the theoretical probability formula, $$P(\text{rolling a }4) = P(A) = \frac{1}{6} \approx 0.167$$
 
-**(b)** The event space for the event "rolling an even number" is $B = \{2,4,6\}$. Then, the probability is
-$$ P(\text{rolling an even number}) = P(B) = \frac{3}{6} = \frac{1}{2} = 0.5$$
+**(b)** The event space for the event "rolling an even number" is $B = \{2,4,6\}$. Then, the probability is $$ P(\text{rolling an even number}) = P(B) = \frac{3}{6} = \frac{1}{2} = 0.5$$
 
-**(c)** The event space for the event "rolling a number > 4" is $C = \{5,6\}$. The probability of event $C$ is
+**(c)** The event space for the event "rolling a number \> 4" is $C = \{5,6\}$. The probability of event $C$ is
 
 $$P(\text{rolling a number }> 4) = P(C) = \frac{2}{6} = \frac{1}{3} \approx 0.333$$
 
-**(d)** The event space for the event "rolling a number < 10" is $D = \{1,2,3,4,5,6\} = S$. The probability of event $D$ is
+**(d)** The event space for the event "rolling a number \< 10" is $D = \{1,2,3,4,5,6\} = S$. The probability of event $D$ is
 
 $$ P(\text{rolling a number }< 10)=P(D) = \frac{6}{6} = 1$$
 
 which makes this a certain event.
 
-**(e)** The event space for the event "rolling a 7" is $E = \{\emptyset\}$. Therefore, the probability of event $E$ is 
+**(e)** The event space for the event "rolling a 7" is $E = \{\emptyset\}$. Therefore, the probability of event $E$ is
 
 $$P(\text{rolling a }7) = P(E) = \frac{0}{6} = 0$$
 
-which makes this an impossible event. 
+which makes this an impossible event.
 :::
 
 You might wonder: if I flip a coin just 10 times and get 7 heads, does that mean the probability of heads is 0.70? The **Law of Large Numbers** answers this question.
 
-The **Law of Large Numbers** states that as the number of trials, $n$, of an experiment increases, the relative frequency of an event gets closer and closer to the true probability of that event. In other words, as we perform more and more trials, the ratio $\left(\dfrac{\text{frequency of A}}{n}\right)$ approaches $P(A)$.  
+The **Law of Large Numbers** states that as the number of trials, $n$, of an experiment increases, the relative frequency of an event gets closer and closer to the true probability of that event. In other words, as we perform more and more trials, the ratio $\left(\dfrac{\text{frequency of A}}{n}\right)$ approaches $P(A)$.
 
-For example, if you flip a fair coin: 
+For example, if you flip a fair coin:
 
-- After 10 flips, you might get 7 heads (70%) which is quite far from the true probability of 50% 
-- After 100 flips, you might get 57 heads (57%) becoming closer to 50% 
-- After 1,000 flips, you might get 493 heads (49.3%) very close to 50% 
-- After 10,000 flips, you'll get even closer to exactly 50% 
-
+-   After 10 flips, you might get 7 heads (70%) which is quite far from the true probability of 50%
+-   After 100 flips, you might get 57 heads (57%) becoming closer to 50%
+-   After 1,000 flips, you might get 493 heads (49.3%) very close to 50%
+-   After 10,000 flips, you'll get even closer to exactly 50%
 
 This does not mean you are "due" for tails after a streak of heads. The coin has no memory. What actually happens is that early imbalances become less and less important as trials accumulate — 2 extra heads out of 10 flips is 70%, but 2 extra heads out of 1,000 flips is only 50.2%.
 
 ### Simulation: Exploring Probability with Rguroo
 
-One of the most powerful ways to build intuition about probability is through **simulation**: using technology to imitate a random process thousands of times and observing the results. Instead of flipping an actual coin 10,000 times by hand, Rguroo can simulate those flips in seconds and display the results. Simulation makes the Law of Large Numbers visible and concrete. 
+One of the most powerful ways to build intuition about probability is through **simulation**: using technology to imitate a random process thousands of times and observing the results. Instead of flipping an actual coin 10,000 times by hand, Rguroo can simulate those flips in seconds and display the results. Simulation makes the Law of Large Numbers visible and concrete.
 
 Simulations are especially useful when:
 
-- Theoretical probabilities are difficult to calculate. For example, determining the probability of winning a complex card game might involve complicated counting, but you can simulate 10,000 games and see how often you win. 
-- We want to see how relative frequencies converge over many trials. For example, you can watch in real-time as the percentage of heads gets closer and closer to 50% as the number of coin flips increases. 
-- We want to explore what random variation really looks like. Simulations help us understand that getting 7 heads in 10 flips is not unusual for a fair coin, because we can see how much natural variation occurs in repeated experiments. 
+-   Theoretical probabilities are difficult to calculate. For example, determining the probability of winning a complex card game might involve complicated counting, but you can simulate 10,000 games and see how often you win.
+-   We want to see how relative frequencies converge over many trials. For example, you can watch in real-time as the percentage of heads gets closer and closer to 50% as the number of coin flips increases.
+-   We want to explore what random variation really looks like. Simulations help us understand that getting 7 heads in 10 flips is not unusual for a fair coin, because we can see how much natural variation occurs in repeated experiments.
 
-The key advantage of simulation is that it allows us to perform thousands or even millions of trials instantly, revealing patterns that would be impossible to observe through physical experiments alone. 
+The key advantage of simulation is that it allows us to perform thousands or even millions of trials instantly, revealing patterns that would be impossible to observe through physical experiments alone.
 
 ::: {#exm-simulation-die-roll}
 ## Simulating a Die Roll
+
 Suppose you want to explore whether a fair six-sided die actually produces each face with equal frequency. The theoretical probability of rolling any single face is $1/6 \approx 0.167$. But does that hold up when you actually simulate rolls? And how many trials do you need before the results start to look balanced?
 
 You can investigate this using Rguroo’s simulation tool.
 :::
 
-:::{.callout-tip .solution-callout collapse="true" icon=false}
+::::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 Click to expand the box below to see how to use Rguroo to simulate rolling a six-sided die.
 
-::: {#simulating-in-Rguroo .callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} Simulating in Rguroo"}
-
+:::: {#simulating-in-Rguroo .callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} Simulating in Rguroo"}
 1.  Open the **Probability-Simulation** toolbox.\
 2.  Click on the [Probability]{.dpd} dropdown, and select [Random Generator]{.fun}. This opens the [Random Number Generator]{.dialog} dialog.\
 3.  From the [Distribution]{.dpd} dropdown, select [Discrete Uniform]{.fun}. This tells Rguroo to treat all values in a range as equally likely.\
 4.  In the [Minimum]{.des} field, enter [1]{.typein}. In the [Maximum]{.des} field, enter [6]{.typein}. This sets up the six equally likely outcomes of a die roll.\
 5.  In the [Sample Size]{.des} field, enter [600]{.typein} for the first run.\
 6.  Click the preview icon ![preview icon](Rguroo_Icons/preview_inline.png) to see the sample.
-7. Click the ![Save as](Rguroo_Icons/save_as.png) button to save the sample results as [DieRollSim]{.typein}.
+7.  Click the ![Save as](Rguroo_Icons/save_as.png) button to save the sample results as [DieRollSim]{.typein}.
 
 ::: {.callout-note appearance="simple" collapse="true" icon="none" title="Click here to see the Rguroo dialog"}
 ![Simulation dialog in Rguroo](Rguroo_dialogs/Probability/simulation_dialog.png){width="500px"}
 :::
-:::
-
+::::
 
 We can create and examine a barplot of the resulting sample as seen in @fig-sim-barplot. Each bar represents one face of the die (1 through 6). The height of each bar shows the relative frequency of that face in your simulation.
+
 ```{r,echo=FALSE}
 #| fig-alt: "Screenshot of the barplot output showing six bars, one per face, with relative frequencies annotated for each"
 #| warning: FALSE
@@ -349,16 +336,16 @@ knitr::include_graphics("Rguroo_outputs/Probability/sim_6000_barplot.png")
 ```
 
 This is the **Law of Large Numbers** in action. With a small number of trials, random variation produces noticeable differences between the outcomes. With a large number of trials, those differences smooth out and the relative frequencies converge toward the theoretical probability of $1/6 \approx 0.167$.
-
-:::
+:::::
 
 ### Homework for Section 4.1
 
-1. An instructor reports the following model for letter grades in her course. Determine whether this represents a probability model. Explain why or why not.
+1.  An instructor reports the following model for letter grades in her course. Determine whether this represents a probability model. Explain why or why not.
 
 | Grade       | A    | B    | C    | D    | F    |
 |-------------|------|------|------|------|------|
-| Probability | 0.22 | 0.35 | 0.28 | 0.10 | 0.08 |  
+| Probability | 0.22 | 0.35 | 0.28 | 0.10 | 0.08 |
+
 : Estimated probabilities for letter grades {#tbl-lettergrades tbl-alt="Table showing estimated probabilities for five letter grades: A, B, C, D, and F"}
 
 2.  A researcher in criminal justice records the type of crime in a randomly selected case from a county court database. The categories are: Violent, Property, Drug, and Other.
@@ -367,20 +354,20 @@ This is the **Law of Large Numbers** in action. With a small number of trials, r
     b.  Based on county data, $P(\text{Violent}) = 0.19$, $P(\text{Property}) = 0.41$, $P(\text{Drug}) = 0.27$. Find $P(\text{Other})$.\
     c.  Verify that this is a valid probability model.
 
-3. Two fair coins are flipped. List the sample space using ordered pairs (e.g., HH, HT, ...). Then find:
+3.  Two fair coins are flipped. List the sample space using ordered pairs (e.g., HH, HT, ...). Then find:
 
     a.  $P(\text{exactly one head})$\
     b.  $P(\text{at least one tail})$\
     c.  $P(\text{no heads})$\
     d.  $P(\text{two heads or two tails})$
 
-4. The numbers of M&Ms of each color found in 48 packets are in the dataset [M_and_Ms]{.data}. The first six rows of these data are given in @tbl-MaM (M&M's Color Distribution Analysis, 2019). Find the probability of selecting each color based on this dataset.
+4.  The numbers of M&Ms of each color found in 48 packets are in the dataset [M_and_Ms]{.data}. The first six rows of these data are given in @tbl-MaM (M&M's Color Distribution Analysis, 2019). Find the probability of selecting each color based on this dataset.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
 ![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [M_and_Ms]{.data}.
 :::
 
-```{r mam-table, echo=FALSE}
+```{r, echo=FALSE}
 #| tbl-alt: "Table showing M&M Distribution"
 #| label: tbl-MaM
 #| tbl-cap: "M&M Distribution"
@@ -408,9 +395,7 @@ This dataset contains the following columns:
 [Source](https://joshmadison.com/2007/12/02/mms-color-distribution-analysis/) M&M's Color Distribution Analysis. (n.d.). Retrieved July 11, 2019.
 
 References Josh Madison, 2019
-
 :::
-
 
 2.  Eyeglassomatic manufactures eyeglasses for different retailers. They test to see how many defective lenses they made the time period of January 1 to March 31. The defect and the number of defects is in @tbl-Defects. Find the probability of each defect type based on this data.
 
@@ -420,22 +405,23 @@ References Josh Madison, 2019
 
 **Code book for Defects Dataset** below @tbl-Defects.
 
+5.  In Australia in 1995, of the 2907 indigenous people in prison 17 of them died. In that same year, of the 14501 non-indigenous people in prison 42 of them died (Aboriginal deaths in, 2013).
 
+<!-- -->
 
-5.  In Australia in 1995, of the 2907 indigenous people in prison 17 of them died. In that same year, of the 14501 non-indigenous people in prison 42 of them died (Aboriginal deaths in, 2013). 
+a.  Find the probability that an Indigenous person dies in prison.
+b.  Find the probability that a non-Indigenous person dies in prison.
+c.  Compare these probabilities and discuss what they may suggest.
 
-a. Find the probability that an Indigenous person dies in prison.
-b. Find the probability that a non-Indigenous person dies in prison. 
-c. Compare these probabilities and discuss what they may suggest. 
+<!-- -->
 
-6.  A project conducted by the Australian Federal Office of Road Safety asked people many questions about their cars. One question was the reason that a person chooses a given car, and the first six rows of that data is in @tbl-Car_pref (Car Preferences, 2019). 
-Find the probability a person chooses a car for each of the given reasons.
+6.  A project conducted by the Australian Federal Office of Road Safety asked people many questions about their cars. One question was the reason that a person chooses a given car, and the first six rows of that data is in @tbl-Car_pref (Car Preferences, 2019). Find the probability a person chooses a car for each of the given reasons.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
 ![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [carprefs]{.data}.
 :::
 
-```{r car-pref-table, echo=FALSE}
+```{r, echo=FALSE}
 #| tbl-alt: "Table showing reason for choosing a car"
 #| label: tbl-Car_pref
 #| tbl-cap: "Reason for Choosing a Car"
@@ -505,7 +491,7 @@ References
 The data was contributed to OzDASL by Professor Annette Dobson, University of Queensland. Information on the data set was originally provided by Jenny Powers.
 :::
 
-7. Using Rguroo’s Simulation tool (From the [Distribution]{.dpd} dropdown, select [Bernoulli Trial]{.fun}), simulate flipping a fair coin with p = 0.5. Run simulations with n = 20, 100, 500, and 5,000. For each run, record the relative frequency of heads. Create a table of your results and write 2 to 3 sentences describing how the relative frequency changes as n increases.
+7.  Using Rguroo’s Simulation tool (From the [Distribution]{.dpd} dropdown, select [Bernoulli Trial]{.fun}), simulate flipping a fair coin with p = 0.5. Run simulations with n = 20, 100, 500, and 5,000. For each run, record the relative frequency of heads. Create a table of your results and write 2 to 3 sentences describing how the relative frequency changes as n increases.
 
 ## Probability Rules
 
@@ -515,17 +501,16 @@ But in real life, we often ask more complex questions — what is the probabilit
 
 These questions require us to combine or modify events. In this section, we develop the tools to answer them. We begin with **Venn diagrams**, a visual way to represent events and their relationships, then use those diagrams to explore three ways of combining events — **complement**, **intersection**, and **union** — and build toward the rules for computing probabilities.
 
-
 ### Visualizing Events: Venn Diagrams
 
 Before writing any formulas, it helps to see how events relate to each other. A **Venn diagram** is a visual tool that does exactly that.
 
 In a Venn diagram:
 
-- The **rectangle** represents the entire sample space $S$ — all possible outcomes.
-- Each **circle** represents one event — the set of outcomes belonging to that event.
-- The **overlapping region** of two circles contains outcomes that belong to **both** events.
-- The region **outside all circles** (but still inside the rectangle) contains outcomes that belong to **neither** event.
+-   The **rectangle** represents the entire sample space $S$ — all possible outcomes.
+-   Each **circle** represents one event — the set of outcomes belonging to that event.
+-   The **overlapping region** of two circles contains outcomes that belong to **both** events.
+-   The region **outside all circles** (but still inside the rectangle) contains outcomes that belong to **neither** event.
 
 The diagram in @fig-venn-general shows the general setup for two events $A$ and $B$. Each region has a specific meaning, and we will shade different regions throughout this section to represent different combinations of events.
 
@@ -539,8 +524,6 @@ knitr::include_graphics("images/fig_venn_general.png")
 ```
 
 Venn diagrams are not just decorative. They let us see at a glance whether events overlap, are completely separate, or one contains the other. Keep this general picture in mind as we work through each concept below.
-
-
 
 ### The Complement of an Event
 
@@ -556,7 +539,7 @@ In plain language: $A^c$ is "everything except $A$."
 
 On a Venn diagram, the complement $A^c$ is everything **outside** circle $A$ — including the part of circle $B$ that does not overlap with $A$, and the space outside both circles. Only circle $A$ itself is excluded. This is shown in @fig-venn-Ac.
 
-```{r fig-venn-Ac, echo=FALSE}
+```{r, echo=FALSE}
 #| label: fig-venn-Ac
 #| fig-cap: "The shaded region represents the complement of A."
 #| fig-alt: "Venn diagram with two overlapping circles labeled A and B inside a rectangle labeled S. The region outside circle A is shaded gray, representing the complement of A. This includes the B-only region and the area outside both circles."
@@ -565,7 +548,7 @@ On a Venn diagram, the complement $A^c$ is everything **outside** circle $A$ —
 knitr::include_graphics("images/fig_venn_complement.png")
 ```
 
-Consider a few everyday examples. Rolling an even number on a die gives $A = \{2, 4, 6\}$, then $A^c = \{1, 3, 5\}$. If  $B = \{\text{drawing a heart from a standard deck}\}$ then $B^c$ is the event of drawing a club, diamond, or spade. And if $C = \{\text{a randomly selected student is full-time}\}$ then $C^c$ is simply the event that the student is part-time.
+Consider a few everyday examples. Rolling an even number on a die gives $A = \{2, 4, 6\}$, then $A^c = \{1, 3, 5\}$. If $B = \{\text{drawing a heart from a standard deck}\}$ then $B^c$ is the event of drawing a club, diamond, or spade. And if $C = \{\text{a randomly selected student is full-time}\}$ then $C^c$ is simply the event that the student is part-time.
 
 Because every outcome in the sample space must either be in $A$ or in $A^c$ — but never both — their probabilities must add up to exactly 1. This gives us the **Complement Rule**.
 
@@ -591,7 +574,7 @@ A fair six-sided die is rolled. Let $A$ = rolling a number greater than 2.
 **(c)** Verify the Complement Rule.
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 **(a)** The event $A = \{3, 4, 5, 6\}$ contains 4 outcomes out of 6 equally likely outcomes.
@@ -611,7 +594,7 @@ $$P(A^c) = \frac{2}{6} = \frac{1}{3} \approx 0.333$$
 A public health study found that 23% of adults in a city do not meet the recommended weekly physical activity guidelines. If one adult is randomly selected, what is the probability that the selected person **does** meet the guidelines?
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 Let $A$ = the person does not meet the activity guidelines. We are told $P(A) = 0.23$.
@@ -622,7 +605,6 @@ $$P(A^c) = 1 - P(A) = 1 - 0.23 = 0.77$$
 
 There is a 77% chance the selected adult meets the recommended activity guidelines.
 :::
-
 
 ### Mutually Exclusive (Disjoint) Events
 
@@ -653,7 +635,7 @@ A student is randomly selected from a community college. Classify each pair of e
 **(c)** $A$ = the student works more than 20 hours per week; $B$ = the student is a full-time student.
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 **(a)** **Not mutually exclusive.** A student can be enrolled in both a math course and an English course at the same time.
@@ -662,7 +644,6 @@ A student is randomly selected from a community college. Classify each pair of e
 
 **(c)** **Not mutually exclusive.** While it may be difficult, a student can work more than 20 hours per week and also carry a full-time course load. These events can occur together.
 :::
-
 
 ### Intersection of Two Events
 
@@ -706,7 +687,7 @@ knitr::include_graphics("images/playing_cards_deck.png")
 ```
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 A card can be both a heart and a face card (for example, the Jack of Hearts), so $A$ and $B$ are **not** mutually exclusive.
@@ -732,7 +713,7 @@ Let $A$ = enrolled in math and $B$ = enrolled in English.
 **(b)** Represent this situation with a Venn diagram showing the count of students in each region.
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 **(a)**
@@ -741,12 +722,12 @@ $$P(A) = \frac{18}{40} = 0.45 \qquad P(B) = \frac{22}{40} = 0.55 \qquad P(A \cap
 
 **(b)** To build the Venn diagram, find the count in each region:
 
-- Math only: $18 - 8 = 10$ students
-- Both math and English: $8$ students
-- English only: $22 - 8 = 14$ students
-- Neither course: $40 - 10 - 8 - 14 = 8$ students
+-   Math only: $18 - 8 = 10$ students
+-   Both math and English: $8$ students
+-   English only: $22 - 8 = 14$ students
+-   Neither course: $40 - 10 - 8 - 14 = 8$ students
 
-```{r fig-venn-enrollment, echo=FALSE}
+```{r, echo=FALSE}
 #| label: fig-venn-enrollment
 #| fig-cap: "Venn diagram showing Math and English enrollment counts for 40 students."
 #| fig-alt: "Venn diagram with two overlapping circles labeled Math and English inside a rectangle labeled S representing 40 students. The left region shows 10 for Math only, the center overlap shows 8 for both, the right region shows 14 for English only, and the corner outside both circles shows 8 for neither course."
@@ -757,8 +738,6 @@ knitr::include_graphics("images/fig_venn_enrollment.png")
 
 The four regions account for all 40 students: $10 + 8 + 14 + 8 = 40$. The center region (8) is the visual representation of $A \cap B$.
 :::
-
-
 
 ### Union of Two Events
 
@@ -785,12 +764,11 @@ knitr::include_graphics("images/fig_venn_union.png")
 
 Compare the union diagram (@fig-venn-union) with the intersection diagram (@fig-venn-intersection). The intersection shades only the overlap; the union shades everything covered by either circle. This visual difference motivates the formula in the next subsection.
 
-
 ### The General Addition Rule
 
 Now that we can picture both the intersection and the union, we can write a formula to compute $P(A \cup B)$.
 
-**Why not just add $P(A) + P(B)$?**
+**Why not just add** $P(A) + P(B)$?
 
 Look again at @fig-venn-general. If we add the full area of circle $A$ to the full area of circle $B$, the overlapping region gets counted **twice** — once for each circle. To fix this, we subtract the intersection exactly once.
 
@@ -815,10 +793,10 @@ This simpler version applies **only** when the events cannot both occur.
 
 Using the enrollment data from [Example @exm-intersection-enrollment], let $A =$ enrolled in math and $B =$ enrolled in English. Find:
 
- **(a)** $P(A \cup B)$ **(b)** Interpret $P(A \cup B)$ in context.
+**(a)** $P(A \cup B)$ **(b)** Interpret $P(A \cup B)$ in context.
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 From the previous example:
@@ -827,8 +805,7 @@ $$P(A) = \frac{18}{40} = 0.45 \qquad P(B) = \frac{22}{40} = 0.55 \qquad P(A \cap
 
 Then,
 
-**(a)**
-$$P(A \cup B) = \frac{18}{40} + \frac{22}{40} - \frac{8}{40} = \frac{32}{40} = 0.80$$
+**(a)** $$P(A \cup B) = \frac{18}{40} + \frac{22}{40} - \frac{8}{40} = \frac{32}{40} = 0.80$$
 
 **(b)** **Interpretation:** There is an 80% chance a randomly selected student is enrolled in math, English, or both.
 :::
@@ -841,7 +818,7 @@ A single card is drawn from a well-shuffled standard deck of 52 cards. Let $A$ =
 Find $P(A \cup B)$ and interpret the result.
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 A single card cannot be both a King and a Queen, so $A$ and $B$ are **mutually exclusive** and $P(A \cap B) = 0$.
@@ -853,16 +830,12 @@ $$P(A \cup B) = \frac{4}{52} + \frac{4}{52} = \frac{8}{52} = \frac{2}{13} \appro
 There is about a 15.4% chance of drawing a King or a Queen.
 :::
 
-
-
-
 ### Probability Tables {#sec-probability-tables}
 
 A **probability table** (or **two-way table** or **contingency table**) is a table that organizes the outcomes of two categorical variables, showing either **counts** or **proportions** for each combination of categories, along with **marginal totals** (the row totals and column totals).
 
 -   **Joint probabilities** appear in the interior cells. They represent $P(A \cap B)$ for specific combinations.
 -   **Marginal probabilities** appear in the totals row and column. They represent the probability of one variable alone, $P(A)$ or $P(B)$.
-
 
 When a table contains **counts**, divide each cell by the total sample size to convert to **proportions**. A proportion table has the same layout but each cell contains a probability rather than a raw count.
 
@@ -871,11 +844,11 @@ When a table contains **counts**, divide each cell by the total sample size to c
 
 A community college health survey of 400 students recorded two variables: whether a student reports getting enough sleep (Yes/No) and whether the student is enrolled full-time (Full-time/Part-time). The counts are:
 
-|                    | **Enough Sleep** | **Not Enough Sleep** | **Total** |
-|--------------------|:----------------:|:--------------------:|:---------:|
-| **Full-time**      |       112        |         128          |    240    |
-| **Part-time**      |        88        |          72          |    160    |
-| **Total**          |       200        |         200          |  **400**  |
+|               | **Enough Sleep** | **Not Enough Sleep** | **Total** |
+|---------------|:----------------:|:--------------------:|:---------:|
+| **Full-time** |       112        |         128          |    240    |
+| **Part-time** |        88        |          72          |    160    |
+| **Total**     |       200        |         200          |  **400**  |
 
 : Sleep and enrollment status for 400 community college students {#tbl-sleep-enrollment tbl-alt="Two-way table showing counts for sleep status (enough sleep versus not enough sleep) and enrollment status (full-time versus part-time) for 400 community college students, with row and column totals."}
 
@@ -896,7 +869,7 @@ Find each probability.
 **(f)** Interpret $P(F\cup E)$ in context.
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 Use the counts in the table, dividing by the total $n = 400$.
@@ -920,13 +893,13 @@ $$P(F \cup E) = P(F) + P(E) - P(F \cap E) = 0.60 + 0.50 - 0.28 = 0.82$$
 **(f)** There is an $82\%$ chance a randomly selected student is either full-time, gets enough sleep, or both.
 :::
 
-::: {#exm-prob-table-rguroo}
+:::: {#exm-prob-table-rguroo}
 ## Creating a Probability Table in Rguroo
 
 The [pulse]{.data} dataset shown in @tbl-Pulse contains physiological and lifestyle data from students who participated in a pulse rate experiment. Two categorical variables in this dataset are:
 
-- [smokes]{.var}: whether the subject regularly smokes (`yes` or `no`)
-- [exercise]{.var}: the subject's exercise intensity (`low`, `moderate`, or `high`)
+-   [smokes]{.var}: whether the subject regularly smokes (`yes` or `no`)
+-   [exercise]{.var}: the subject's exercise intensity (`low`, `moderate`, or `high`)
 
 Use Rguroo to create a two-way frequency table (contingency table) for [smokes]{.var} and [exercise]{.var}. Then convert the counts to proportions and use the table to find the following probabilities for a randomly selected subject:
 
@@ -943,30 +916,28 @@ Use Rguroo to create a two-way frequency table (contingency table) for [smokes]{
 ::: {tabindex="0" style="width:85%; margin:auto;"}
 ![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [pulse]{.data}.
 :::
+::::
 
-:::
-
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+:::::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 Click to expand the box below to see how to create a contingency table in Rguroo.
 
-::: {.callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} Creating a Contingency Table"}
+:::: {.callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} Creating a Contingency Table"}
 **Before you begin:** Make sure you have already imported the [pulse]{.data} dataset into your **Data** Toolbox, as was shown [here](#Importing-data-to-Rguroo).
 
-1. Open the **Analytics** toolbox.
-2. From the [Analysis]{.dpd} dropdown menu, choose **Tabulation** $\rightarrow$ **Categorical**. The [Data Tabulation]{.dialog} dialog opens.
-3. In the [Dataset]{.dpd} dropdown, select the dataset [pulse]{.data}.
-4. In the [Factor 1]{.dpd} dropdown, select [smokes]{.var}. This will define the column categories (yes, no).
-5. In the [Factor 2]{.dpd} dropdown, select [exercise]{.var}. This will define the row categories (low, moderate, high).
-6. Select Counts to display the frequency table. Also select Proportions (or Percentage) if you want Rguroo to display the probability/proportion table.
-7. Click the Preview icon ![preview icon](Rguroo_Icons/preview_inline.png) to see the result.
+1.  Open the **Analytics** toolbox.
+2.  From the [Analysis]{.dpd} dropdown menu, choose **Tabulation** $\rightarrow$ **Categorical**. The [Data Tabulation]{.dialog} dialog opens.
+3.  In the [Dataset]{.dpd} dropdown, select the dataset [pulse]{.data}.
+4.  In the [Factor 1]{.dpd} dropdown, select [smokes]{.var}. This will define the column categories (yes, no).
+5.  In the [Factor 2]{.dpd} dropdown, select [exercise]{.var}. This will define the row categories (low, moderate, high).
+6.  Select Counts to display the frequency table. Also select Proportions (or Percentage) if you want Rguroo to display the probability/proportion table.
+7.  Click the Preview icon ![preview icon](Rguroo_Icons/preview_inline.png) to see the result.
 
 ::: {.callout-note appearance="simple" collapse="true" icon="none" title="Click here to see the Rguroo dialog"}
 ![Contingency Table dialog in Rguroo](Rguroo_dialogs/Probability/contingency_table_dialog.png){width="500px"}
 :::
-
-:::
+::::
 
 The resulting contingency table for counts and proportions is below:
 
@@ -974,7 +945,6 @@ The resulting contingency table for counts and proportions is below:
 <iframe src="Rguroo_html_output/Probability/Tabulation_2_docx/Tabulation_2.html" class="rg-iframe" title="Contingency Table for the Categorical Variable Smoke and Exercise">
 
 </iframe>
-
 :::
 
 We can use these tables to answer the probability questions.
@@ -1008,13 +978,7 @@ About $22.7\%$ of subjects either smoke, report high exercise intensity, or both
 **(e)** Are "smokes" and "high exercise" mutually exclusive?
 
 **Yes.** From the table, 0 subjects both smoke and report high exercise intensity. Since $P(\text{smokes} \cap \text{high exercise}) = 0$, the two events do not occur together and are therefore mutually exclusive.
-
-:::
-
-
-
-
-
+::::::
 
 ::: {#exm-comprehensive}
 ## Student Transportation Survey
@@ -1022,7 +986,7 @@ About $22.7\%$ of subjects either smoke, report high exercise intensity, or both
 A survey of 500 students at a community college recorded how students commute to campus and whether they have a parking permit. The results are shown below.
 
 |                    | **Has Parking Permit** | **No Parking Permit** | **Total** |
-|--------------------|:----------------------:|:---------------------:|:---------:|
+|-----------------|:------------------:|:-----------------:|:--------------:|
 | **Drives**         |          185           |          65           |    250    |
 | **Does Not Drive** |           15           |          235          |    250    |
 | **Total**          |          200           |          300          |  **500**  |
@@ -1042,7 +1006,7 @@ Let $D$ = the student drives to campus, and $P$ = the student has a parking perm
 **(e)** Interpret $P(D^c \cup P^c)$ in context.
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 **(a)** $D$ = drives, $P^c$ = no parking permit. From the table, 65 students drive and have no permit. Since this intersection is not empty ($65 > 0$), the events are **not mutually exclusive**. A student can drive to campus and still not have a parking permit.
@@ -1074,21 +1038,23 @@ $$P(D^c \cup P^c) = P(D^c) + P(P^c) - P(D^c \cap P^c) = 0.50 + 0.60 - 0.47 = 0.6
 **(e)** There is a $63\%$ chance a randomly selected student either does not drive, has no parking permit, or both.
 :::
 
-
 ### Homework for Section 4.2
 
 1.  A survey found that $58\%$ of college students stream music daily. If a student is randomly selected, what is the probability they do NOT stream music daily? Identify the rule you used.
 
 2.  Two fair six-sided dice are rolled and the sum of the two faces is recorded. Let $A =$ the sum is 7, $B =$ the sum is 11.
 
+<!-- -->
+
 (a) List the outcomes in $A$ and in $B$.
 (b) Are $A$ and $B$ mutually exclusive? Explain.
 (c) Find $P(A \text{ or } B)$.
 
+<!-- -->
 
-3. A social work professor surveyed 300 students about employment status and stress level. The results are summarized in the two-way table below.
+3.  A social work professor surveyed 300 students about employment status and stress level. The results are summarized in the two-way table below.
 
-```{r tbl-employment-stress, echo=FALSE}
+```{r, echo=FALSE}
 #| tbl-alt: "Two-way table showing counts for employment status (Employed versus Not Employed) and stress level (High Stress versus Low/Medium Stress) for 300 students, with row and column totals."
 #| label: tbl-employment-stress
 #| tbl-cap: "Employment Status and Stress Level for 300 Students"
@@ -1113,14 +1079,19 @@ Let $E =$ employed, $H =$ high stress.
 (c) Find $P(E^c)$. What does this represent?
 (d) Are $E$ and $H$ mutually exclusive? Explain using the data.
 
+<!-- -->
 
-4. A student picks one card at random from a standard 52-card deck. Let $A =$ the card is red, $B =$ the card is a face card (Jack, Queen, or King).
+4.  A student picks one card at random from a standard 52-card deck. Let $A =$ the card is red, $B =$ the card is a face card (Jack, Queen, or King).
+
+<!-- -->
+
 (a) Are $A$ and $B$ mutually exclusive? Explain.
 (b) Find $P(A)$, $P(B)$, and $P(A \text{ and } B)$.
 (c) Find $P(A \text{ or } B)$ using the General Addition Rule.
 
+<!-- -->
 
-5. A project conducted by the Australian Federal Office of Road Safety asked people many questions about their cars. One question was the reason that a person chooses a given car, and that data is in @tbl-Car_pref (Car Preferences, 2019).
+5.  A project conducted by the Australian Federal Office of Road Safety asked people many questions about their cars. One question was the reason that a person chooses a given car, and that data is in @tbl-Car_pref (Car Preferences, 2019).
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
 ![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [car_pref]{.data}.
@@ -1128,30 +1099,28 @@ Let $E =$ employed, $H =$ high stress.
 **Code book for Dataset Car_pref** is below @tbl-Car_pref.
 :::
 
-
 (a) Create a contingency table for the sex of a person and the size car the person prefers
 (b) What is the probability that a person questioned was female?
-(c)  What is the probability that a person questioned prefers a medium car?
-(d)  What is the probability that a person questioned was a female and prefers a medium car?
-(e)  What is the probability that a person questioned was a female or prefers a medium car?
-(f)  Are the events person questioned is a female and person questioned prefers a medium car mutually exclusive? Why or why not?
-
+(c) What is the probability that a person questioned prefers a medium car?
+(d) What is the probability that a person questioned was a female and prefers a medium car?
+(e) What is the probability that a person questioned was a female or prefers a medium car?
+(f) Are the events person questioned is a female and person questioned prefers a medium car mutually exclusive? Why or why not?
 
 <!-- -->
 
-6. Researchers watched groups of dolphins off the coast of Ireland in 1998 to determine what activities the dolphins partake in at certain times of the day (Activities of Dolphin Groups, 2019). The data in @tbl-Dolphin represent the activity the groups of dolphins were partaking in at certain times of days.
+6.  Researchers watched groups of dolphins off the coast of Ireland in 1998 to determine what activities the dolphins partake in at certain times of the day (Activities of Dolphin Groups, 2019). The data in @tbl-Dolphin represent the activity the groups of dolphins were partaking in at certain times of days.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
 ![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [dolphin]{.data}.
 :::
-```{r dolphin-data, eval = TRUE, echo = FALSE}
+
+```{r, eval = TRUE, echo = FALSE}
 #| tbl-alt: "Table showing dolphin activities"
 #| label: tbl-Dolphin
 #| tbl-cap: "Dolphin Activity"
 Dolphin<- read.csv( "https://krkozak.github.io/MAT160/dolphins.csv") 
 knitr::kable(head(Dolphin))
 ```
-
 
 ::: {#code-book-dolphin .callout-tip .codebook collapse="true"}
 ## Code book for Dolphin Dataset
@@ -1168,19 +1137,23 @@ This dataset contains the following columns:
 
 [Period]{.var}: Time of the day: Morning, Noon, Afternoon or Evening
 
-[Source](http://www.statsci.org/data/general/dolpacti.html) Activities of Dolphin Groups. (n.d.). Retrieved July 12, 2019 
+[Source](http://www.statsci.org/data/general/dolpacti.html) Activities of Dolphin Groups. (n.d.). Retrieved July 12, 2019
 
 References Marianne Rasmussen, Department of Biology, University of Southern Denmark, Odense, Denmark.
 :::
 
-(a)  Create a contingency table for the activity of the group of dolphins and time of day
-(b)  What is the probability that a dolphin group is partaking in travel?
-(c)  What is the probability that a dolphin group is around in the morning?
-(d)  What is the probability that a dolphin group is around in the afternoon and is partaking in feeding?
-(e)  What is the probability that a dolphin group is around in the afternoon or is partaking in feeding?
-(f)  Are the events dolphin group around in the afternoon and dolphin group feeding mutually exclusive events? Why or why not?
+(a) Create a contingency table for the activity of the group of dolphins and time of day
+(b) What is the probability that a dolphin group is partaking in travel?
+(c) What is the probability that a dolphin group is around in the morning?
+(d) What is the probability that a dolphin group is around in the afternoon and is partaking in feeding?
+(e) What is the probability that a dolphin group is around in the afternoon or is partaking in feeding?
+(f) Are the events dolphin group around in the afternoon and dolphin group feeding mutually exclusive events? Why or why not?
 
-7. A group of 250 community college students was asked about their primary home language and use of the tutoring center. Results: 110 speak a language other than English ($L$), 95 use the tutoring center ($T$), and 45 do both.
+<!-- -->
+
+7.  A group of 250 community college students was asked about their primary home language and use of the tutoring center. Results: 110 speak a language other than English ($L$), 95 use the tutoring center ($T$), and 45 do both.
+
+<!-- -->
 
 (a) Set up a two-way probability table for $L$ and $T$.
 (b) Find $P(L \text{ or } T)$.
@@ -1189,16 +1162,13 @@ References Marianne Rasmussen, Department of Biology, University of Southern Den
 
 ## Conditional Probability and Independence
 
-In the previous section, we combined events using union, intersection, and complement. Those tools
-answered questions like "What is the probability that A or B occurs?" But many real-world questions
-have a different structure: knowing that one thing has already happened changes the probability of
-something else.
+In the previous section, we combined events using union, intersection, and complement. Those tools answered questions like "What is the probability that A or B occurs?" But many real-world questions have a different structure: knowing that one thing has already happened changes the probability of something else.
 
 Consider these scenarios:
 
-- A doctor adjusting the probability of a diagnosis after seeing a test result. 
-- An employer who rates a job applicant differently based on the college they attended.
-- A nurse asking whether a positive screening actually means a patient has the disease. 
+-   A doctor adjusting the probability of a diagnosis after seeing a test result.
+-   An employer who rates a job applicant differently based on the college they attended.
+-   A nurse asking whether a positive screening actually means a patient has the disease.
 
 All of these are **conditional probability** question; situations where additional information changes the likelihood of an event.
 
@@ -1209,24 +1179,22 @@ This section builds the tools to answer them.
 ::: {#exm-conditional-intro}
 ## A Health Screening Example
 
-A community health clinic screened 500 patients for high blood pressure. The results are
-shown below.
+A community health clinic screened 500 patients for high blood pressure. The results are shown below.
 
 |                     | **High BP** | **Normal BP** | **Total** |
 |:--------------------|:-----------:|:-------------:|:---------:|
-| **Age 40 or older** | 120         | 130           | 250       |
-| **Under age 40**    | 30          | 220           | 250       |
-| **Total**           | 150         | 350           | **500**   |
+| **Age 40 or older** |     120     |      130      |    250    |
+| **Under age 40**    |     30      |      220      |    250    |
+| **Total**           |     150     |      350      |  **500**  |
 
 : Blood pressure screening results for 500 patients {#tbl-bp tbl-alt="Two-way table showing counts for blood pressure status (high versus normal) and age group (age 40 or older versus under age 40) for 500 patients, with row and column totals."}
 
 **(a)** If a patient is selected at random, what is the probability the patient has high blood pressure?
 
-**(b)** If we are told the selected patient is **age 40 or older**, what is the probability the
-patient has high blood pressure?
+**(b)** If we are told the selected patient is **age 40 or older**, what is the probability the patient has high blood pressure?
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 **(a)** Without any additional information, we use all 500 patients:
@@ -1249,12 +1217,10 @@ The **conditional probability** of event $A$ given event $B$ is:
 
 $$P(A \mid B) = \frac{P(A \cap B)}{P(B)}$$
 
-This is the probability that $A$ occurs, **given that $B$ has already occurred**. We assume $P(B) > 0$.
+This is the probability that $A$ occurs, **given that** $B$ has already occurred. We assume $P(B) > 0$.
 
-In plain language: restrict the sample space to only the outcomes where $B$ occurred, then
-find the fraction of those outcomes where $A$ also occurred.
+In plain language: restrict the sample space to only the outcomes where $B$ occurred, then find the fraction of those outcomes where $A$ also occurred.
 :::
-
 
 ::: {#exm-conditional-table}
 ## Finding Conditional Probability from a Table
@@ -1266,7 +1232,7 @@ Using the blood pressure table @tbl-bp, find:
 **(b)** $P(\text{Age 40 or older} \mid \text{High BP})$
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 **(a)** Using the formula:
@@ -1279,19 +1245,12 @@ $$P(\text{High BP} \mid \text{Age 40 or older}) = \frac{P(\text{High BP} \cap \t
 $$P(\text{Age 40+} \mid \text{High BP}) = \frac{P(\text{Age 40+} \cap \text{High BP})}{P(\text{High BP})}
 = \frac{120/500}{150/500} = \frac{120}{150} = 0.80$$
 
-$P(\text{High BP} \mid \text{Age 40+}) = 0.48$ and $P(\text{Age 40+} \mid \text{High BP}) = 0.80$
-are **not** the same probability. Always pay close attention to which event is the condition (after
-the bar) and which is the outcome of interest (before the bar).
+$P(\text{High BP} \mid \text{Age 40+}) = 0.48$ and $P(\text{Age 40+} \mid \text{High BP}) = 0.80$ are **not** the same probability. Always pay close attention to which event is the condition (after the bar) and which is the outcome of interest (before the bar).
 :::
-
-
 
 ### Independent and Dependent Events
 
-In the blood pressure example, knowing a patient's age group changed the probability of high
-blood pressure. This means age group and blood pressure status are related; they are
-**dependent** events. But sometimes knowing one event gives you no useful information about
-another. Two events are **independent** if knowing one occurred does not change the probability of the other.
+In the blood pressure example, knowing a patient's age group changed the probability of high blood pressure. This means age group and blood pressure status are related; they are **dependent** events. But sometimes knowing one event gives you no useful information about another. Two events are **independent** if knowing one occurred does not change the probability of the other.
 
 ::: {.callout-tip appearance="simple" icon="false"}
 ## Key Terms: Independent and Dependent Events
@@ -1311,30 +1270,27 @@ A fair die is rolled twice. Let $A$ = "the first roll is a 4" and $B$ = "the sec
 Are $A$ and $B$ independent?
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
-$P(A) = \frac{1}{6}$. 
+$P(A) = \frac{1}{6}$.
 
-Now check whether knowing $B$ changes $P(A)$. The two rolls are physically separate, what
-happens on the second roll cannot affect the first. Therefore:
+Now check whether knowing $B$ changes $P(A)$. The two rolls are physically separate, what happens on the second roll cannot affect the first. Therefore:
 
 $$P(A \mid B) = \frac{1}{6} = P(A)$$
 
 Since $P(A \mid B) = P(A)$, the events are **independent**.
 
-This makes intuitive sense: the die has no memory. The result of the second roll gives no
-information about the first.
+This makes intuitive sense: the die has no memory. The result of the second roll gives no information about the first.
 :::
 
 ::: {#exm-dependence-check}
 ## Testing for Dependence Using a Table
 
-Using the blood pressure data in [@tbl-bp] above, let $A$ = High BP and $B$ = Age 40 or older. Are $A$ and $B$
-independent?
+Using the blood pressure data in [@tbl-bp] above, let $A$ = High BP and $B$ = Age 40 or older. Are $A$ and $B$ independent?
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 We already found:
@@ -1343,53 +1299,44 @@ $$P(A) = P(\text{High BP}) = \frac{150}{500} = 0.30$$
 
 $$P(A \mid B) = P(\text{High BP} \mid \text{Age 40+}) = \frac{120}{250} = 0.48$$
 
-Since $P(A \mid B) = 0.48 \neq 0.30 = P(A)$, the events are **dependent**. Knowing a patient
-is age 40 or older changes the probability of having high blood pressure, so the two variables
-are related.
+Since $P(A \mid B) = 0.48 \neq 0.30 = P(A)$, the events are **dependent**. Knowing a patient is age 40 or older changes the probability of having high blood pressure, so the two variables are related.
 :::
 
 **Mutually Exclusive vs. Independent**
 
-Mutually exclusive events and independent events are different concepts, and they can be easily confused. Recall that two events are mutually exclusive if they cannot both occur at the same time. If one event occurs, we know with certainty that the other event did not occur. On the other hand, independence means that one event occurring does not affect the probability of the other event. 
+Mutually exclusive events and independent events are different concepts, and they can be easily confused. Recall that two events are mutually exclusive if they cannot both occur at the same time. If one event occurs, we know with certainty that the other event did not occur. On the other hand, independence means that one event occurring does not affect the probability of the other event.
 
 ::: {.callout-tip appearance="simple" icon="false"}
 ## Key Insight
 
 If two events are mutually exclusive, they cannot be independent (and vice versa). Here's why: If $A$ and $B$ are mutually exclusive, then $P(A \text{ and } B) = 0$. This means $P(A | B) = 0$, which is definitely different from $P(A)$ (unless $P(A) = 0$). Since $P(A | B) \neq P(A)$, the events are not independent.
 
-In simple terms: Mutually exclusive events are as dependent as events can be—if one happens, the other definitely cannot happen. 
+In simple terms: Mutually exclusive events are as dependent as events can be—if one happens, the other definitely cannot happen.
 :::
 
 ::: {#exm-me-vs-ind}
 ## Mutually Exclusive vs. Independent: Two Examples
 
-**(a)** A single card is drawn. Let $A$ = the card is a King, $B$ = the card is a Queen. Are
-$A$ and $B$ mutually exclusive? Are they independent?
+**(a)** A single card is drawn. Let $A$ = the card is a King, $B$ = the card is a Queen. Are $A$ and $B$ mutually exclusive? Are they independent?
 
-**(b)** Two fair coins are flipped. Let $A$ = first coin is heads, $B$ = second coin is heads.
-Are $A$ and $B$ mutually exclusive? Are they independent?
+**(b)** Two fair coins are flipped. Let $A$ = first coin is heads, $B$ = second coin is heads. Are $A$ and $B$ mutually exclusive? Are they independent?
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
-**(a)** A card cannot be both a King and a Queen, so $P(A \cap B) = 0$. They are **mutually
-exclusive**.
+**(a)** A card cannot be both a King and a Queen, so $P(A \cap B) = 0$. They are **mutually exclusive**.
 
-Are they independent? If we know $A$ occurred (the card is a King), then $B$ is **impossible**:
-$P(B \mid A) = 0 \neq \frac{4}{52} = P(B)$. They are **dependent**.
+Are they independent? If we know $A$ occurred (the card is a King), then $B$ is **impossible**: $P(B \mid A) = 0 \neq \frac{4}{52} = P(B)$. They are **dependent**.
 
-**(b)** Can both coins be heads at the same time? Yes, HH is a possible outcome. So $A$ and
-$B$ are **not** mutually exclusive.
+**(b)** Can both coins be heads at the same time? Yes, HH is a possible outcome. So $A$ and $B$ are **not** mutually exclusive.
 
-Are they independent? $P(A) = \frac{1}{2}$ and $P(A \mid B) = \frac{1}{2}$, knowing the second
-coin is heads gives no information about the first coin. They are **independent**.
+Are they independent? $P(A) = \frac{1}{2}$ and $P(A \mid B) = \frac{1}{2}$, knowing the second coin is heads gives no information about the first coin. They are **independent**.
 :::
 
 ### Multiplication Rules
 
-Now that we understand conditional probability and independence, we can build the rules for
-computing the probability that both events occur, the intersection $P(A \cap B)$.
+Now that we understand conditional probability and independence, we can build the rules for computing the probability that both events occur, the intersection $P(A \cap B)$.
 
 ::: {.callout-important appearance="simple" icon="false"}
 ## The General Multiplication Rule
@@ -1404,17 +1351,15 @@ This rule works whether the events are independent or dependent.
 ::: {#exm-general-mult}
 ## Applying the General Multiplication Rule
 
-A bag contains 5 red marbles and 3 blue marbles (8 total). Two marbles are drawn **without
-replacement**. What is the probability that both marbles are red?
+A bag contains 5 red marbles and 3 blue marbles (8 total). Two marbles are drawn **without replacement**. What is the probability that both marbles are red?
 
 Let $A$ = first marble is red, $B$ = second marble is red.
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
-Because we are drawing **without replacement**, the two draws are **dependent**: the first draw
-changes what is available for the second.
+Because we are drawing **without replacement**, the two draws are **dependent**: the first draw changes what is available for the second.
 
 $$P(A) = \frac{5}{8}$$
 
@@ -1429,28 +1374,23 @@ $$P(A \cap B) = P(A) \cdot P(B \mid A) = \frac{5}{8} \cdot \frac{4}{7} = \frac{2
 There is about a 35.7% chance both marbles drawn are red.
 :::
 
-
 **The Multiplication Rule for Independent Events**
 
-When two events are **independent**, the conditional probability simplifies: $P(B \mid A) = P(B)$.
-This gives us a simpler version of the multiplication rule.
+When two events are **independent**, the conditional probability simplifies: $P(B \mid A) = P(B)$. This gives us a simpler version of the multiplication rule.
 
 $$P(A \cap B) = P(A) \cdot P(B)$$
 
-
-This rule only applies when the events are independent. Using it for dependent events will
-give the wrong answer.
+This rule only applies when the events are independent. Using it for dependent events will give the wrong answer.
 
 ::: {#exm-ind-mult}
 ## Multiplication Rule for Independent Events
 
-A fair coin is flipped and a fair die is rolled. What is the probability of getting heads
-**and** rolling a 3?
+A fair coin is flipped and a fair die is rolled. What is the probability of getting heads **and** rolling a 3?
 
 Let $A$ = heads, $B$ = rolling a 3.
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 The coin flip and die roll are **independent**, the result of one does not affect the other.
@@ -1462,25 +1402,18 @@ $$P(A \cap B) = P(A) \cdot P(B) = \frac{1}{2} \cdot \frac{1}{6} = \frac{1}{12} \
 There is about an 8.3% chance of getting heads and rolling a 3.
 :::
 
-
 ### Tree Diagrams
 
-When a probability problem involves a **sequence of events** — one after another — a **tree
-diagram** is the most powerful tool for organizing the information.
+When a probability problem involves a **sequence of events** — one after another — a **tree diagram** is the most powerful tool for organizing the information.
 
-A **tree diagram** is a diagram that uses branches to represent the outcomes of sequential
-events. Each branch shows a probability, and each path from left to right represents one possible
-sequence of outcomes.
+A **tree diagram** is a diagram that uses branches to represent the outcomes of sequential events. Each branch shows a probability, and each path from left to right represents one possible sequence of outcomes.
 
-To find the probability of a path, **multiply the probabilities along the branches**.
-To find the probability of an event that spans multiple paths, **add the path probabilities**.
+To find the probability of a path, **multiply the probabilities along the branches**. To find the probability of an event that spans multiple paths, **add the path probabilities**.
 
 ::: {#exm-tree-basic}
 ## Building a Tree Diagram
 
-A community college runs a tutoring program. Records show that 60% of students who visit
-the tutoring center pass their math class, while only 35% of students who do not visit pass.
-Suppose 40% of all students visit the tutoring center.
+A community college runs a tutoring program. Records show that 60% of students who visit the tutoring center pass their math class, while only 35% of students who do not visit pass. Suppose 40% of all students visit the tutoring center.
 
 **(a)** Draw a tree diagram to represent this situation.
 
@@ -1489,18 +1422,17 @@ Suppose 40% of all students visit the tutoring center.
 **(c)** What is the probability that a student visited the tutoring center, given they passed?
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 **(a)** The tree has two levels:
 
-- Primary branches: Visits (0.40) and Does Not Visit (0.60)
-- Secondary branches: Passes or Does Not Pass, conditioned on visiting
-  - We are told that 60% of students who visit the tutoring center pass their math class. Thus, $P(\text{Pass}| \text{Visit}) = 0.60$. The complement of this event is students who do not pass their math class given that they did  visit the tutoring center, which is calculated as $P(\text{Not Pass}| \text{Visit}) = 1 - 0.60 = 0.40$.
-  - Similarly, we are told that 35% of students that pass their math class given that they did not visit the tutoring center. Thus, $P(\text{Pass}| \text{No Visit}) = 0.35$. The complement of this event is students who do not pass their math class given that they did not visit the tutoring center, which is calculated as $P(\text{Not Pass}| \text{No Visit}) = 1 - 0.35 = 0.65$.
-  
+-   Primary branches: Visits (0.40) and Does Not Visit (0.60)
+-   Secondary branches: Passes or Does Not Pass, conditioned on visiting
+    -   We are told that 60% of students who visit the tutoring center pass their math class. Thus, $P(\text{Pass}| \text{Visit}) = 0.60$. The complement of this event is students who do not pass their math class given that they did visit the tutoring center, which is calculated as $P(\text{Not Pass}| \text{Visit}) = 1 - 0.60 = 0.40$.
+    -   Similarly, we are told that 35% of students that pass their math class given that they did not visit the tutoring center. Thus, $P(\text{Pass}| \text{No Visit}) = 0.35$. The complement of this event is students who do not pass their math class given that they did not visit the tutoring center, which is calculated as $P(\text{Not Pass}| \text{No Visit}) = 1 - 0.35 = 0.65$.
 
-```{r tree-fig, eval = TRUE, echo = FALSE}
+```{r, eval = TRUE, echo = FALSE}
 #| label: fig-tree-ex37
 #| fig-cap: "Tree diagram for Example 3.7: Tutoring center visits and math class outcomes."
 #| fig-alt: "Tree diagram with two primary branches (Visit with probability 0.40, No Visit with probability 0.60), each splitting into Pass and Not Pass. Joint probabilities at the four leaves are 0.240, 0.160, 0.210, and 0.390, summing to 1.000."
@@ -1525,9 +1457,7 @@ About 53.3% of students who passed had visited the tutoring center.
 
 ### "At Least One" Probabilities
 
-One of the most useful applications of the complement rule is computing **"at least one"**
-probabilities. These problems are much easier using the complement than by trying to count all
-the ways "at least one" can occur.
+One of the most useful applications of the complement rule is computing **"at least one"** probabilities. These problems are much easier using the complement than by trying to count all the ways "at least one" can occur.
 
 The complement of "at least one" is "none":
 
@@ -1535,18 +1465,16 @@ $$P(\text{at least one}) = 1 - P(\text{none})$$
 
 Use this strategy whenever:
 
-- You see the phrase "at least one," "at least once," or "one or more"
-- The direct calculation would require adding many cases
+-   You see the phrase "at least one," "at least once," or "one or more"
+-   The direct calculation would require adding many cases
 
 ::: {#exm-at-least-one}
 ## Probability of At Least One
 
-A nursing student takes a 5-question multiple choice quiz where each question has 4 options.
-If the student guesses randomly on every question, what is the probability of getting
-**at least one** question correct?
+A nursing student takes a 5-question multiple choice quiz where each question has 4 options. If the student guesses randomly on every question, what is the probability of getting **at least one** question correct?
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 **Direct approach:** We would need to add $P(\text{exactly 1 correct}) + P(\text{exactly 2 correct})
@@ -1554,8 +1482,7 @@ If the student guesses randomly on every question, what is the probability of ge
 
 **Complement approach:** The complement of "at least one correct" is "none correct."
 
-Each question has a $\frac{1}{4}$ chance of being correct and a $\frac{3}{4}$ chance of being
-wrong. Since guesses on different questions are **independent**:
+Each question has a $\frac{1}{4}$ chance of being correct and a $\frac{3}{4}$ chance of being wrong. Since guesses on different questions are **independent**:
 
 $$P(\text{none correct}) = \left(\frac{3}{4}\right)^5 = \frac{243}{1024} \approx 0.237$$
 
@@ -1569,12 +1496,10 @@ There is about a $76.3\%$ chance of getting at least one question correct by gue
 ::: {#exm-at-least-health}
 ## At Least One: A Health Context
 
-A hospital screens patients for a rare genetic marker. The probability that any one patient
-tests positive is 0.08. If 3 patients are screened independently, what is the probability that
-**at least one** tests positive?
+A hospital screens patients for a rare genetic marker. The probability that any one patient tests positive is 0.08. If 3 patients are screened independently, what is the probability that **at least one** tests positive?
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 The complement of "at least one positive" is "all three negative."
@@ -1592,14 +1517,13 @@ There is about a 22.1% chance that at least one of the three patients tests posi
 
 ### Homework for Section 4.3
 
+1.  A professor surveyed 200 students about attendance and final grade. The results:
 
-1. A professor surveyed 200 students about attendance and final grade. The results:
-
-|                   | **Passed** | **Did Not Pass** | **Total** |
-|:------------------|:----------:|:----------------:|:---------:|
-| **Regular Attendance**  | 126   | 14               | 140       |
-| **Irregular Attendance** | 36   | 24               | 60        |
-| **Total**         | 162        | 38               | **200**   |
+|                          | **Passed** | **Did Not Pass** | **Total** |
+|:-------------------------|:----------:|:----------------:|:---------:|
+| **Regular Attendance**   |    126     |        14        |    140    |
+| **Irregular Attendance** |     36     |        24        |    60     |
+| **Total**                |    162     |        38        |  **200**  |
 
 Let $A$ = regular attendance, $P$ = passed. Find:
 
@@ -1607,24 +1531,30 @@ Let $A$ = regular attendance, $P$ = passed. Find:
 (b) $P(A \mid P)$. Interpret in context.
 (c) Are $A$ and $P$ independent? Justify your answer using the definition.
 
-2. A bag contains 4 green and 6 yellow marbles. Two marbles are drawn without replacement.
+<!-- -->
+
+2.  A bag contains 4 green and 6 yellow marbles. Two marbles are drawn without replacement.
+
+<!-- -->
 
 (a) Draw a tree diagram for this situation.
 (b) Find the probability both marbles are the same color.
 (c) Find the probability at least one marble is green.
 
-3. Records at a health clinic show that 30\% of patients have high blood pressure. Of those
-with high blood pressure, 70\% also report high stress. Of those without high blood pressure,
-40\% report high stress.
+<!-- -->
+
+3.  Records at a health clinic show that 30% of patients have high blood pressure. Of those with high blood pressure, 70% also report high stress. Of those without high blood pressure, 40% report high stress.
+
+<!-- -->
 
 (a) Draw a tree diagram for this situation.
 (b) Find the probability that a randomly selected patient has both high blood pressure and high stress.
 (c) Find the probability that a patient reports high stress.
 (d) Given that a patient reports high stress, what is the probability they have high blood pressure?
 
-4. The dataset Pulse in @tbl-Pulse contains various variables about a person including their pulse rates before the subject exercised and after the subject ran in place for one minute. Using the Rguroo use the
-**Tabulation** tool to create a contingency table for [smokes]{.var} (yes/no) and [ran]{.var}
-(ran/sat). Then:
+<!-- -->
+
+4.  The dataset Pulse in @tbl-Pulse contains various variables about a person including their pulse rates before the subject exercised and after the subject ran in place for one minute. Using the Rguroo use the **Tabulation** tool to create a contingency table for [smokes]{.var} (yes/no) and [ran]{.var} (ran/sat). Then:
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
 ![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [pulse]{.data}.
@@ -1636,27 +1566,24 @@ with high blood pressure, 70\% also report high stress. Of those without high bl
 (b) Are smoking status and running behavior independent in this sample? Justify.
 (c) Write a sentence interpreting the results in context.
 
-5. A social work intern reviews case files. In a caseload of 500 files:
-300 involve housing instability, 200 involve substance use, and 120 involve both.
+<!-- -->
+
+5.  A social work intern reviews case files. In a caseload of 500 files: 300 involve housing instability, 200 involve substance use, and 120 involve both.
+
+<!-- -->
 
 (a) Are housing instability and substance use independent? Show your work.
-(b) Given that a case involves housing instability, what is the probability it also involves
-substance use?
-(c) A case is selected at random. What is the probability it involves at least one of the
-two issues?
+(b) Given that a case involves housing instability, what is the probability it also involves substance use?
+(c) A case is selected at random. What is the probability it involves at least one of the two issues?
 (d) Draw a Venn diagram showing the counts for each region.
 
 ## Counting Techniques
 
-Imagine trying to find the probability of winning a specific 5-card poker hand by listing
-every possible hand. There are 2,598,960 possible 5-card hands from a standard deck. Writing out all possible hands is simply not feasible.
+Imagine trying to find the probability of winning a specific 5-card poker hand by listing every possible hand. There are 2,598,960 possible 5-card hands from a standard deck. Writing out all possible hands is simply not feasible.
 
-This is where **counting techniques** come in. Rather than listing every outcome, we use
-mathematical tools to *count* the size of the sample space and event space, which then lets
-us compute probabilities efficiently. By the end of this section, you will be able to find
-probabilities for complex situations that would be impossible to solve by listing outcomes.
+This is where **counting techniques** come in. Rather than listing every outcome, we use mathematical tools to *count* the size of the sample space and event space, which then lets us compute probabilities efficiently. By the end of this section, you will be able to find probabilities for complex situations that would be impossible to solve by listing outcomes.
 
-### The Multiplication Rule of Counting 
+### The Multiplication Rule of Counting
 
 We start with the most fundamental counting tool.
 
@@ -1673,43 +1600,39 @@ This works when the number of choices at each step does not depend on prior choi
 ::: {#exm-mult-rule-meal}
 ## Building a Meal
 
-A menu offers a choice of 3 salads, 8 main dishes, and 5 desserts. How many different meals consisting of one salad, one main dish, and one dessert are possible? 
+A menu offers a choice of 3 salads, 8 main dishes, and 5 desserts. How many different meals consisting of one salad, one main dish, and one dessert are possible?
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 There are three steps: choose a salad, choose a main dish, choose a dessert.
 
 $$3 \times 8 \times 5 = 120 \text{ possible meals}$$
 
-Even though 120 is a manageable number, notice how quickly options multiply. If the dining
-hall adds just one more dessert option, the total jumps to 126.
+Even though 120 is a manageable number, notice how quickly options multiply. If the dining hall adds just one more dessert option, the total jumps to 126.
 :::
 
 ::: {#exm-mult-rule-letters}
 ## Arranging Letters Without Repetition
 
-How many three-letter arrangements can be made from the letters **a**, **b**, and **c**,
-with no letter repeating? (The arrangement does not need to be a real word.)
+How many three-letter arrangements can be made from the letters **a**, **b**, and **c**, with no letter repeating? (The arrangement does not need to be a real word.)
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
-Think of three blank slots: _ _ _
+Think of three blank slots: \_ \_ \_
 
-- **Slot 1:** 3 choices (a, b, or c)
-- **Slot 2:** 2 choices (the letter chosen for Slot 1 is no longer available)
-- **Slot 3:** 1 choice (both previous letters are used)
+-   **Slot 1:** 3 choices (a, b, or c)
+-   **Slot 2:** 2 choices (the letter chosen for Slot 1 is no longer available)
+-   **Slot 3:** 1 choice (both previous letters are used)
 
 $$3 \times 2 \times 1 = 6 \text{ arrangements}$$
 
 The six arrangements are: abc, acb, bac, bca, cab, cba.
 
-Notice that the answer is $3 \times 2 \times 1$. Multiplying a whole number down to 1 like
-this comes up so often in counting problems that it has its own name and notation — the
-**factorial**.
+Notice that the answer is $3 \times 2 \times 1$. Multiplying a whole number down to 1 like this comes up so often in counting problems that it has its own name and notation — the **factorial**.
 :::
 
 ### Factorials
@@ -1717,24 +1640,21 @@ this comes up so often in counting problems that it has its own name and notatio
 ::: {.callout-tip appearance="simple" icon="false"}
 ## Factorial
 
-For any positive integer $n$, the **factorial** of $n$, written $n!$, is the product
-of all positive integers from $n$ down to 1:
+For any positive integer $n$, the **factorial** of $n$, written $n!$, is the product of all positive integers from $n$ down to 1:
 
 $$n! = n \times (n-1) \times (n-2) \times \cdots \times 2 \times 1$$
 
-Two special cases:
-$$0! = 1 \qquad 1! = 1$$
-
+Two special cases: $$0! = 1 \qquad 1! = 1$$
 :::
 
 Some examples to build familiarity:
 
 | Expression | Calculation | Value |
-|:----------:|:-----------:|------:|
+|:------------------------:|:--------------------------:|-----------------:|
 | $3!$ | $3 \times 2 \times 1$ | 6 |
 | $5!$ | $5 \times 4 \times 3 \times 2 \times 1$ | 120 |
 | $7!$ | $7 \times 6 \times 5 \times 4 \times 3 \times 2 \times 1$ | 5,040 |
-| $10!$| $10 \times 9 \times \cdots \times 1$ | 3,628,800 |
+| $10!$ | $10 \times 9 \times \cdots \times 1$ | 3,628,800 |
 
 : Selected factorial values {#tbl-factorial tbl-alt="Table showing factorial notation, the expanded multiplication, and the resulting value for n equals 3, 5, 7, and 10."}
 
@@ -1746,34 +1666,30 @@ Before applying any formula, you must answer one question: **Does order matter?*
 
 Ask yourself: If I rearrange my selections, do I get a different outcome?
 
-- Yes → Order matters → Use a Permutation
-- No → Order does not matter → Use a Combination
+-   Yes → Order matters → Use a Permutation
+-   No → Order does not matter → Use a Combination
 
 **Permutations: Distinct Items**
 
-A **permutation** is an ordered arrangement of items. Use permutations when the order of
-your selections matters and the items are all different from each other.
+A **permutation** is an ordered arrangement of items. Use permutations when the order of your selections matters and the items are all different from each other.
 
 ::: {.callout-tip appearance="simple" icon="false"}
 ## Permutation (Distinct Items)
 
-The number of ways to select and arrange $r$ items from $n$ distinct items, **where
-order matters**, is:
+The number of ways to select and arrange $r$ items from $n$ distinct items, **where order matters**, is:
 
 $$_nP_r = \frac{n!}{(n-r)!}$$
 
 Read as *"n P r"* or *"permutations of n things taken r at a time."*
-
 :::
 
 ::: {#exm-perm-officers}
 ## Electing Officers
 
-A student government association has 12 members. They need to elect a president, a
-vice president, and a secretary. How many different arrangements of officers are possible?
+A student government association has 12 members. They need to elect a president, a vice president, and a secretary. How many different arrangements of officers are possible?
 :::
 
-:::{.callout-tip .solution-callout collapse="true" icon=false}
+::::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 We are choosing 3 people from 12, **and the order matters**.
@@ -1786,32 +1702,27 @@ There are 1,320 possible arrangements of officers.
 
 Click to expand the box below to see how to calculate permutations in Rguroo.
 
-::: {.callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} Calculating a Permutation Using the Desmos Scientific Calculator"}
-
-1. Open the **Applets-Calculators** toolbox on the left-hand side of the Rguroo window.
-2. Expand [Calculators (Desmos)]{.dpd} and select **Scientific Calculator**.
-3. Click the [func]{.dpd} button to open the functions menu.
-4. Select **nPr** from the functions menu.
-5. Enter the two values separated by a comma. For this example, type `12, 3` to compute $_{12}P_3$.
-6. The calculator will display the result: **1,320**.
+:::: {.callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} Calculating a Permutation Using the Desmos Scientific Calculator"}
+1.  Open the **Applets-Calculators** toolbox on the left-hand side of the Rguroo window.
+2.  Expand [Calculators (Desmos)]{.dpd} and select **Scientific Calculator**.
+3.  Click the [func]{.dpd} button to open the functions menu.
+4.  Select **nPr** from the functions menu.
+5.  Enter the two values separated by a comma. For this example, type `12, 3` to compute $_{12}P_3$.
+6.  The calculator will display the result: **1,320**.
 
 ::: {.callout-note appearance="simple" collapse="true" icon="none" title="Click here to see the Rguroo dialog"}
 ![Desmos Scientific Calculator showing nPr(12, 3) in Rguroo](Rguroo_dialogs/Probability/permutation_desmos_dialog.png){width="500px"}
 :::
-
-:::
-
-:::
-
+::::
+:::::
 
 ::: {#exm-perm-batting}
 ## Batting Order
 
-A baseball team has a 25-person roster. A batting order lists 9 players in sequence.
-How many different batting orders are possible?
+A baseball team has a 25-person roster. A batting order lists 9 players in sequence. How many different batting orders are possible?
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 Order matters (batting 1st is very different from batting 9th). Here $n = 25$, $r = 9$:
@@ -1827,47 +1738,38 @@ Over 741 billion possible batting orders!
 
 **Combinations**
 
-A **combination** is a selection of items where order does **not** matter. Because many
-arrangements of the same items count as just one combination, there are always fewer
-combinations than permutations.
+A **combination** is a selection of items where order does **not** matter. Because many arrangements of the same items count as just one combination, there are always fewer combinations than permutations.
 
 ::: {.callout-tip appearance="simple" icon="false"}
 ## Combination
 
-The number of ways to select $r$ items from $n$ distinct items, **where order does
-not matter**, is:
+The number of ways to select $r$ items from $n$ distinct items, **where order does not matter**, is:
 
 $$_nC_r = \binom{n}{r} = \frac{n!}{r!(n-r)!}$$
 
-Read as *"n choose r."* Notice: $_nC_r = \dfrac{_nP_r}{r!}$. We divide by $r!$ to
-un-order the arrangements we would have counted in a permutation.
-
+Read as *"n choose r."* Notice: $_nC_r = \dfrac{_nP_r}{r!}$. We divide by $r!$ to un-order the arrangements we would have counted in a permutation.
 :::
 
 Why Do We Divide by $r!$?
 
-Suppose you pick 3 people — Alex, Blake, and Casey — for a committee. In permutations,
-these 6 arrangements count separately:
+Suppose you pick 3 people — Alex, Blake, and Casey — for a committee. In permutations, these 6 arrangements count separately:
 
 ABC, ACB, BAC, BCA, CAB, CBA
 
-But for a committee, these are all the **same group**. There are $3! = 6$ ways to
-arrange 3 people, so we divide by 6 to count each group exactly once.
+But for a committee, these are all the **same group**. There are $3! = 6$ ways to arrange 3 people, so we divide by 6 to count each group exactly once.
 
 $$_nC_r = \frac{_nP_r}{r!} = \frac{n!}{r!(n-r)!}$$
 
 ::: {#exm-combo-committee}
 ## Forming a Committee
 
-From a group of 20 students, 7 are chosen to serve on a planning committee.
-How many ways can the committee be formed?
+From a group of 20 students, 7 are chosen to serve on a planning committee. How many ways can the committee be formed?
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
-Order does **not** matter — being chosen 1st or 7th leads to the same committee.
-Here $n = 20$, $r = 7$:
+Order does **not** matter — being chosen 1st or 7th leads to the same committee. Here $n = 20$, $r = 7$:
 
 $$_{20}C_7 = \frac{20!}{7! \cdot 13!} = \frac{20 \times 19 \times 18 \times 17 \times 16 \times 15 \times 14}{7!}
 = \frac{390{,}700{,}800}{5{,}040} = 77{,}520$$
@@ -1876,35 +1778,30 @@ There are 77,520 ways to form the committee.
 
 Click to expand the box below to see how to calculate combinations in Rguroo.
 
-::: {.callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} Calculating a Combination Using the Desmos Scientific Calculator"}
-
-1. Open the **Applets-Calculators** toolbox on the left-hand side of the Rguroo window.
-2. Expand [Calculators (Desmos)]{.dpd} and select **Scientific Calculator**.
-3. Click the [func]{.dpd} button to open the functions menu.
-4. Select **nCr** from the functions menu.
-5. Enter the two values separated by a comma. For this example, type `20, 7` to compute $_{20}C_7$.
-6. The calculator will display the result: **77,520**.
+:::: {.callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} Calculating a Combination Using the Desmos Scientific Calculator"}
+1.  Open the **Applets-Calculators** toolbox on the left-hand side of the Rguroo window.
+2.  Expand [Calculators (Desmos)]{.dpd} and select **Scientific Calculator**.
+3.  Click the [func]{.dpd} button to open the functions menu.
+4.  Select **nCr** from the functions menu.
+5.  Enter the two values separated by a comma. For this example, type `20, 7` to compute $_{20}C_7$.
+6.  The calculator will display the result: **77,520**.
 
 ::: {.callout-note appearance="simple" collapse="true" icon="none" title="Click here to see the Rguroo dialog"}
 ![Desmos Scientific Calculator showing nCr(20, 7) in Rguroo](Rguroo_dialogs/Probability/combination_desmos_dialog.png){width="500px"}
 :::
-
-:::
-
-:::
+::::
+:::::
 
 ::: {#exm-combo-balls}
 ## Drawing Red Balls
 
-An urn contains 5 red balls, 7 yellow balls, and 8 white balls. How many ways can
-you pick exactly two red balls without replacement?
+An urn contains 5 red balls, 7 yellow balls, and 8 white balls. How many ways can you pick exactly two red balls without replacement?
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
-We are choosing 2 balls from the 5 red balls. Order does not matter (ball #1 and ball #2
-is the same pair as ball #2 and ball #1).
+We are choosing 2 balls from the 5 red balls. Order does not matter (ball #1 and ball #2 is the same pair as ball #2 and ball #1).
 
 $$_5C_2 = \frac{5!}{2! \cdot 3!} = \frac{5 \times 4}{2 \times 1} = 10$$
 
@@ -1915,14 +1812,12 @@ There are 10 ways to choose 2 red balls.
 
 **Permutations: Non-Distinct Items**
 
-So far, we have assumed all items are different from each other. But what if some items are
-identical? Arrangements that swap identical items look the same and should be counted only once.
+So far, we have assumed all items are different from each other. But what if some items are identical? Arrangements that swap identical items look the same and should be counted only once.
 
 ::: {.callout-tip appearance="simple" icon="false"}
 ## Permutation of Non-Distinct Items
 
-If $n$ items contain groups of identical items — $r_1$ of one type, $r_2$ of another,
-$\dots$, $r_k$ of another type — the number of **distinct** arrangements is:
+If $n$ items contain groups of identical items — $r_1$ of one type, $r_2$ of another, $\dots$, $r_k$ of another type — the number of **distinct** arrangements is:
 
 $$\frac{n!}{r_1! \cdot r_2! \cdot \, \cdots \, \cdot r_k!}$$
 
@@ -1935,18 +1830,18 @@ We divide by the factorials of the repeat counts to eliminate duplicate arrangem
 How many distinct arrangements are there of the letters in the word **STATISTICS**?
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 **STATISTICS** has 10 letters. Count the repeats:
 
 | Letter | Count |
 |:------:|:-----:|
-| S | 3 |
-| T | 3 |
-| A | 1 |
-| I | 2 |
-| C | 1 |
+|   S    |   3   |
+|   T    |   3   |
+|   A    |   1   |
+|   I    |   2   |
+|   C    |   1   |
 
 $$\frac{10!}{3! \cdot 3! \cdot 1! \cdot 2! \cdot 1!} = \frac{3{,}628{,}800}{6 \times 6 \times 1 \times 2 \times 1} = \frac{3{,}628{,}800}{72} = 50{,}400$$
 
@@ -1954,36 +1849,32 @@ There are 50,400 distinct arrangements of the letters in STATISTICS.
 
 Click to expand the box below to see how to calculate permutations of non-disctinct items in Rguroo.
 
-::: {.callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} Calculating Factorials Using the Desmos Scientific Calculator"}
-
-1. Open the **Applets-Calculators** toolbox on the left-hand side of the Rguroo window.
-2. Expand [Calculators (Desmos)]{.dpd} and select **Scientific Calculator**.
-3. Click the fraction button $\frac{\square}{\square}$ to enter a fraction. Your cursor will appear in the numerator.
-4. Type `10` and click the $!$ button to enter $10!$ in the numerator.
-5. Click into the denominator. Type `3`, click $!$, then press $\times$. Repeat for each repeated letter count: type `3`, click $!$, press $\times$, type `1`, click $!$, press $\times$, type `2`, click $x!$, press $\times$, type `1`, click $!$.
-6. Press Enter. The calculator will display the result: **50,400**.
+:::: {.callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} Calculating Factorials Using the Desmos Scientific Calculator"}
+1.  Open the **Applets-Calculators** toolbox on the left-hand side of the Rguroo window.
+2.  Expand [Calculators (Desmos)]{.dpd} and select **Scientific Calculator**.
+3.  Click the fraction button $\frac{\square}{\square}$ to enter a fraction. Your cursor will appear in the numerator.
+4.  Type `10` and click the $!$ button to enter $10!$ in the numerator.
+5.  Click into the denominator. Type `3`, click $!$, then press $\times$. Repeat for each repeated letter count: type `3`, click $!$, press $\times$, type `1`, click $!$, press $\times$, type `2`, click $x!$, press $\times$, type `1`, click $!$.
+6.  Press Enter. The calculator will display the result: **50,400**.
 
 ::: {.callout-note appearance="simple" collapse="true" icon="none" title="Click here to see the Rguroo dialog"}
 ![Desmos Scientific Calculator showing the full factorial fraction for STATISTICS in Rguroo](Rguroo_dialogs/Probability/factorial_desmos_dialog.png){width="500px"}
 :::
+::::
 
-:::
-**Why not just use $10!$?** Because swapping identical letters creates no new arrangement. Dividing corrects the overcounting.
-:::
+**Why not just use** $10!$? Because swapping identical letters creates no new arrangement. Dividing corrects the overcounting.
+:::::
 
 ::: {#exm-nondistinct-schedule}
 ## Scheduling Identical Sessions
 
-A professional development coordinator needs to schedule 8 workshop sessions in a week:
-3 identical Excel workshops, 3 identical Communication workshops, and
-2 identical Leadership workshops. How many distinct weekly schedules are possible?
+A professional development coordinator needs to schedule 8 workshop sessions in a week: 3 identical Excel workshops, 3 identical Communication workshops, and 2 identical Leadership workshops. How many distinct weekly schedules are possible?
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
-Total sessions: $n = 8$. Repeats: $r_1 = 3$ (Excel), $r_2 = 3$ (Communication),
-$r_3 = 2$ (Leadership).
+Total sessions: $n = 8$. Repeats: $r_1 = 3$ (Excel), $r_2 = 3$ (Communication), $r_3 = 2$ (Leadership).
 
 $$\frac{8!}{3! \cdot 3! \cdot 2!} = \frac{40{,}320}{6 \times 6 \times 2} = \frac{40{,}320}{72} = 560$$
 
@@ -1994,25 +1885,19 @@ There are 560 distinct weekly schedules.
 
 ### Counting Techniques and Probability
 
-Counting techniques become most powerful when we use them to compute probabilities. Recall that
-for equally likely outcomes:
+Counting techniques become most powerful when we use them to compute probabilities. Recall that for equally likely outcomes:
 
 $$P(\text{event}) = \frac{\text{number of outcomes in the event}}{\text{total number of outcomes in the sample space}}$$
 
-When the sample space is too large to list, we count both the numerator and denominator using
-the techniques from this section.
-
+When the sample space is too large to list, we count both the numerator and denominator using the techniques from this section.
 
 ::: {#exm-prob-perm}
 ## Probability Using Permutations
 
-A club of 10 people randomly assigns a president and a vice president.
-Three of the 10 members are close friends of yours.
-What is the probability you are named president **and** one of your friends is named
-vice president?
+A club of 10 people randomly assigns a president and a vice president. Three of the 10 members are close friends of yours. What is the probability you are named president **and** one of your friends is named vice president?
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 **Sample space:** Number of ways to assign president and VP from 10 people (order matters):
@@ -2031,30 +1916,27 @@ There is about a $3.3\%$ chance you are named president and one of your friends 
 
 Click to expand the box below to see how to calculate probabilities using counting techniques in Rguroo.
 
-::: {.callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} Calculating a Probability Using Counting Techniques in the Desmos Scientific Calculator"}
-
-1. Open the **Applets-Calculators** toolbox on the left-hand side of the Rguroo window.
-2. Expand [Calculators (Desmos)]{.dpd} and select **Scientific Calculator**.
-3. Click the fraction button $\frac{\square}{\square}$. Your cursor will appear in the numerator.
-4. Type `3` in the numerator (the number of favorable outcomes: 1 choice for president times 3 friends for VP).
-5. Click into the denominator. Click the [func]{.dpd} button, select **nPr**, and type `10, 2`.
-6. Press Enter. The calculator will display **0.0333...**, or approximately **0.033**.
+:::: {.callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'} Calculating a Probability Using Counting Techniques in the Desmos Scientific Calculator"}
+1.  Open the **Applets-Calculators** toolbox on the left-hand side of the Rguroo window.
+2.  Expand [Calculators (Desmos)]{.dpd} and select **Scientific Calculator**.
+3.  Click the fraction button $\frac{\square}{\square}$. Your cursor will appear in the numerator.
+4.  Type `3` in the numerator (the number of favorable outcomes: 1 choice for president times 3 friends for VP).
+5.  Click into the denominator. Click the [func]{.dpd} button, select **nPr**, and type `10, 2`.
+6.  Press Enter. The calculator will display **0.0333...**, or approximately **0.033**.
 
 ::: {.callout-note appearance="simple" collapse="true" icon="none" title="Click here to see the Rguroo dialog"}
 ![Desmos Scientific Calculator showing 3 divided by nPr(10,2) in Rguroo](Rguroo_dialogs/Probability/prob_perm_desmos_dialog.png){width="500px"}
 :::
-
-:::
-:::
+::::
+:::::
 
 ::: {#exm-prob-combo}
 ## Probability Using Combinations
 
-An urn contains 5 red, 7 yellow, and 8 white balls (20 total). Two balls are
-selected at random. What is the probability that both balls are red?
+An urn contains 5 red, 7 yellow, and 8 white balls (20 total). Two balls are selected at random. What is the probability that both balls are red?
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 **Sample space:** Total ways to choose 2 balls from 20 (order does not matter):
@@ -2072,18 +1954,15 @@ $$P(\text{both red}) = \frac{10}{190} = \frac{1}{19} \approx 0.053$$
 There is about a $5.3\%$ chance of selecting two red balls.
 
 ![Desmos Scientific Calculator showing nCr(5,2) divided by nCr(20,2) in Rguroo](Rguroo_dialogs/Probability/prob-combo_desmos.png){width="500px"}
-
 :::
 
 ::: {#exm-prob-lottery}
 ## Probability in a Lottery
 
-A simple lottery asks players to choose 5 numbers from 1 to 38. The jackpot is won if all
-5 numbers match the 5 drawn (in any order). If you buy one ticket, what is your probability
-of winning the jackpot?
+A simple lottery asks players to choose 5 numbers from 1 to 38. The jackpot is won if all 5 numbers match the 5 drawn (in any order). If you buy one ticket, what is your probability of winning the jackpot?
 :::
 
-::: {.callout-tip .solution-callout collapse="true" icon=false}
+::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
 Order does not matter, so:
@@ -2094,34 +1973,38 @@ Only 1 outcome matches the winning numbers:
 
 $$P(\text{jackpot}) = \frac{1}{501{,}492} \approx 0.000002$$
 
-Your chance is about 2 in a million, which illustrates why lottery play is a very poor
-financial strategy despite the appeal of a large prize.
+Your chance is about 2 in a million, which illustrates why lottery play is a very poor financial strategy despite the appeal of a large prize.
 
 ![Desmos Scientific Calculator showing 1 divided by nCr(38,5) in Rguroo](Rguroo_dialogs/Probability/prob_lottery_desmos.png){width="500px"}
-
 :::
-
 
 ### Homework for Section 4.4
 
 1.  You are going to a benefit dinner, and need to decide before the dinner what you want for salad, main dish, and dessert. You have 2 different salads to choose from, 3 main dishes, and 5 desserts. How many different meals are available?
 
-2.   A cell phone company creates PINs that are 4 digits long (digits 0–9). How many
-different PINs are possible if:
+2.  A cell phone company creates PINs that are 4 digits long (digits 0–9). How many different PINs are possible if:
+
+<!-- -->
 
 (a) Digits can be repeated.
 (b) Digits cannot be repeated.
 
+<!-- -->
 
 3.  You are opening a T-shirt store. You can have long sleeves or short sleeves, three different colors, five different designs, and four different sizes. How many different shirts can you make?
 
-4.  A California license plate has the format: one digit, followed by three letters,
-followed by three digits. Assuming all digits (0–9) and letters (A–Z) are allowed:
+4.  A California license plate has the format: one digit, followed by three letters, followed by three digits. Assuming all digits (0–9) and letters (A–Z) are allowed:
+
+<!-- -->
 
 (a) How many different license plates are possible?
 (b) How does your answer change if no repetition of letters or digits is allowed?
 
-5. Evaluate each expression.
+<!-- -->
+
+5.  Evaluate each expression.
+
+<!-- -->
 
 (a) $6!$
 (b) $\dfrac{9!}{6!}$
@@ -2129,33 +2012,45 @@ followed by three digits. Assuming all digits (0–9) and letters (A–Z) are al
 (d) $_{10}C_4$
 (e) $\dfrac{7!}{3! \cdot 2! \cdot 2!}$
 
-9.  You have a group of 12 people. You need to pick a president, treasurer, and secretary from the 12.  How many different ways can these three offices be filled? Explain why this is a permutation and not a combination.
+<!-- -->
 
+9.  You have a group of 12 people. You need to pick a president, treasurer, and secretary from the 12. How many different ways can these three offices be filled? Explain why this is a permutation and not a combination.
 
 10. An urn contains 5 red balls, 7 yellow balls, and 8 white balls.
+
+<!-- -->
 
 (a) How many ways can you pick exactly 2 red balls?
 (b) How many ways can you pick exactly 2 yellow balls?
 (c) How many ways can you choose any 2 balls from the urn?
 (d) Use (a) and (c) to find the probability that 2 randomly selected balls are both red.
 
+<!-- -->
+
 11. Find the number of distinct arrangements of the letters in each word.
+
+<!-- -->
 
 (a) MATH
 (b) MISSISSIPPI
 
+<!-- -->
+
 12. A 5-card hand is dealt from a standard 52-card deck.
 
+<!-- -->
+
 (a) How many possible 5-card hands are there?
-(b) How many 5-card hands contain exactly 3 aces?
-   *(Hint: choose 3 aces from 4, then choose 2 non-aces from 48.)*
+(b) How many 5-card hands contain exactly 3 aces? *(Hint: choose 3 aces from 4, then choose 2 non-aces from 48.)*
 (c) What is the probability of being dealt exactly 3 aces?
 
-13. A student council has 8 members: 5 women and 3 men. A committee of 4
-will be chosen at random.
+<!-- -->
+
+13. A student council has 8 members: 5 women and 3 men. A committee of 4 will be chosen at random.
+
+<!-- -->
 
 (a) How many 4-person committees are possible?
 (b) How many committees contain exactly 2 women and 2 men?
 (c) What is the probability that a randomly chosen committee has exactly 2 women and 2 men?
-(d) What is the probability that a randomly chosen committee contains at least one man?
-   *(Hint: use the complement.)*
+(d) What is the probability that a randomly chosen committee contains at least one man? *(Hint: use the complement.)*

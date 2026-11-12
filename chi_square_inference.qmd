@@ -840,7 +840,7 @@ Do the data support the notion that each defect type occurs in the same proporti
 
 4.  In Africa in 2011, the number of deaths of a female from cardiovascular disease for different age groups are in @tbl-Deaths ("Global health observatory," 2013). In addition, the proportion of deaths of females from all causes for the same age groups are also in table Deaths of Females for Different Age Groups. Do the data show that the death from cardiovascular disease are in the same proportion as all deaths for the different age groups? Test at the $\alpha = 0.05$ level of significance.
 
-    ```{r females, echo=FALSE}
+    ```{r, echo=FALSE}
     #| tbl-alt: "Deaths of Females for Different Age Groups"
     #| label: tbl-Deaths
     #| tbl-cap: "Deaths of Females for Different Age Groups"
@@ -856,7 +856,7 @@ Do the data support the notion that each defect type occurs in the same proporti
 
 5.  In Australia in 1995, there was a question of whether indigenous people are more likely to die in prison than non-indigenous people. To figure out, the data in @tbl-Prisoners was collected. ("Aboriginal deaths in," 2013). Do the data show that indigenous people die in the same proportion as non-indigenous people? Test at the $\alpha = 0.02$ level of significance.
 
-    ```{r Prisoners, echo=FALSE}
+    ```{r, echo=FALSE}
     #| tbl-alt: "Death of Indigenous Prisoners"
     #| label: tbl-Prisoners
     #| tbl-cap: "Death of Indigenous Prisoners"
@@ -1617,7 +1617,7 @@ There is not sufficient evidence to conclude that participation in the exercise 
 
 1.  The number of people who survived the Titanic based on class and sex is in @tbl-Titanic_table ("Encyclopedia Titanica," 2013). Is there enough evidence to show that the class and the sex of a person who survived the Titanic are independent? Test at the 5% level.
 
-```{r problem-11-1-table, echo=FALSE}
+```{r, echo=FALSE}
 #| tbl-alt: "Head of Surviving the Titanic"
 #| label: tbl-Titanic_table
 #| tbl-cap: "Surviving the Titanic"
@@ -1650,7 +1650,7 @@ knitr::kable(Feeding_table)
 
 4.  Students at multiple grade schools were asked what their personal goal (get good grades, be popular, be good at sports) was and how important good grades were to them (1 very important and 4 least important). The data is in @tbl-Goal_Grades_table ("Popular kids datafile," 2013). Do the data provide enough evidence to show that goal attainment and importance of grades are independent? Test at the 5% level.
 
-```{r Goal_grades, echo=FALSE}
+```{r, echo=FALSE}
 #| tbl-alt: "Personal Goal and Importance of Grades"
 #| label: tbl-Goal_Grades_table
 #| tbl-cap: "Personal Goal and Importance of Grades"
@@ -1661,7 +1661,7 @@ knitr::kable(Goal_Grades_table)
 
 5.  Students at multiple grade schools were asked what their personal goal (get good grades, be popular, be good at sports) was and how important being good at sports were to them (1 very important and 4 least important). The data is in @tbl-Goal_Sports_table ("Popular kids datafile," 2013). Do the data provide enough evidence to show that goal attainment and importance of sports are independent? Test at the 5% level.
 
-```{r Goal_sports, echo=FALSE}
+```{r, echo=FALSE}
 #| tbl-alt: "Personal Goal and Importance of Sports"
 #| label: tbl-Goal_Sports_table
 #| tbl-cap: "Personal Goal and Importance of Sports"
@@ -1672,7 +1672,7 @@ knitr::kable(Goal_Sports_table)
 
 6.  Students at multiple grade schools were asked what their personal goal (get good grades, be popular, be good at sports) was and how important having good looks were to them (1 very important and 4 least important). The data is in @tbl-Goal_Looks_table ("Popular kids datafile," 2013). Do the data provide enough evidence to show that goal attainment and importance of looks are independent? Test at the 5% level.
 
-```{r Goal_looks, echo=FALSE}
+```{r, echo=FALSE}
 #| tbl-alt: "Personal Goal and Importance of Looks"
 #| label: tbl-Goal_Looks_table
 #| tbl-cap: "Personal Goal and Importance of Looks"
@@ -1683,7 +1683,7 @@ knitr::kable(Goal_Looks_table)
 
 7.  Students at multiple grade schools were asked what their personal goal (get good grades, be popular, be good at sports) was and how important having money were to them (1 very important and 4 least important). The data is in @tbl-Goal_Money_table ("Popular kids datafile," 2013). Do the data provide enough evidence to show that goal attainment and importance of money are independent? Test at the 5% level.
 
-```{r Goal_money, echo=FALSE}
+```{r, echo=FALSE}
 #| tbl-alt: "Personal Goal and Importance of Money"
 #| label: tbl-Goal_Money_table
 #| tbl-cap: "Personal Goal and Importance of Money"
@@ -1897,7 +1897,7 @@ $\alpha=0.05$
 To conduct the test and check the expected counts, create a two-way table in Rguroo. @fig-satistfaction shows an image of the table in Rguroo.
 
 ```{r, echo=FALSE}
-#| label: fig-satisfaction
+#| label: fig-satistfaction
 #| fig-cap: 'Rguroo Table for Customer Satisfaction by Store'
 #| fig-alt: 'Rguroo Table for Customer Satisfaction by Store'
 #| out-width: "70%"
@@ -2338,12 +2338,12 @@ There is not sufficient evidence to support the claim that at least one distribu
 | 6–8 hours | 105 | 118 |
 | More than 8 hours | 28 | 49 |
 
-## Comparing Chi-Square Tests
+## Comparing Chi-Square Tests {#sec-chi-square-test-summary}
 
 Throughout this chapter, we have examined three different chi-square tests: the chi-square goodness-of-fit test, the chi-square test of independence, and the chi-square test of homogeneity. Although these tests address different research questions, they all use the same chi-square test statistic and compare observed counts to expected counts. The primary difference among the tests is the type of question being investigated and the structure of the data. The table below summarizes the purpose of each test and can help you determine which chi-square procedure is appropriate in a given situation.
 
 ::: {.callout-note}
-## Summary of Chi-Square Tests {#sec-chi-square-test-summary}
+## Summary of Chi-Square Tests 
 
 | Test | Purpose | Variables | Research Question |
 |--------|--------|--------|--------|
