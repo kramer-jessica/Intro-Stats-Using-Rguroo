@@ -38,15 +38,15 @@ library("MASS")
 
 
 
-Many questions involving categorical data ask us to compare what we observe in a sample with what we would expect under a particular assumption. Chi-square tests are hypothesis tests designed for categorical data and provide a way to determine whether the differences between observed and expected counts are large enough to provide evidence against that assumption. In this chapter, we will study three types of chi-square tests. The chi-square goodness-of-fit test determines whether the distribution of a single categorical variable follows a specified distribution. The chi-square test of independence examines whether two categorical variables are associated within a population, while the chi-square test for homogeneity determines whether the distribution of a categorical variable is the same across two or more populations or groups. Although these tests address different questions, they share the same underlying idea: comparing observed counts with the counts we would expect if the null hypothesis were true.
+Many questions involving categorical data ask us to compare what we observe in a sample with what we would expect under a particular assumption. **Chi-square tests** are hypothesis tests used with categorical data and provide a way to determine whether the differences between observed and expected counts are large enough to provide evidence against that assumption. In this chapter, we will study three types of chi-square tests. The **chi-square goodness-of-fit test** determines whether the distribution of a single categorical variable follows a specified distribution. The **chi-square test of independence** examines whether two categorical variables are associated within a population, while the **chi-square test for homogeneity** determines whether the distribution of a categorical variable is the same across two or more populations or groups. Although these tests address different questions, they share the same underlying idea: comparing observed counts with the counts we would expect if the null hypothesis were true.
 
 As with the other hypothesis tests you have studied, the general testing process remains the same. What changes are the conditions that must be satisfied, calculating expected counts, and the test statistic used to calculate the p-value. The following summarizes the general steps used in hypothesis testing, no matter the type of test.
 
 ::: {#general-hypothesis-steps .callout-note}
 ## General Hypothesis Test Steps
 
-1.  State the null and alternative hypotheses, $H_o$ and $H_a$.
-2.  Select $\alpha$
+1.  State the null and alternative hypotheses, $H_0$ and $H_a$.
+2.  Select significance level $\alpha$
 3.  Use Rguroo to conduct the test using either the P-value approach or the Critical Region approach.
 4.  Make a decision.
 5.  State the conclusion
@@ -54,7 +54,7 @@ As with the other hypothesis tests you have studied, the general testing process
 
 ## The Chi-Squared Distribution {#sec-chi-square-distribution}
 
-The **chi-squared distribution**, denoted by $\chi^2$, is a probability distribution that plays an important role in statistical methods involving categorical data. Unlike the normal distribution, which is symmetric, the chi-squared distribution is right-skewed and can only take values greater than or equal to zero. The exact shape of the distribution depends on its degrees of freedom (df). With fewer degrees of freedom, the distribution is more strongly skewed to the right. As the degrees of freedom increase, the distribution becomes less skewed and more symmetric.
+The **chi-squared distribution**, denoted by $\chi^2$ (read as kai-square--kai ryhmes with sky), is a probability distribution that plays an important role in statistical methods involving categorical data. Unlike the normal distribution, which is symmetric, the chi-squared distribution is right-skewed and can only take values greater than or equal to zero. The exact shape of the distribution depends on its degrees of freedom (df). With fewer degrees of freedom, the distribution is more strongly skewed to the right. As the degrees of freedom increase, the distribution becomes less skewed and more symmetric.
 
 @fig-chi-square-df below shows how the shape of the chi-squared distribution changes for different degrees of freedom. Notice that each curve begins at zero or above, is skewed to the right, and becomes less skewed as the degrees of freedom increase.
 
@@ -72,13 +72,13 @@ knitr::include_graphics("Rguroo_outputs/Chi-Square/chi_square_dfs.png")
 - The chi-square distribution is denoted by $\chi^2$.
 - Chi-square values are always greater than or equal to 0.
 - The distribution is skewed to the right.
-- The shape of the distribution depends on the degrees of freedom (dfdfdf).
+- The shape of the distribution depends on the degrees of freedom (df).
 - As the degrees of freedom increase, the distribution becomes less skewed.
 :::
 
 ## Chi-Square Goodness of Fit Test {#sec-gof}
 
-When working with categorical data, we are often interested in whether the distribution of a variable follows a particular pattern. For example, suppose a college claims that 40% of its students take primarily in-person courses, 35% take primarily online courses, and 25% take primarily hybrid courses. We could select a random sample of students and record each student's course modality. We could then compare the observed counts, the number of students actually found in each category, with the expected counts, the number we would expect in each category if the college's claim were true.
+When working with categorical data, we are often interested in whether the distribution of a variable follows a particular pattern. For example, suppose a college claims that 40% of its students take primarily in-person courses, 35% take primarily online courses, and 25% take primarily hybrid courses. We could select a random sample of students and record each student's course modality. We could then compare the observed counts, the number of students actually found in each category, with the expected counts, the counts we would expect if the college's claim were true.
 
 If the observed counts are close to the expected counts, the data are consistent with the claimed distribution. If the observed and expected counts differ substantially, however, we may have evidence that the actual distribution does not follow the claimed distribution.
 
@@ -88,7 +88,7 @@ The hypothesis test used to determine whether the distribution of a categorical 
 
 As with other hypothesis tests, a chi-square goodness-of-fit test begins by stating the null and alternative hypotheses. In a goodness-of-fit test, the hypotheses describe the distribution of a categorical variable in the population. The null hypothesis states that the population follows a specified distribution. In other words, it specifies the proportion of the population expected to fall into each category.
 
-The alternative hypothesis states that the population does not follow the specified distribution. This means that at least one of the population proportions differs from the value given in the null hypothesis.
+The alternative hypothesis states that the population does not follow the specified distribution. This means that at least one of the population proportions differs from the proportion given in the null hypothesis.
 
 ::: {#exm-modality-gof}
 ## Modality Preference
@@ -107,7 +107,7 @@ State the null and alternative hypotheses.
 
 To write the null hypothesis, we state the proportions given in the distribution. The alternative will state that the population does not follow the distribution as stated.
 
-$H_o:$ $p_\text{in-person}=0.40$, $p_\text{online}=0.35$, $p_\text{hybrid}=0.25$
+$H_0:$ $p_\text{in-person}=0.40$, $p_\text{online}=0.35$, $p_\text{hybrid}=0.25$
 
 $H_a:$ The population does not follow the stated distribution.
 
@@ -132,11 +132,11 @@ $H_a:$ The population does not follow the stated distribution.
 
 ### Observed and Expected Counts
 
-Chi-squared tests involve comparing what we actually observe in the data with what we would expect to observe if the null hypothesis were true. The observed counts are the actual frequencies recorded for each category in the sample, while the expected counts represent the frequencies we would anticipate under the null hypothesis. The chi-squared test evaluates how much the observed counts differ from the expected counts. Larger differences provide stronger evidence that the observed pattern is not consistent with what we would expect under the null hypothesis.
+Chi-squared tests involve comparing what we actually observe in the data with what we would expect to observe if the null hypothesis were true. The observed counts are the actual frequencies recorded for each category in the sample, while the expected counts represent the frequencies we would anticipate under the null hypothesis. The chi-squared test evaluates the differences between the observed and expected counts across all categories, relative to the expected counts. Larger differences provide stronger evidence that the observed pattern is not consistent with what we would expect under the null hypothesis.
 
 For a goodness-of-fit test, the expected count is the number of observations we would expect to fall into each category if the null hypothesis were true. To calculate an expected count, multiply the total sample size by the proportion expected for that category:
 
-$$E= (n)(p)$$ where:
+$$E= n\times{p}$$ where:
 
 $E$ = expected count for the category
 
@@ -155,13 +155,17 @@ Let's revisit the problem where a college claims that its students are distribut
 
 The college surveys 120 students and records the modality. The observed counts are below.
 
+<div style="width: 80%; margin: auto;">
+
 | Course Modality | Observed Count |
 |-----------------|----------------|
 | In-Person       | 52             |
 | Online          | 51             |
 | Hybrid          | 17             |
 
-: Modality
+:Modality {#tbl-modality tab-alt="Table showing observed counts for 120 students by course modality. The counts are 52 In-Person, 51 Online, and 17 Hybrid."}
+
+</div>
 
 Calculate the expected counts for each modality.
 :::
@@ -179,13 +183,19 @@ Hybrid: $E=(120)(0.25)=30$
 
 We can organize this into a table as follows.
 
+<div style="width: 100%; margin: auto;">
+
+
 | Course Modality | Claimed Proportion | Observed Count | Expected Count |
 |-----------------|--------------------|----------------|----------------|
 | In-Person       | 0.40               | 52             | 48             |
 | Online          | 0.35               | 51             | 42             |
 | Hybrid          | 0.25               | 17             | 30             |
 
-: Modality Summary
+: Modality Summary {#tbl-modality-summary tbl-alt="Table showing claimed proportions, observed counts, and expected counts for 120 students by course modality. In-Person: 0.40, 52, 48; Online: 0.35, 51, 42; Hybrid: 0.25, 17, 30."}
+
+</div>
+
 :::
 
 ### The Chi-Squared Test Statistic
@@ -205,7 +215,7 @@ The question now becomes: Are the differences between the observed and expected 
 
 To answer this question, we calculate a chi-square test statistic. For each category, we compare the observed count, $O$, with the expected count, $E$:
 
-$$\chi^2=\sum\frac{(O-E)^2}{E}$$ where,
+$$\chi^2=\sum_{k=1}^n\frac{(O-E)^2}{E}$$ where,
 
 $O$ are the observed counts and $E$ are the expected counts.
 
@@ -219,7 +229,7 @@ Because the differences are squared, the chi-square statistic is always nonnegat
 
 The chi-square distribution used for a goodness-of-fit test depends on the number of categories. If there are $k$ categories, the degrees of freedom are
 
-$$df=k−1$$
+$$df=k−1$$.
 
 The chi-square test statistic and the degrees of freedom are then used to find the p-value. Similar to previous tests, the p-value represents the probability, assuming the null hypothesis is true, of obtaining a chi-square statistic at least as large as the one calculated from the sample.
 
@@ -254,13 +264,13 @@ Is there sufficient evidence to conclude that students' preferences for course m
 
 To determine if there is sufficient evidence that the preferences for course modality differs from the stated distribution, we need to conduct a full hypothesis test. This is a goodness-of-fit test since we are determining if a categorical variable matches a specific distribution. 
 
-Before we begin the test, we need to make sure the conditions for a GOF test are satisfied.
+Before we begin the test, we need to make sure the conditions for a goodness-of-fit test are satisfied.
 
 *Categorical Data:* We have categorical data since the college recorded modality.
 
 *Randomness:* The college used a random sample.
 
-*Independence:* The sample is independent since the modality preference of one student does not affect another student.
+*Independence:* The sample is independent since students were selected randomly and its reasonable to assume the modality preference of one student does not affect another student.
 
 *Expected Counts:* The college did not report the expected counts, so we can compute them.
 
@@ -280,7 +290,7 @@ Now that we know the conditions for a GOF test are satisfied, we will follow the
 
 From [Example 15.1](#exm-modality-gof), to write the null hypothesis, we state the proportions given in the distribution. The alternative will state that the population does not follow the distribution as stated.
 
-$H_o:$ $p_\text{in-person}=0.40$, $p_\text{online}=0.35$, $p_\text{hybrid}=0.25$
+$H_0:$ $p_\text{in-person}=0.40$, $p_\text{online}=0.35$, $p_\text{hybrid}=0.25$
 
 $H_a:$ The population does not follow the stated distribution.
 
@@ -414,11 +424,11 @@ To determine if the reasons for choosing a car are equally likely, we need to co
 
 Before we begin the test, we need to make sure the conditions for a GOF test are satisfied.
 
-*Categorical Data:* We have categorical data since the store recorded payment method.
+*Categorical Data:* We have categorical data since the store recorded car preference.
 
 *Randomness:* Australian Federal Office of Road Safety used a random sample.
 
-*Independence:* The sample is independent since reason for choosing a car is independent from one person to the next.
+*Independence:* The sample is independent since it is reasonable to assume that the reason for choosing a car is independent from one person to the next.
 
 *Expected Counts:* Australian Federal Office of Road Safety did not report expected counts; however, there are 6 reasons listed for choosing a car so each reason should have a probability of $\frac{1}{6}$ if the reasons are equally likely. This means that the expected counts for each reason would be $(300)(\frac{1}{6}) = 50$. The expected counts are all greater than 5.
 
@@ -426,7 +436,7 @@ Now that we know the conditions for a GOF test are satisfied, we will follow the
 
 **State the null and alternative**
 
-To write the null hypothesis, we state the proportions given in the distribution. As stated before, since we are testing whether the reasons are equally likely, all proportions will be $\frac{1}{6}$The alternative will state that the population does not follow the store's distribution as stated (not equally likely).
+To write the null hypothesis, we state the proportions given in the distribution. As stated before, since we are testing whether the reasons are equally likely, all proportions will be $\frac{1}{6}$. The alternative will state that the population does not follow the store's distribution as stated (not equally likely).
 
 $H_o:$ $p_\text{comfort}= p_\text{cost}=p_\text{looks}=p_\text{performance}=p_\text{reliability}=p_\text{safety}=\frac{1}{6}$
 
@@ -451,7 +461,7 @@ Click to expand the box below see how to find the test statistic and p-value for
     - From the [Select a Dataset]{.dpd} menu, select the [carpref]{.data} dataset.
     - From the [Factor]{.dpd} select the variable [Reason]{.var}
     - In the Null Probability column, we can leave this blank since Rguroo defaults to equally likely. You can also enter $\frac{1}{6}$, in each, but it is not needed.
-    Notice that the table provided above automatically populates.
+    Notice that the table provided below automatically populates.
 4.  Select *Chi-Square* in the Test of Hypothesis box. 
 5.  Leave the $\alpha=0.05$ in the *Significance Level* box, since we are using this value.
 6.  Click the preview icon ![preview icon](Rguroo_Icons/preview_inline.png) to see the information for the test.
@@ -869,15 +879,15 @@ Do the data support the notion that each defect type occurs in the same proporti
 
 
 
-## Chi-Square Test for Independence {#sec-independence}
+## Chi-Square Test of Independence {#sec-independence}
 
 A **chi-squared test of independence** is used to determine whether there is an association between two categorical variables. In other words, the test helps us decide whether knowing the value of one variable provides information about the value of the other variable. For example, a college may want to investigate whether a student's class year is associated with their preferred study location. Similarly, a researcher may be interested in determining whether exercise habits are related to stress level.
 
-The data are organized in a contingency table, with the categories of one variable represented by the rows and the categories of the other variable represented by the columns. The test compares the observed counts with the expected counts that would occur if the two variables were independent. If the observed counts differ significantly from the expected counts, there is evidence that the two variables are associated. If the differences are not significant, there is not sufficient evidence to conclude that the variables are associated.
+The data are organized in a two-way table, with the categories of one variable represented by the rows and the categories of the other variable represented by the columns. The test compares the observed counts with the expected counts that would occur if the two variables were independent. If the observed counts differ significantly from the expected counts, there is evidence that the two variables are associated. If the differences are not significant, there is not sufficient evidence to conclude that the variables are associated.
 
 Just as we had with the goodness-of-fit test, we must satisfy the conditions for a chi-squared test.
 
-1.  Categorical data: The variable being analyzed is categorical, and the data are counts of observations within the categories.
+1.  Categorical data: The variables being analyzed are categorical, and the data are counts of observations within the categories.
 2.  Randomness: The data should come from a random sample or a randomized process.
 3.  Independence: The observations should be independent. When sampling without replacement from a finite population, the sample should generally be no more than 10% of the population.
 4.  Expected counts: The expected counts must be sufficiently large for the chi-square distribution to provide a reasonable approximation. A commonly used guideline is that each expected count should be at least 5.
@@ -917,7 +927,7 @@ A college wants to determine whether a student's class year is associated with t
 | Sophomore | 24 | 18 | 10 | 52 |
 | Junior | 27 | 14 | 7 | 48 |
 | Senior | 31 | 11 | 3 | 45 |
-| Total | 100** | 68 | 32 | 200 | 
+| Total | 100 | 68 | 32 | 200 | 
 
 <br>
 
@@ -927,9 +937,9 @@ State the null and alternative hypotheses if a hypothesis test was performed to 
 ::: {.callout-tip .solution-callout collapse="true" icon="false"}
 ## 🔎 Solution
 
-To state the null and alternative, we need to be specific about the variables we are comparing, and where the null is independent and the alternative is associated.  In this case, our two variables are [class year]{.var} and [preferred study location]{.var.}. Usually, we can use the wording of the question to help write the alternative hypothesis, "a hypothesis test was performed to determine whether *class year and preferred study location are associated*."
+To state the null and alternative, we need to be specific about the variables we are comparing, and where the null is independent and the alternative is associated.  In this case, our two variables are [class year]{.var} and [study location]{.var.}. Usually, we can use the wording of the question to help write the alternative hypothesis, "a hypothesis test was performed to determine whether *class year and preferred study location are associated*."
 
-$H_o:$ Class year and preferred study location are independent.
+$H_0:$ Class year and preferred study location are independent.
 
 $H_a:$ Class year and preferred study location are associated.
 :::
@@ -958,7 +968,7 @@ State the null and alternative hypotheses if a hypothesis test was performed to 
 
 Similarly, in this example, we can use the question to help us determine the alternative hypothesis and then change the wording for the null to be "independent."  In this example, the question states, "a hypothesis test was performed to determine whether *exercise frequency and sleep quality are related*."  Even though the wording did not say "associated," "related" means the same thing. We will use the specific wording of the problem for our alternative hypothesis.
 
-$H_o:$ Exercise frequency and sleep quality are independent.
+$H_0:$ Exercise frequency and sleep quality are independent.
 
 $H_a:$ Exercise frequency and sleep quality are related.
 
@@ -968,20 +978,16 @@ $H_a:$ Exercise frequency and sleep quality are related.
 
 Just as with a chi-squared goodness-of-fit test, a chi-squared test of independence compares observed counts with expected counts. In both tests, the expected counts represent what we would expect to observe if the null hypothesis were true.
 
-For a goodness-of-fit test, the expected counts are determined from the expected proportions specified in the null hypothesis:
 
-$$E=n\times p$$
-
-where $n$ is the sample size and $p$ is the expected proportion for a category.
-
-For a test of independence, there are no specified expected proportions. Instead, the expected count for each cell is calculated from the row and column totals of the two-way table:
+For a test of independence, there are no specified expected proportions. Instead, we ask: If the row and column categories were unrelated, how many observations would we expect in each cell? The expected count for each cell is calculated from the row and column totals of the two-way table:
 
 $$E=\frac{(\text{Row Total})(\text{Column Total})}{\text{Grand Total}}$$
+
 
 ::: {.callout-note appearance="simple"}
 ## Key Connection
 
-In both chi-squared tests, expected counts describe what we would expect to observe if $H_0$ were true. The difference is how the expected counts are determined: GOF uses specified proportions, while a test of independence uses the row and column totals of a two-way table.
+In both chi-squared tests, expected counts describe what we would expect to observe if $H_0$ were true. The difference is how the expected counts are determined: The goodness-of-fit test uses specified proportions, while a test of independence uses the row and column totals of a two-way table.
 :::
 
 :::{#exm-exercise-sleep-independence-exp-counts}
@@ -1073,7 +1079,7 @@ Before we begin the test, take a quick check that we have satisfied the four con
 
 **State null and alternative**
 
-$H_o:$ Class year and preferred study location are independent.
+$H_0:$ Class year and preferred study location are independent.
 
 $H_a:$ Class year and preferred study location are associated.
 
@@ -1128,6 +1134,7 @@ knitr::include_graphics(
 )
 ```
 
+*Note: Rguroo orders the columns and rows alphabetically, so your entries might be in a different order than entered*
 
 ```{r, echo=FALSE}
 #| label: fig-class-location-output-p-value
@@ -1242,11 +1249,12 @@ As we did before in the last example, take a quick check that we have satisfied 
 
 This question asks "do the data indicate that stress and depression status are associated?" Remember that the null states that the two variables are independent and the alternative states that they are associated. 
 
-$H_o:$ Stress and depression status are independent.
+$H_0:$ Stress and depression status are independent.
 
 $H_a:$ Stress and depression status are associated.
 
 **Select $\alpha$**
+
 $\alpha=0.01$
 
 **P-value approach to find test statistic and p-value**
@@ -1288,7 +1296,7 @@ knitr::include_graphics(
 ```
 
 
-The P-value graph displays the chi-squared distribution under the null hypothesis. The observed test statistic, $\chi^2 =58.4482$, is marked by the green triangle. The red shaded area to the right of the test statistic represents the p-value, p-value =0.0000.
+The P-value graph displays the chi-squared distribution under the null hypothesis. The observed test statistic, $\chi^2 =58.4482$, is marked by the green triangle. The red shaded area to the right of the test statistic represents the p-value, $\text{p} =0.0000$.
 
 **Decision**
 
@@ -1322,7 +1330,7 @@ Do the data provide sufficient evidence to conclude that academic major and week
 
 **State null and alternative**
 
-$H_o:$ Major and weekly study time are independent.
+$H_0:$ Major and weekly study time are independent.
 
 $H_a:$ Major and weekly study time are associated.
 
@@ -1430,7 +1438,7 @@ Since we are testing the same claim, we will use some of our work in @exm-year-s
 
 **State null and alternative**
 
-$H_o:$ Class year and preferred study location are independent.
+$H_0:$ Class year and preferred study location are independent.
 
 $H_a:$ Class year and preferred study location are associated.
 
@@ -1454,7 +1462,7 @@ knitr::include_graphics(
 
 **Decision**
 
-Because the observed test statistic, $\chi^2 =14.701$, does fall within the red critical region (values greater than $\chi^2 =12.592), the null hypothesis is rejected.
+Because the observed test statistic, $\chi^2 =14.701$, does fall within the red critical region (values greater than $\chi^2 =12.592$), the null hypothesis is rejected.
 
 **Conclusion**
 
@@ -1481,7 +1489,7 @@ A complete description of the variables is provided in the [dataset code book](#
 
 We can use the hypotheses from @exm-sleep-study-test-independence-p-value since it is testing the same claim.
 
-$H_o:$ Stress and depression status are independent.
+$H_0:$ Stress and depression status are independent.
 
 $H_a:$ Stress and depression status are associated.
 
@@ -1504,6 +1512,7 @@ knitr::include_graphics(
 ```
 
 The critical region graph displays the chi-squared distribution. The red shaded region represents the critical region for a $\alpha=0.01$ significance level and begins at the critical value of $\chi^2=9.1203$. The green triangle marks the observed chi-squared test statistic of $\chi^2=58.4482$. 
+
 **Decision**
 
 Since the test statistic, $\chi^2=58.4482$ falls above the critical value $9.1203$ (in the rejection region), we reject the null hypothesis.
@@ -1539,7 +1548,7 @@ Since this is testing a new scenario, before we begin the test, take a quick che
 
 **State null and alternative**
 
-$H_o:$ Participation in the exercise prigram and class standing are independent.
+$H_0:$ Participation in the exercise prigram and class standing are independent.
 
 $H_a:$ Participation in the exercise prigram and class standing are associated.
 
@@ -1695,7 +1704,7 @@ knitr::kable(Goal_Money_table)
 
 ## Chi-Square Test for Homogeneity {#sec-homogeneity}
 
-Sometimes researchers want to compare the distribution of a categorical variable across two or more populations or groups. A chi-square test for homogeneity is used to determine whether the distribution of a categorical variable is the same for all populations being compared. For example, a college may want to determine whether preferred learning format (in-person, online, or hybrid) differs among students from different class years. Similarly, a company may wish to compare customer satisfaction ratings across several store locations.
+Sometimes researchers want to compare the distribution of a categorical variable across two or more populations or groups. That is, to investigate whether the proportions in each category are the same for two or more population groups. A **chi-square test for homogeneity** is used to determine whether the distribution of a categorical variable is the same for all populations being compared. For example, a college may want to determine whether preferred learning format (in-person, online, or hybrid) differs among students from different class years. Similarly, a company may wish to compare customer satisfaction ratings across several store locations.
 
 Although the data are typically summarized in a two-way table, the goal differs from a test for independence. In a test for independence, we examine whether two categorical variables are associated within a single population. In a test for homogeneity, we compare the distribution of one categorical variable across multiple populations or groups.
 
@@ -1754,7 +1763,7 @@ State the null and alternative hypotheses if the store wanted to determine wheth
 
 Just as we have done in past examples, we can take the wording of the problem to help us write the null and alternative hypotheses. In this question, it asks *"determine whether the distribution of customer satisfaction ratings is the same across the three store locations."* Notice the wording of **same** in the question. This is a hint that we will be conducting a test for homogeneity. Remember that the null is that the variable is the same for all populations and the alternative states the variable is not the same for all populations. Using the specific variable and populations for this question, we have:
 
-$H_o:$ The distribution of customer satisfaction ratings is the same across all three stores (Store A, Store B, and Store C)
+$H_0:$ The distribution of customer satisfaction ratings is the same across all three stores (Store A, Store B, and Store C)
 
 $H_a:$ The distribution of customer satisfaction ratings is not the same across all three store locations (that is, at least one store has a different distribution of satisfaction ratings).
 
@@ -1797,7 +1806,7 @@ In this question, the researcher wants to *determine whether the distribution of
 
 The hypotheses in words are:
 
-$H_o:$ The distribution of exercise frequency is the same across all three age groups (Young adults, middle-aged adults, older adults)
+$H_0:$ The distribution of exercise frequency is the same across all three age groups (Young adults, middle-aged adults, older adults)
 
 $H_a:$ The distribution of exercise frequency is not the same across all three age groups (at least one age group has a different distribution of exercise frequency).
 
@@ -1878,7 +1887,7 @@ As we did before with previous $\chi^2$ tests, take a quick check that we have s
 
 **State null and alternative**
 
-$H_o: P_\text{Store A}=P_\text{Store B}=P_\text{Store C}$
+$H_0: P_\text{Store A}=P_\text{Store B}=P_\text{Store C}$
 
 where,
 
@@ -1958,7 +1967,7 @@ There is sufficient evidence to support the claim that at least one distribution
 :::{#exm-sleep-study-homogeneity-p-value}
 ## Alcohol Use by Gender - P-value Approach
 
-Let's revisit @exm-sleep-study-test-independence-p-value. A sleep study collected information from college students about their sleep habits, academic experiences, and overall well-being. Variables include sleep and wake times, average amount of sleep, class schedules, GPA, classes missed, and measures related to cognition, stress, anxiety, alcohol use, depression, and happiness. Do the data indicate that alcohol use is the same for males and females at the $\alpha=0.02$ level of significance? 
+Let's revisit @exm-sleep-study-test-independence-p-value. A sleep study collected information from college students about their sleep habits, academic experiences, and overall well-being. Variables include sleep and wake times, average amount of sleep, class schedules, GPA, classes missed, and measures related to cognition, stress, anxiety, alcohol use, depression, and happiness. Do the data indicate that alcohol use is the same for males and females at the $\alpha=0.05$ level of significance? 
 
 A complete description of the variables is provided in the [dataset code book](#code-book-sleep). 
 
@@ -1971,7 +1980,7 @@ As we did before with previous $\chi^2$ tests, take a quick check that we have s
 
 **State null and alternative**
 
-$H_o: P_\text{Males}=P_\text{Females}$
+$H_0: P_\text{Males}=P_\text{Females}$
 
 where,
 
@@ -1982,7 +1991,7 @@ $H_a:$ At least one distribution of alcohol use is different.
 
 **Select $\alpha$**
 
-$\alpha=0.02$
+$\alpha=0.05$
 
 **P-value approach to find test statistic and p-value**
 
@@ -2029,7 +2038,7 @@ The P-value graph displays the chi-squared distribution under the null hypothesi
 
 **Decision**
 
-Since the p-value is $< \alpha$, $0.00752$ is $<0.02$, we reject the null hypothesis.
+Since the p-value is $< \alpha$, $0.00752$ is $<0.05$, we reject the null hypothesis.
 
 **Conclusion**
 
@@ -2041,7 +2050,7 @@ There is sufficient evidence to support the claim that at least one distribution
 ### Critical Region Approach
 
 The critical region approach for a chi-square test for homogeneity is identical to the approach used for the chi-square goodness-of-fit test and the chi-square test for independence. Determine the critical value using the significance level, $\alpha$, and the appropriate degrees of freedom, then compare the test statistic to the critical value.
- 
+
 - If the test statistic is greater than or equal to the critical value, reject $H_0$.
 - If the test statistic is less than the critical value, fail to reject $H_0$.
 
@@ -2071,7 +2080,7 @@ Since we are testing the same claim as @exm-customer-satisfaction-p-value, we wi
 
 **State null and alternative**
 
-$H_o: P_\text{Store A}=P_\text{Store B}=P_\text{Store C}$
+$H_0: P_\text{Store A}=P_\text{Store B}=P_\text{Store C}$
 
 where,
 
@@ -2167,7 +2176,7 @@ As we did before with previous $\chi^2$ tests, take a quick check that we have s
 
 We will again use the language of the question to help us with the hypotheses. The question is *"Is the distribution of survival status the same for male and female melanoma patients?"* So, we have
 
-$H_o: P_\text{Males}=P_\text{Females}$
+$H_0: P_\text{Males}=P_\text{Females}$
 
 where,
 
@@ -2182,7 +2191,7 @@ $\alpha=0.01$
 
 **Critical region approach to find test statistic and critical value**
 
-This dataset is in the dataset repository; however, [status]{.var} and [sex]{.var} are recorded as numbers.  In order to us these variables in a test for homogeneity, we need to reclassify these as categorical variables and add labels. In this example, we want to label the levels defined in the codebook. [Click here](#reclassifying-variables) to review how to reclassify variables. Teh dialog boxes are shown below.
+This dataset is in the dataset repository; however, [status]{.var} and [sex]{.var} are recorded as numbers.  In order to use these variables in a test for homogeneity, we need to reclassify these as categorical variables and add labels. In this example, we want to label the levels defined in the codebook. [Click here](#reclassifying-variables) to review how to reclassify variables. The dialog boxes are shown below.
 
 ```{r, echo=FALSE}
 #| label: fig-dialog-variable-editor-status
@@ -2451,9 +2460,9 @@ a\. Appropriate Test: Chi-Square Goodness-of-Fit Test
 
 b\. Hypotheses
 
-$H_o: P_\text{small}=0.25, P_\text{medium}=0.40, P_\text{large}=0.35$
+$H_0: P_\text{small}=0.25, P_\text{medium}=0.40, P_\text{large}=0.35$
 
-$H_a:$ he population does not follow the stated distribution
+$H_a:$ The population does not follow the stated distribution
 
 c\. Decision: Since the $\chi^2$ test statistic (11.961) does fall in the rejection region (above the critical value $\chi^2=9.210$), we reject the null hypothesis.
 
