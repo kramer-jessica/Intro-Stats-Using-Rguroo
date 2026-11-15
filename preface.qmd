@@ -111,11 +111,25 @@ We hope the book serves as a useful resource for your course.
 
 ## Instructor Resources
 
-**Upcoming MyOpenMath course.** A [MyOpenMath](https://www.myopenmath.com/) course designed to accompany this book is in development. It will include PowerPoint notes, videos, and algorithmically generated homework assignments with automatic grading.
+**Upcoming MyOpenMath course.** A [MyOpenMath](https://www.myopenmath.com/) course designed to accompany this book is in development. It will include class notes with accompanying videos, and algorithmically generated homework assignments with automatic grading.
 
 **Rguroo support.** Instructors can obtain a free, perpetual Rguroo license for free. Rguroo offers [video tutorials](https://www.rguroo.com/video-tutorials/) that walk through its features, which you can use yourself or share with students. Rguroo also provides one-on-one training for faculty upon request; you can [request a training session](https://www.rguroo.com/request-training/) on the Rguroo website.
 
+## About the Authors
+
+**Alicia Frost, Ed.D.,** is a full-time mathematics faculty member at Santiago Canyon College, where she teaches statistics and other mathematics courses. Her work centers on student success, which she supports through curriculum development, active and engaging instruction, and the purposeful use of educational technology. She is committed to making statistics relevant and approachable for a diverse community of learners and to helping students build confidence in quantitative reasoning and data literacy. Through this book, she hopes students will develop the statistical thinking they need to interpret data, ask informed questions, and make evidence-based decisions in their academic, professional, and personal lives.
+
+**Mortaza (Mori) Jamshidian** is a CNSM Distinguished Professor in the Department of Mathematics at California State University, Fullerton, where he directs the M.S. program in Statistics. He has taught statistics for more than 30 years. His teaching focuses on helping students understand statistical ideas and use them to reason about data, without the tedious computation that can distract from learning the concepts. This philosophy led him to co-found Rguroo, statistical software designed to support the teaching and learning of statistics. His research spans computational statistics and statistics education and has appeared in both major theoretical and applied statistics journals. He has also given workshops and talks on teaching statistics to college and university faculty.
+
+**Jessica Kramer, M.S.,** is a full-time mathematics faculty member at Santiago Canyon College, where she teaches statistics, calculus, data science, and other courses. She holds master's degrees in Statistics and in Mathematics with a Teaching Emphasis from California State University, Fullerton, a combination that reflects her belief that statistical expertise is most valuable when matched with thoughtful teaching. She helped build SCC's Data Science program, which gives students hands-on experience with real data and modern tools. In her classroom, students learn statistics by doing it: asking questions, exploring data, and interpreting what they find. She hopes this book helps students see statistics as a practical way to make sense of the world and gives them the confidence to reason with data in their courses, careers, and everyday lives.
+
 ## Acknowledgments
+
+The text and instructional materials in this book are original work, written by Alicia Frost, Mori Jamshidian, and Jessica Kramer. The instructional framework and layout were developed specifically for this book.
+
+We are grateful to Mojgan Khatoonabadi (Los Angeles City College) for reviewing the text and offering helpful feedback. We also thank Shahram Zadeh (Soflytics Corp.) for his assistance with Rguroo software and for making the datasets available in the Rguroo repository. We are especially grateful to the many students who have taken our statistics courses over the years. Their questions and feedback have helped us improve both our teaching and this book.
+
+Selected datasets and data examples are adapted from Kathryn Kozak's *Statistics Using Technology*, 4th edition (2025), available from [Coconino Community College](https://www.coconino.edu/ccc-pages/statistics-using-technology/4th/) and licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/). These adapted materials are shared under the same license.
 
 <!--
 This is test of my macros:
@@ -138,3 +152,6 @@ Copyright © 2026 A. Frost, M. Jamshidian, and J. Kramer.
 This work is licensed under the [Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
 
 ![](Creative_commons.png){fig-alt="Creative Commons Attribution-ShareAlike 4.0 International"}
+
+
+

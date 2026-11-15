@@ -8,15 +8,22 @@ title-block-style: none
 #title-block-header {
   display: none !important;
 }
+
 .cover-img,
 .cover-img img {
   display: block;
-  max-height: 90vh;   /* never taller than 90% of the screen */
-  max-width: 100%;    /* never wider than the page on phones */
+  max-height: 90vh;
+  max-width: 100%;
   width: auto;
   height: auto;
-  margin: 0 auto;     /* center it */
+  margin: 0 auto;
+}
+
+h1.unnumbered {
+  display: none !important;
 }
 </style>
+
+# Cover {.unnumbered .unlisted}
 
 ![](images/cover_page.jpg){.cover-img fig-alt="Cover of Introductory Statistics: A Conceptual Approach Using Rguroo"}

@@ -1,184 +1,193 @@
 ---
 title: "References"
-author: Kathryn Kozak
 format: html
 editor: visual
 ---
 
-## Data Sources:
+## Works Cited
 
-(n.d.). Retrieved July 18, 2019, from https://www.idvbook.com/teaching-aid/data-sets/the-breakfast-cereal-data-set/ The Best Kids' Cereal. (n.d.). Retrieved July 18, 2019, from https://www.ranker.com/list/best-kids-cereal/ranker-food
+Jamshidian, M., & Jamshidian, P. (2026). Unraveling the mystery of equality in the null hypothesis: How using inequality enhances conceptual understanding of hypothesis testing for our introductory students. *Journal of Statistics and Data Science Education*, 1–11. <https://doi.org/10.1080/26939169.2025.2610942>
 
-(n.d.). Retrieved from https://www3.nd.edu/\~busiforc/handouts/Data and Stories/t test/Friday The Thirteenth/Friday The Thirteenth Data.html
+## Data Sources
 
-(n.d.). Retrieved July 21, 2019, from https://www3.nd.edu/\~busiforc/handouts/Data and Stories/regression/us auto mileage/usautomileage.html
+### Articles, Books, and Reports
 
-http://apps.who.int/gho/athena/data/download.xsl?format=xml&target=GHO/WHOSIS_000001&profile=excel&filter=COUNTRY:;SEX:;REGION:EUR
+American Statistical Association. (n.d.). *ASA calls time on "statistically significant" in science research*. Retrieved July 16, 2019, from <https://www.amstat.org/asa/News/ASA-Calls-Time-on-Statistically-Significant-in-Science-Research.aspx>
 
-Aboriginal deaths in custody. (2013, September 26). Retrieved from \<http://www.statsci.org/data/oz/custody.html
+Australian Human Rights Commission. (1996). *Indigenous deaths in custody 1989–1996*. <http://www.humanrights.gov.au/publications/indigenous-deaths-custody>
 
-Activities of Dolphin Groups. (n.d.). Retrieved July 12, 2019, from http://www.statsci.org/data/general/dolpacti.html
+Bhat, R., & Kushtagi, P. (2006). A re-look at the duration of human pregnancy. *Singapore Medical Journal*, *47*(12), 1044–1048. <http://www.ncbi.nlm.nih.gov/pubmed/17139400>
 
-Advanced Solutions International, Inc. (n.d.). Retrieved July 16, 2019, from https://www.amstat.org/asa/News/ASA-Calls-Time-on-Statistically-Significant-in-Science-Research.aspx
+Boyle, P., Flowerdew, R., & Williams, A. (1997). Evaluating the goodness of fit in models of sparse medical data: A simulation approach. *International Journal of Epidemiology*, *26*(3), 651–656. <http://ije.oxfordjournals.org/content/26/3/651.full.pdf>
 
-Annual maximums of daily rainfall in Sydney. (2013, September 25). Retrieved from \<http://www.statsci.org/data/oz/sydrain.html\>
+Centers for Disease Control and Prevention. (2012). *Autism and Developmental Disabilities Monitoring Network: 2012 community report*. <http://www.cdc.gov/ncbddd/autism/documents/ADDM-2012-Community-Report.pdf>
 
-AP exam scores. (2013, November 20). Retrieved from \<http://wiki.stat.ucla.edu/socr/index.php/SOCR_Data_Dinov_030708_APExamScores\>
+College Board. (2012). *Total group profile report*. <http://media.collegeboard.com/digitalServices/pdf/research/TotalGroup-2012.pdf>
 
-Appliance life expectancy. (2013, November 8). Retrieved from \<http://www.mrappliance.com/expert/life-guide/\>
+11 little-known facts about left-handers. (2012, October 29). *HuffPost*. <http://www.huffingtonpost.com/2012/10/29/left-handed-facts-lefties_n_2005864.html>
 
-Australian Human Rights Commission, (1996). Indigenous deaths in custody 1989 - 1996. Retrieved from website: \<http://www.humanrights.gov.au/publications/indigenous-deaths-custody\>
+Federal Trade Commission. (2008). *Consumer fraud and identity theft complaint data: January–December 2007*. <http://www.ftc.gov/opa/2008/02/fraud.pdf>
 
-Bhat, R., & Kushtagi, P. (2006). A re-look at the duration of human pregnancy. Singapore Med J., 47(12), 1044-8. Retrieved from \<http://www.ncbi.nlm.nih.gov/pubmed/17139400\>
+Flanagan, R., Rooney, C., & Griffiths, C. (2005). Fatal poisoning in childhood, England & Wales 1968–2000. *Forensic Science International*, *148*, 121–129. <http://www.cdc.gov/nchs/data/ice/fatal_poisoning_child.pdf>
 
-Boyle, P., Flowerdew, R., & Williams, A. (1997). Evaluating the goodness of fit in models of sparse medical data: A simulation approach. International Journal of Epidemiology, 26(3), 651-656. Retrieved from \<http://ije.oxfordjournals.org/content/26/3/651.full.pdf\> html
+Gettler, L. T., McDade, T. W., Feranil, A. B., & Kuzawa, C. W. (2011). Longitudinal evidence that fatherhood decreases testosterone in human males. *Proceedings of the National Academy of Sciences*. <https://doi.org/10.1073/pnas.1105403108>
 
-Brain2bodyweight. (2013, November 16). Retrieved from http://wiki.stat.ucla.edu/socr/index.php/SOCR_Data_Brain2BodyWeight
+Ho, P. M., Bryson, C. L., & Rumsfeld, J. S. (2009). Medication adherence. *Circulation*, *119*(23), 3028–3035. <http://circ.ahajournals.org/content/119/23/3028>
 
-Buy sushi grade fish online. (2013, November 20). Retrieved from http://www.catalinaop.com/
+Janssen, P. A., Thiessen, P., Klein, M. C., Whitfield, M. F., MacNab, Y. C., & Cullis-Kuhl, S. C. (2007). Standards for the measurement of birth weight, length and head circumference at term in neonates of European, Chinese and South Asian ancestry. *Open Medicine*, *1*(2), e74–e88. <http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2802014/>
 
-Cancer survival story. (2013, December 04). Retrieved from \<http://lib.stat.cmu.edu/DASL/Stories/CancerSurvival.html\>
+Kuulasmaa, K., Hense, H., & Tolonen, H. (1998). *Quality assessment of data on blood pressure in the WHO MONICA Project* (ISSN 2242-1246). World Health Organization, WHO MONICA Project. <http://www.thl.fi/publications/monica/bp/bpqa.htm>
 
-Calories datafile. (2013, December 07). Retrieved from \<http://lib.stat.cmu.edu/DASL/Datafiles/Calories.html\>
+Lange, T. L., Royals, H. E., & Connor, L. L. (1993). Influence of water chemistry on mercury concentration in largemouth bass from Florida lakes. *Transactions of the American Fisheries Society*, *122*, 74–84.
 
-Capital and rental values of Auckland properties. (2013, September 26). Retrieved from http://www.statsci.org/data/oz/rentcap.html
+Lawes, C., Hoorn, S., Law, M., & Rodgers, A. (2004). High cholesterol. In M. Ezzati, A. Lopez, A. Rodgers, & C. Murray (Eds.), *Comparative quantification of health risks* (Vol. 1, pp. 391–496). World Health Organization. <http://www.who.int/publications/cra/chapters/volume1/0391-0496.pdf>
 
-Car Preferences. (n.d.). Retrieved July 11, 2019, from http://www.statsci.org/data/oz/carprefs.html
+Lee, A. (1994). *Data analysis: An introduction based on R*. Auckland. <http://www.statsci.org/data/oz/nzrivers.html>
 
-CDC-data and statistics, autism spectrum disorders - ncbdd. (2013, October 21). Retrieved from \<http://www.cdc.gov/ncbddd/autism/data.html\>
+Office of the Assistant Secretary for Planning and Evaluation. (2013). *Health insurance marketplace premiums for 2014* [Issue brief]. U.S. Department of Health and Human Services. <http://aspe.hhs.gov/health/reports/2013/marketplacepremiums/ib_premiumslandscape.pdf>
 
-CDC features - new data on autism spectrum disorders. (2013, November 26). Retrieved from \<http://www.cdc.gov/features/countingautism/\>
+Olson, K., & Hanson, J. (1997). Using Reiki to manage pain: A preliminary report. *Cancer Prevention & Control*, *1*(2), 108–113. <http://www.ncbi.nlm.nih.gov/pubmed/9765732>
 
-Center for Disease Control and Prevention, Prevalence of Autism Spectrum Disorders - Autism and Developmental Disabilities Monitoring Network. (2008). Autism and developmental disabilities monitoring network-2012. Retrieved from website: \<http://www.cdc.gov/ncbddd/autism/documents/ADDM-2012-Community-Report.pdf\>
+Ovegård, M., Berndt, K., & Lunneryd, S. (2012). Condition indices of Atlantic cod (*Gadus morhua*) biased by capturing method. *ICES Journal of Marine Science*. <https://doi.org/10.1093/icesjms/fss145>
 
-CO2 emissions (metric tons per capita). (n.d.). Retrieved July 18, 2019, from https://data.worldbank.org/indicator/EN.ATM.CO2E.PC
+Saiki, M. K., Slotton, D. G., May, T. W., Ayers, S. M., & Alpers, C. N. (2004). *Summary of total mercury concentrations in fillets of selected sport fishes collected during 2000–2003 from Lake Natoma, Sacramento County, California* (Data Series 103). U.S. Geological Survey.
 
-College Board, SAT. (2012). Total group profile report. Retrieved from website: \<http://media.collegeboard.com/digitalServices/pdf/research/TotalGroup-2012.pdf\>
+Sanchez, Y. W. (2016, October 20). Poll: Arizona voters still favor legalizing marijuana. *The Arizona Republic*. <https://www.azcentral.com/story/news/politics/elections/2016/10/20/poll-arizona-marijuana-legalization-proposition-205/92417690/>
 
-Consumer Price Index Data from 1913 to 2019. (2019, June 12). Retrieved July 10, 2019, from https://www.usinflationcalculator.com/inflation/consumer-price-index-and-annual-percent-changes-from-1913-to-2008/
+Schultz, S. T., Klonoff-Cohen, H. S., Wingard, D. L., Akshoomoff, N. A., Macera, C. A., Ji, M., & Bacher, C. (2006). Breastfeeding, infant formula supplementation, and autistic disorder: The results of a parent survey. *International Breastfeeding Journal*, *1*, Article 16. <https://doi.org/10.1186/1746-4358-1-16>
 
-CPS News Releases. (n.d.). Retrieved July 8, 2019, from https://www.bls.gov/cps/
+U.S. Census Bureau. (2012). *Households by age of householder and size of household: 1990 to 2010* (Statistical Abstract of the United States: 2012, Table 62). <http://www.census.gov/compendia/statab/2012/tables/12s0062.pdf>
 
-Cuckoo eggs in nest of other birds. (2013, December 04). Retrieved from \<http://lib.stat.cmu.edu/DASL/Stories/cuckoo.html\>
+### Websites and Data Repositories
 
-Current health expenditure (% of GDP). (n.d.). Retrieved July 9, 2019, from https://data.worldbank.org/indicator/SH.XPD.CHEX.GD.ZS
+*Aboriginal deaths in custody*. (n.d.). Retrieved September 26, 2013, from <http://www.statsci.org/data/oz/custody.html>
 
-11 little-known facts about left-handers. (2013, October 21). Retrieved from \<http://www.huffingtonpost.com/2012/10/29/left-handed-facts-lefties_n_2005864.html\>
+*Activities of dolphin groups*. (n.d.). Retrieved July 12, 2019, from <http://www.statsci.org/data/general/dolpacti.html>
 
-Education by age datafile. (2013, December 05). Retrieved from \<http://lib.stat.cmu.edu/DASL/Datafiles/Educationbyage.html\>
+*Annual maximums of daily rainfall in Sydney*. (n.d.). Retrieved September 25, 2013, from <http://www.statsci.org/data/oz/sydrain.html>
 
-Encyclopedia Titanica. (2013, November 09). Retrieved from \<http://www.encyclopedia-titanica.org/\>
+*AP exam scores*. (n.d.). Retrieved November 20, 2013, from <http://wiki.stat.ucla.edu/socr/index.php/SOCR_Data_Dinov_030708_APExamScores>
 
-Deaths from firearms. (2013, September 26). Retrieved from http://www.statsci.org/data/oz/firearms.html
+*Appliance life expectancy*. (n.d.). Retrieved November 8, 2013, from <http://www.mrappliance.com/expert/life-guide/>
 
-Flanagan, R., Rooney, C., & Griffiths, C. (2005). Fatal poisoning in childhood, england & wales 1968-2000. Forensic Science International, 148:121-129, Retrieved from \<http://www.cdc.gov/nchs/data/ice/fatal_poisoning_child.pdf\>
+*The best kids' cereal*. (n.d.). Retrieved July 18, 2019, from <https://www.ranker.com/list/best-kids-cereal/ranker-food>
 
-Federal Trade Commission, (2008). Consumer fraud and identity theft complaint data: January-December 2007. Retrieved from website: \<http://www.ftc.gov/opa/2008/02/fraud.pdf\>
+*Brain2BodyWeight*. (n.d.). Retrieved November 16, 2013, from <http://wiki.stat.ucla.edu/socr/index.php/SOCR_Data_Brain2BodyWeight>
 
-Fertility rate, total (births per woman). (n.d.). Retrieved July 8, 2019, from https://data.worldbank.org/indicator/SP.DYN.TFRT.IN
+*The breakfast cereal data set*. (n.d.). Retrieved July 18, 2019, from <https://www.idvbook.com/teaching-aid/data-sets/the-breakfast-cereal-data-set/>
 
-Find Out How Many Calories in Beer? (n.d.). Retrieved July 21, 2019, from https://www.beer100.com/beer-calories/
+*Buy sushi grade fish online*. (n.d.). Retrieved November 20, 2013, from <http://www.catalinaop.com/>
 
-Gettler, L. T., McDade, T. W., Feranil, A. B., & Kuzawa, C. W. (2011). Longitudinal evidence that fatherhood decreases testosterone in human males. The Proceedings of the National Academy of Sciences, PNAS 2011, doi: 10.1073/pnas.1105403108
+*Calories datafile*. (n.d.). Retrieved December 7, 2013, from <http://lib.stat.cmu.edu/DASL/Datafiles/Calories.html>
 
-Global health observatory data respository. (2013, October 09). Retrieved from \[http://apps.who.int/gho/athena/data/download.xsl?format=xml&target=GHO/MORT\\\\\\\_400&profile=excel&filter=AGEGROUP:YEARS05-14;AGEGROUP:YEARS15-29;AGEGROUP:YEARS30-49;AGEGROUP:YEARS50-69;AGEGROUP:YEARS70\](http://apps.who.int/gho/athena/data/download.xsl?format=xml&target=GHO/MORT\\\_400&profile=excel&filter=AGEGROUP:YEARS05-14;AGEGROUP:YEARS15-29;AGEGROUP:YEARS30-49;AGEGROUP:YEARS50-69;AGEGROUP:YEARS70){.uri} ;MGHEREG:REG6_AFR;GHECAUSES:\\;SEX:\\
+*Cancer survival story*. (n.d.). Retrieved December 4, 2013, from <http://lib.stat.cmu.edu/DASL/Stories/CancerSurvival.html>
 
-Health Insurance Market Place Retrieved from website: http://aspe.hhs.gov/health/reports/2013/marketplacepremiums/ib_premiumslandscape.pdf
+*Capital and rental values of Auckland properties*. (n.d.). Retrieved September 26, 2013, from <http://www.statsci.org/data/oz/rentcap.html>
 
-Helmet Sizes for New Zealand Airforce. (n.d.). Retrieved July 20, 2019, from http://www.statsci.org/data/oz/nzhelmet.html
+*Car preferences*. (n.d.). Retrieved July 11, 2019, from <http://www.statsci.org/data/oz/carprefs.html>
 
-Ho, P. M., Bryson, C. L., & Rumsfeld, J. S. (2009). Medication adherence. Circulation, 119(23), 3028-3035. Retrieved from \<http://circ.ahajournals.org/content/119/23/3028\>
+*CDC features: New data on autism spectrum disorders*. (n.d.). Retrieved November 26, 2013, from <http://www.cdc.gov/features/countingautism/>
 
-Households by age of householder and size of household: 1990 to 2010. (2013, October 19). Retrieved from \<http://www.census.gov/compendia/statab/2012/tables/12s0062.pdf\>
+*CO2 emissions (metric tons per capita)*. (n.d.). Retrieved July 18, 2019, from <https://data.worldbank.org/indicator/EN.ATM.CO2E.PC>
 
-Jamshidian, M., \\& Jamshidian, P. (2026). Unraveling the Mystery of Equality in the Null Hypothesis: How Using Inequality Enhances Conceptual Understanding of Hypothesis Testing for Our Introductory Students. \_*Journal of Statistics and Data Science Education*\_, 1–11. [https://doi.org/10.1080/26939169.2025.2610942](https://doi.org/10.1080/26939169.2025.2610942 )
+*Consumer Price Index data from 1913 to 2019*. (2019, June 12). Retrieved July 10, 2019, from <https://www.usinflationcalculator.com/inflation/consumer-price-index-and-annual-percent-changes-from-1913-to-2008/>
 
-Janssen, P. A., Thiessen, P., Klein, M. C., Whitfield, M. F., MacNab, Y. C., & Cullis-Kuhl, S. C. (2007). Standards for the measurement of birth weight, length and head circumference at term in neonates of european, chinese and south asian ancestry. Open Medicine, 1(2), e74-e88. Retrieved from \<http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2802014/\>
+*CPS news releases*. (n.d.). Retrieved July 8, 2019, from <https://www.bls.gov/cps/>
 
-John Matic provided the data from a company he worked with. The company's name is fictitious, but the data is from an actual company.
+*Cuckoo eggs in nest of other birds*. (n.d.). Retrieved December 4, 2013, from <http://lib.stat.cmu.edu/DASL/Stories/cuckoo.html>
 
-Kiama blowhole eruptions. (2013, September 25). Retrieved from \<http://www.statsci.org/data/oz/kiama.html\>
+*Current health expenditure (% of GDP)*. (n.d.). Retrieved July 9, 2019, from <https://data.worldbank.org/indicator/SH.XPD.CHEX.GD.ZS>
 
-Kozak K (2019). Survey results form surveys collected in statistics class at Coconino Community College.
+*Data and statistics: Autism spectrum disorders*. (n.d.). Retrieved October 21, 2013, from <http://www.cdc.gov/ncbddd/autism/data.html>
 
-Kuulasmaa, K., Hense, H., & Tolonen, H. World Health Organization (WHO), WHO Monica Project. (1998). Quality assessment of data on blood pressure in the who monica project (ISSN 2242-1246). Retrieved from WHO MONICA Project e-publications website: \<http://www.thl.fi/publications/monica/bp/bpqa.htm\>
+*Deaths from firearms*. (n.d.). Retrieved September 26, 2013, from <http://www.statsci.org/data/oz/firearms.html>
 
-Labor force participation rate, female (% of female population ages 15 ) (modeled ILO estimate). (n.d.). Retrieved July 20, 2019, from https://data.worldbank.org/indicator/SL.TLF.CACT.FE.ZS
+*Education by age datafile*. (n.d.). Retrieved December 5, 2013, from <http://lib.stat.cmu.edu/DASL/Datafiles/Educationbyage.html>
 
-Lange TL, Royals HE, Connor LL (1993) Influence of water chemistry on mercury concentration in largemouth bass from Florida lakes. Trans Am Fish Soc 122:74-84. Michael K. Saiki, Darell G. Slotton, Thomas W. May, Shaun M. Ayers, and Charles N. Alpers (2000) Summary of Total Mercury Concentrations in Fillets of Selected Sport Fishes Collected during 2000--2003 from Lake Natoma, Sacramento County, California (Raw data is included in appendix), U.S. Geological Survey Data Series 103, 1-21. NISER 081107 ID Data. (n.d.). Retrieved July 18, 2019, from http://wiki.stat.ucla.edu/socr/index.php/NISER_081107_ID_Data
+*Encyclopedia Titanica*. (n.d.). Retrieved November 9, 2013, from <http://www.encyclopedia-titanica.org/>
 
-Lawes, C., Hoorn, S., Law, M., & Rodgers, A. (2004). High cholesterol. In M. Ezzati, A. Lopez, A. Rodgers & C. Murray (Eds.), Comparative Quantification of Health Risks (1 ed., Vol. 1, pp. 391-496). Retrieved from \<http://www.who.int/publications/cra/chapters/volume1/0391-0496.pdf\>
+*Fertility rate, total (births per woman)*. (n.d.). Retrieved July 8, 2019, from <https://data.worldbank.org/indicator/SP.DYN.TFRT.IN>
 
-Lee, A. (1994). Data analysis: An introduction based on r. Auckland. Retrieved from \<http://www.statsci.org/data/oz/nzrivers.html\>
+*Find out how many calories in beer?* (n.d.). Retrieved July 21, 2019, from <https://www.beer100.com/beer-calories/>
 
-Life expectancy at birth. (2013, October 14). Retrieved from http://data.worldbank.org/indicator/SP.DYN.LE00.IN
+*Friday the thirteenth data*. (n.d.). <https://www3.nd.edu/~busiforc/handouts/Data%20and%20Stories/t%20test/Friday%20The%20Thirteenth/Friday%20The%20Thirteenth%20Data.html>
 
-Life expectancy in southeast Asia. (2013, September 23). Retrieved from \<http://apps.who.int/gho/data/node.main.688\>
+*Global Health Observatory data repository: African Region*. (n.d.). Retrieved October 9, 2013, from <http://apps.who.int/gho/athena/data/download.xsl?format=xml&target=GHO/MORT_400&profile=excel&filter=AGEGROUP:YEARS05-14;AGEGROUP:YEARS15-29;AGEGROUP:YEARS30-49;AGEGROUP:YEARS50-69;AGEGROUP:YEARS70+;MGHEREG:REG6_AFR;GHECAUSES:*;SEX:*>
 
-Madison, J. (2013, October 15). M&M's color distribution analysis. Retrieved from \<http://joshmadison.com/2007/12/02/mms-color-distribution-analysis/\>
+*Global Health Observatory data repository: European Region*. (n.d.). <http://apps.who.int/gho/athena/data/download.xsl?format=xml&target=GHO/WHOSIS_000001&profile=excel&filter=COUNTRY:*;SEX:*;REGION:EUR>
 
-Magazine ads readability. (2013, December 04). Retrieved from \<http://lib.stat.cmu.edu/DASL/Datafiles/magadsdat.html\>
+*Helmet sizes for New Zealand Air Force*. (n.d.). Retrieved July 20, 2019, from <http://www.statsci.org/data/oz/nzhelmet.html>
 
-M&M's Color Distribution Analysis. (n.d.). Retrieved July 11, 2019, from https://joshmadison.com/2007/12/02/mms-color-distribution-analysis/
+*Kiama blowhole eruptions*. (n.d.). Retrieved September 25, 2013, from <http://www.statsci.org/data/oz/kiama.html>
 
-Maintaining Balance while Concentrating. (n.d.). Retrieved July 19, 2019, from http://www.statsci.org/data/general/balaconc.html
+Kozak, K. (2019). *Survey results from surveys collected in statistics class at Coconino Community College* [Unpublished raw data].
 
-MLB heightsweights. (2013, November 16). Retrieved from http://wiki.stat.ucla.edu/socr/index.php/SOCR_Data_MLB_HeightsWeights
+*Labor force participation rate, female (% of female population ages 15+) (modeled ILO estimate)*. (n.d.). Retrieved July 20, 2019, from <https://data.worldbank.org/indicator/SL.TLF.CACT.FE.ZS>
 
-OECD economic development. (2013, December 04). Retrieved from http://lib.stat.cmu.edu/DASL/Datafiles/oecdat.html
+*Life expectancy at birth*. (n.d.). Retrieved October 14, 2013, from <http://data.worldbank.org/indicator/SP.DYN.LE00.IN>
 
-Olson, K., & Hanson, J. (1997). Using reiki to manage pain: a preliminary report. Cancer Prev Control, 1(2), 108-13. Retrieved from \<http://www.ncbi.nlm.nih.gov/pubmed/9765732\>
+*Life expectancy in Southeast Asia*. (n.d.). Retrieved September 23, 2013, from <http://apps.who.int/gho/data/node.main.688>
 
-Ovegard, M., Berndt, K., & Lunneryd, S. (2012). Condition indices of Atlantic cod (gadus morhua) biased by capturing method. ICES Journal of Marine Science, doi: 10.1093/icesjms/fss145
+Madison, J. (2007, December 2). *M&M's color distribution analysis*. <https://joshmadison.com/2007/12/02/mms-color-distribution-analysis/>
 
-Popular kids datafile. (2013, December 05). Retrieved from \<http://lib.stat.cmu.edu/DASL/Datafiles/PopularKids.html\>
+*Magazine ads readability*. (n.d.). Retrieved December 4, 2013, from <http://lib.stat.cmu.edu/DASL/Datafiles/magadsdat.html>
 
-Population density (people per sq. km of land area). (n.d.). Retrieved July 9, 2019, from https://data.worldbank.org/indicator/EN.POP.DNST
+*Maintaining balance while concentrating*. (n.d.). Retrieved July 19, 2019, from <http://www.statsci.org/data/general/balaconc.html>
 
-Population reference bureau. (2013, October 8). Retrieved from \<http://www.prb.org/DataFinder/Topic/Rankings.aspx?ind=25\>
+*MLB heights and weights*. (n.d.). Retrieved November 16, 2013, from <http://wiki.stat.ucla.edu/socr/index.php/SOCR_Data_MLB_HeightsWeights>
 
-Prediction of Height from Metacarpal Bone Length. (n.d.). Retrieved July 9, 2019, from http://www.statsci.org/data/general/stature.html
+National Weather Service. (2016, November 15). *1950 Oklahoma tornadoes*. <https://www.weather.gov/oun/tornadodata-ok-1950>
 
-Pregnant women receiving prenatal care (%). (n.d.). Retrieved July 9, 2019, from https://data.worldbank.org/indicator/SH.STA.ANVC.ZS
+*NISER 081107 ID data*. (n.d.). Retrieved July 18, 2019, from <http://wiki.stat.ucla.edu/socr/index.php/NISER_081107_ID_Data>
 
-Pulse rates before and after exercise. (2013, September 25). Retrieved from \<http://www.statsci.org/data/oz/ms212.html\>
+*OECD economic development*. (n.d.). Retrieved December 4, 2013, from <http://lib.stat.cmu.edu/DASL/Datafiles/oecdat.html>
 
-Reserve Bank of Australia. (2019, May 13). Statistical Tables. Retrieved July 10, 2019, from https://www.rba.gov.au/statistics/tables/
+*Popular kids datafile*. (n.d.). Retrieved December 5, 2013, from <http://lib.stat.cmu.edu/DASL/Datafiles/PopularKids.html>
 
-Ryan, B. F., Joiner, B. L., & Ryan, Jr, T. A. (1985). Cholesterol levels after heart attack. Retrieved from \<http://www.statsci.org/data/general/cholest.html\>
+*Population density (people per sq. km of land area)*. (n.d.). Retrieved July 9, 2019, from <https://data.worldbank.org/indicator/EN.POP.DNST>
 
-Sanchez, Y. W. (2016, October 20). Poll: Arizona voters still favor legalizing marijuana. Retrieved from https://www.azcentral.com/story/news/politics/elections/2016/10/20/poll-arizona-marijuana-legalization-proposition-205/92417690/
+Population Reference Bureau. (n.d.). *DataFinder: Rankings*. Retrieved October 8, 2013, from <http://www.prb.org/DataFinder/Topic/Rankings.aspx?ind=25>
 
-Schultz, S. T., Klonoff-Cohen, H. S., Wingard, D. L., Askhoomoff, N. A., Macera, C. A., Ji, M., & Bacher, C. (2006). Breastfeeding, infant formula supplementation, and autistic disorder: the results of a parent survey. International Breastfeeding Journal, 1(16), doi: 10.1186/1746-4358-1-16
+*Prediction of height from metacarpal bone length*. (n.d.). Retrieved July 9, 2019, from <http://www.statsci.org/data/general/stature.html>
 
-Seafood online. (2013, November 20). Retrieved from http://www.allfreshseafood.com/
+*Pregnant women receiving prenatal care (%)*. (n.d.). Retrieved July 9, 2019, from <https://data.worldbank.org/indicator/SH.STA.ANVC.ZS>
 
-Smoking and cancer. (2013, December 04). Retrieved from http://lib.stat.cmu.edu/DASL/Datafiles/cigcancerdat.html
+*Pulse rates before and after exercise*. (n.d.). Retrieved September 25, 2013, from <http://www.statsci.org/data/oz/ms212.html>
 
-SOCR 012708 id data hotdogs. (2013, November 13). Retrieved from http://wiki.stat.ucla.edu/socr/index.php/SOCR_012708_ID_Data_HotDogs
+Reserve Bank of Australia. (2019, May 13). *Statistical tables*. Retrieved July 10, 2019, from <https://www.rba.gov.au/statistics/tables/>
 
-SOCR Data 2008 World CountriesRankings. (n.d.). Retrieved July 19, 2019, from http://wiki.stat.ucla.edu/socr/index.php/SOCR_Data_2008_World_CountriesRankings#SOCR_Data\_-\_Ranking_of_the_top_100_Countries_based_on_Political.2C_Economic.2C_Health.2C_and_Quality-of-Life_Factors
+Ryan, B. F., Joiner, B. L., & Ryan, T. A., Jr. (1985). *Cholesterol levels after heart attack*. <http://www.statsci.org/data/general/cholest.html>
 
-SOCR data Oct2009 id ni. (2013, November 16). Retrieved from http://wiki.stat.ucla.edu/socr/index.php/SOCR_Data_Oct2009_ID_NI
+*Seafood online*. (n.d.). Retrieved November 20, 2013, from <http://www.allfreshseafood.com/>
 
-SOCR data nips infantvitK shotdata. (2013, November 16). Retrieved from http://wiki.stat.ucla.edu/socr/index.php/SOCR_Data_NIPS_InfantVitK_ShotData
+*Smoking and cancer*. (n.d.). Retrieved December 4, 2013, from <http://lib.stat.cmu.edu/DASL/Datafiles/cigcancerdat.html>
 
-Staff nurse - RN salary. (2013, November 08). Retrieved from \<http://www1.salary.com/Staff-Nurse-RN-salary.html\>
+*SOCR 012708 ID data: Hot dogs*. (n.d.). Retrieved November 13, 2013, from <http://wiki.stat.ucla.edu/socr/index.php/SOCR_012708_ID_Data_HotDogs>
 
-Time between nerve pulses. (2019, July 3). Retrieved from \<http://www.statsci.org/data/general/nerve.html\>
+*SOCR data 2008 world countries rankings*. (n.d.). Retrieved July 19, 2019, from <http://wiki.stat.ucla.edu/socr/index.php/SOCR_Data_2008_World_CountriesRankings#SOCR_Data_-_Ranking_of_the_top_100_Countries_based_on_Political.2C_Economic.2C_Health.2C_and_Quality-of-Life_Factors>
 
-Time of passages of play in rugby. (2013, September 25). Retrieved from \<http://www.statsci.org/data/oz/rugby.html\>
+*SOCR data NIPS infant vitamin K shot data*. (n.d.). Retrieved November 16, 2013, from <http://wiki.stat.ucla.edu/socr/index.php/SOCR_Data_NIPS_InfantVitK_ShotData>
 
-Tuition and Fees, 1998-99 Through 2018-19. (2018, December 31). Retrieved from https://www.chronicle.com/interactives/tuition-and-fees
+*SOCR data Oct2009 ID NI*. (n.d.). Retrieved November 16, 2013, from <http://wiki.stat.ucla.edu/socr/index.php/SOCR_Data_Oct2009_ID_NI>
 
-U.S. Census Bureau, Current Population Survey, Annual Social and Economic Supplements.
+*Staff nurse – RN salary*. (n.d.). Retrieved November 8, 2013, from <http://www1.salary.com/Staff-Nurse-RN-salary.html>
 
-US Department of Agriculture, Agricultural Research Service. (2012). What we eat in America. Retrieved from website: \<http://www.ars.usda.gov/Services/docs.htm?docid=18349\>
+*Time between nerve pulses*. (n.d.). Retrieved July 3, 2019, from <http://www.statsci.org/data/general/nerve.html>
 
-US Department of Commerce, & Noaa. (2016, November 15). 1950 Oklahoma Tornadoes. Retrieved from https://www.weather.gov/oun/tornadodata-ok-1950
+*Time of passages of play in rugby*. (n.d.). Retrieved September 25, 2013, from <http://www.statsci.org/data/oz/rugby.html>
 
-UV radiation: Burden of disease by country. (2013, September 4). Retrieved from \<http://apps.who.int/gho/data/node.main.165?lang=en\>
+Tuition and fees, 1998–99 through 2018–19. (2018, December 31). *The Chronicle of Higher Education*. <https://www.chronicle.com/interactives/tuition-and-fees>
 
-Waste run up. (2013, December 04). Retrieved from \<http://lib.stat.cmu.edu/DASL/Stories/wasterunup.html\>
+U.S. Census Bureau. (n.d.). *Current Population Survey, Annual Social and Economic Supplements*.
 
-What percentage of people have green eyes?. (2013, October 21). Retrieved from \<http://www.ask.com/question/what-percentage-of-people-have-green-eyes\>
+U.S. Department of Agriculture, Agricultural Research Service. (2012). *What we eat in America*. <http://www.ars.usda.gov/Services/docs.htm?docid=18349>
+
+*UV radiation: Burden of disease by country*. (n.d.). Retrieved September 4, 2013, from <http://apps.who.int/gho/data/node.main.165?lang=en>
+
+*Waste run up*. (n.d.). Retrieved December 4, 2013, from <http://lib.stat.cmu.edu/DASL/Stories/wasterunup.html>
+
+*What percentage of people have green eyes?* (n.d.). Retrieved October 21, 2013, from <http://www.ask.com/question/what-percentage-of-people-have-green-eyes>
+
+## Data Notes
+
+Data from a company were provided by John Matic, who worked with the company. The company's name is fictitious, but the data are from an actual company.
