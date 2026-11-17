@@ -7,7 +7,7 @@ editor: visual
 ```{r setup6, include=FALSE}
 library("mosaic") 
 library("NHANES") 
-Cholesterol<-read.csv( "https://krkozak.github.io/MAT160/cholesterol.csv")
+Cholesterol<-read.csv( "FJK_datasets/cholesterol.csv")
 ```
 
 ::: {.callout-note}
@@ -25,15 +25,13 @@ By the end of Chapter 6, you should be able to:
 **Before you begin, review the process for importing a dataset.** Click on the box below to expand the directions for importing a dataset into your Data Toolbox.
 
 ::: {#Importing-Data-to-Rguroo-Chapter-5 .callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'}  Importing Data to Rguroo"} 
-
-1. Open the **Data** toolbox in Rguroo.  
-2. From the [Data Import]{.dpd} dropdown, select [Dataset Repository]{.fun}.  
-3. In the top search box, type [kozak]{.typein}, then select the [Statistics Using Technology – Kozak]{.repo} repository.  
-4. In the middle search box, type the first few letters of the dataset, and choose your dataset that appears in the lower panel.  
-5. Click the [Import]{.button}. The dataset will be imported into your Rguroo account.  
-6. Click the [Close]{.button} to close the dialog.  
-7. To view the dataset, double-click the dataset under the **Data** toolbox list.
-
+1. Open the **Data** toolbox in Rguroo.
+2. From the [Data Import]{.dpd} dropdown, select [Dataset Repository]{.fun}.
+3. In the [Quick Filter]{.des} textbox, type [stats with rguroo]{.typein}, followed by a space. Then begin typing the dataset name. The results update as you type, so you can stop typing as soon as the dataset appears in the results panel.
+4. Select the dataset from the results panel.
+5. Click [Import]{.button} to import the dataset into your Rguroo account.
+6. Click [Close]{.button} to exit the dialog.
+7. To view the dataset, double-click its name in the **Data** toolbox list.
 :::
 
 
@@ -1228,13 +1226,13 @@ d.  Do the data come from a population that is normally distributed?
 
 :::
 
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [Blowhole_eruptions]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [Blowhole_eruptions]{.data}.
 
 ```{r eruption6-data, eval = TRUE, echo = FALSE}
 #| tbl-alt: "Time (in Seconds) Between Kiama Blowhole Eruptions"
 #| label: tbl-Eruption
 #| tbl-cap: "Time (in Seconds) Between Kiama Blowhole Eruptions"
-Eruption<-read.csv( "https://krkozak.github.io/MAT160/Blowhole_eruptions.csv") 
+Eruption<-read.csv( "FJK_datasets/Blowhole_eruptions.csv") 
 knitr::kable(head(Eruption))
 ```
 
@@ -1372,41 +1370,41 @@ d. Considering the density plot is bell shaped and the normal probability plot l
 1. The size of fish is very important to commercial fishing. A study conducted in 2012 collected the lengths of Atlantic cod caught in nets in Karlskrona (Ovegard, Berndt & Lunneryd, 2012). Data based on information from the study is in @tbl-Cod. Determine if the data is from a population that is normally distributed.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [Cod]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [Cod]{.data}.
 :::
 
 ```{r cod6-data, echo = FALSE}
 #| tbl-alt: "Atlantic Cod Lengths"
 #| label: tbl-Cod
 #| tbl-cap: "Atlantic Cod Lengths"
-Cod<-read.csv( "https://krkozak.github.io/MAT160/cod.csv") 
+Cod<-read.csv( "FJK_datasets/cod.csv") 
 knitr::kable(head(Cod))
 ```
 
 2.  The WHO MONICA Project collected blood pressure data for people in China (Kuulasmaa, Hense & Tolonen, 1998). Data based on information from the study is in @tbl-BP. Determine if the data is from a population that is normally distributed.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [BP]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [BP]{.data}.
 :::
 
 ```{r BP6-data, echo = FALSE}
 #| tbl-alt: "Blood Pressure Values for People in China"
 #| label: tbl-BP
 #| tbl-cap: "Blood Pressure Values for People in China"
-BP<-read.csv( "https://krkozak.github.io/MAT160/bp.csv") 
+BP<-read.csv( "FJK_datasets/bp.csv") 
 knitr::kable(head(BP))
 ```
 
 3.  Annual rainfalls for Sydney, Australia are given in @tbl-Annual ("Annual maximums of," 2013). Can you assume rainfall is normally distributed?
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [Annual]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [Annual]{.data}.
 :::
 
 ```{r annual6-data, echo = FALSE}
 #| tbl-alt: "Annual Rainfall in Sydney, Australia"
 #| label: tbl-Annual
 #| tbl-cap: "Annual Rainfall in Sydney, Australia"
-Annual<-read.csv( "https://krkozak.github.io/MAT160/annual.csv") 
+Annual<-read.csv( "FJK_datasets/annual.csv") 
 knitr::kable(head(Annual))
 ```

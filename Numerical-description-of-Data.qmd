@@ -24,13 +24,13 @@ By the end of Chapter 3, you should be able to:
 **Before you begin, Click to expand the box below to review the process for importing a dataset.**
 
 ::: {#Importing-cats-to-Rguroo .callout-note appearance="simple" collapse="true" icon="none" title="![](Rguroo_Icons/R_circle_logo.svg){width=22px style='vertical-align:middle;'}  Importing Data to Rguroo"}
-1.  Open the **Data** toolbox in Rguroo.\
-2.  From the [Data Import]{.dpd} dropdown, select [Dataset Repository]{.fun}.\
-3.  In the top search box, type [kozak]{.typein}, then select the [Statistics Using Technology – Kozak]{.repo} repository.\
-4.  In the middle search box, type the first few letters of the dataset name, and choose your desired dataset name that appears in the lower panel.\
-5.  Click the [Import]{.button}. The dataset will be imported to your Rguroo account.
-6.  Click [Close]{.button} to exit the dialog.\
-7.  To view the dataset, double-click the dataset name under the **Data** toolbox list.
+1. Open the **Data** toolbox in Rguroo.
+2. From the [Data Import]{.dpd} dropdown, select [Dataset Repository]{.fun}.
+3. In the [Quick Filter]{.des} textbox, type [stats with rguroo]{.typein}, followed by a space. Then begin typing the dataset name. The results update as you type, so you can stop typing as soon as the dataset appears in the results panel.
+4. Select the dataset from the results panel.
+5. Click [Import]{.button} to import the dataset into your Rguroo account.
+6. Click [Close]{.button} to exit the dialog.
+7. To view the dataset, double-click its name in the **Data** toolbox list.
 :::
 
 Chapter 1 discussed what a population, sample, parameter, and statistic are, as well as how to take different types of samples. Chapter 2 discussed ways to graphically display data. There was also a discussion of important characteristics: center, variations, distribution, outliers, and changing characteristics of the data over time. Distributions and outliers can be identified using graphical means. Finding the center and variation can be done using numerical methods that will be discussed in this chapter. Both graphical and numerical methods are part of a branch of statistics known as **descriptive statistics**. Later, descriptive statistics will be used to make decisions and/or estimate population parameters using methods that are part of the branch called **inferential statistics**.
@@ -58,7 +58,7 @@ Instead, we work with samples and calculate the **sample mean**, denoted by $\ba
 
 Suppose a vet wants to find the average weight of cats. The weights (in kg) of 144 cats are given in a dataset named [cats]{.data}. Find the mean and median of the weight of a cat.
 
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [cats]{.data}. @tbl-Cats displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-cats) that follows.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [cats]{.data}. @tbl-Cats displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-cats) that follows.
 :::
 
 ```{r cats5-data, echo = FALSE}
@@ -135,7 +135,7 @@ The median weight is 2.7 kg also. It appears the average weight of all cats in t
 
 Suppose you want to know if male cats weigh more than female cats. Looking at the variables, you notice that there is a variable for the sex of the cat. You can look at the weights of males and females separately.
 
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [cats]{.data}. @tbl-Cats displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-cats) that follows.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [cats]{.data}. @tbl-Cats displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-cats) that follows.
 :::
 ::::{.callout-tip .solution-callout collapse="true" icon=false}
 ## 🔎 Solution
@@ -181,7 +181,7 @@ There are many different summary statistics that can be found. An example is the
 
 Find the minimum and maximum values of cats weights.
 
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [cats]{.data}. @tbl-Cats displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-cats) that follows.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [cats]{.data}. @tbl-Cats displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-cats) that follows.
 :::
 
 ::::{.callout-tip .solution-callout collapse="true" icon=false}
@@ -404,14 +404,14 @@ c)  Which faculty member had the higher average evaluation?
 1.  Cholesterol levels were collected from patients a certain number of days after they had a heart attack and the first six rows of the data are shown in @tbl-Cholesterol. Find the mean and median for cholesterol levels 2 days after the heart attack.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [cholesterol]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [cholesterol]{.data}.
 :::
 
 ```{r cholesterol2-data,echo = FALSE}
 #| tbl-alt: "Table showing first 6 rows of Cholesterol dataset"
 #| label: tbl-Cholesterol
 #| tbl-cap: "Head of Cholesterol Levels of Patients After Heart Attack"
-Cholesterol<-read.csv( "https://krkozak.github.io/MAT160/cholesterol.csv") 
+Cholesterol<-read.csv( "FJK_datasets/cholesterol.csv") 
 knitr::kable(head(Cholesterol))
 ```
 
@@ -438,14 +438,14 @@ References Ryan, Joiner & Ryan, Jr, 1985
 2.  The lengths (in kilometers) of rivers on the South Island of New Zealand and what body of water they flow into are given in a dataset named [length]{.data}. The first six rows of this dataset are listed in @tbl-Length (Lee, 1994). Find the mean and median length of rivers that flow into the Pacific Ocean and the mean and median length of rivers that flow into the Tasman Sea.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [length]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [length]{.data}.
 :::
 
 ```{r length2-data, echo = FALSE}
 #| tbl-alt: "Table showing first 6 rows of Length dataset"
 #| label: tbl-Length
 #| tbl-cap: "Head of Length of New zealand rivers (km)"
-Length<-read.csv( "https://krkozak.github.io/MAT160/length.csv") 
+Length<-read.csv( "FJK_datasets/length.csv") 
 knitr::kable(head(Length))
 ```
 
@@ -470,14 +470,14 @@ References Lee, A. (1994). Data analysis: An introduction based on r. Auckland.
 3.  Print-O-Matic printing company's employees have salaries that are contained in a dataset named [pay]{.data}. The first six rows of these data are given in @tbl-Pay.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [pay]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [pay]{.data}.
 :::
 
 ```{r pay2-data, echo = FALSE}
 #| tbl-alt: "Table showing first 6 rows of Pay dataset"
 #| label: tbl-Pay
 #| tbl-cap: "Head of Salaries of Print-O-Matic Printing Company Employees"
-Pay<-read.csv( "https://krkozak.github.io/MAT160/pay.csv") 
+Pay<-read.csv( "FJK_datasets/pay.csv") 
 knitr::kable(head(Pay))
 ```
 
@@ -527,14 +527,14 @@ e.  If you were a platen worker, who believes that the employees need a raise, w
 4.  Print-O-Matic printing company spends specific amounts on fixed costs every month. These costs are listed in the dataset [cost]{.data}. The first six rows of the data are shown in @tbl-Cost.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [cost]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [cost]{.data}.
 :::
 
 ```{r cost-data, echo = FALSE}
 #| tbl-alt: "Table showing first 6 rows of Cost dataset"
 #| label: tbl-Cost
 #| tbl-cap: "Fixed Costs for Print-O-Matic Printing Company"
-Cost<-read.csv( "https://krkozak.github.io/MAT160/cost.csv") 
+Cost<-read.csv( "FJK_datasets/cost.csv") 
 knitr::kable(head(Cost))
 ```
 
@@ -603,7 +603,7 @@ The **range** of a set of data is the difference between the highest and lowest 
 
 Calculate the range of the body weight of cats.
 
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [cats]{.data}. @tbl-Cats displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-cats) that follows.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [cats]{.data}. @tbl-Cats displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-cats) that follows.
 :::
 
 :::{.callout-tip .solution-callout collapse="true" icon=false}
@@ -661,7 +661,7 @@ While understanding these formulas is important, in practice you'll typically us
 
 For the dataset [cats]{.data} find the variance and standard deviation for weight of cats. Then find the variance and standard deviation separated by sex of the cat.
 
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [cats]{.data}. @tbl-Cats displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-cats) that follows.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [cats]{.data}. @tbl-Cats displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-cats) that follows.
 :::
 
 ::::{.callout-tip .solution-callout collapse="true" icon=false}
@@ -743,7 +743,7 @@ knitr::include_graphics("images/chebyshev_rule.png")
 
 In the dataset [Tornado_OK]{.data}, the U.S. Weather Service has provided information about the total monthly/annual number of reported tornadoes in Oklahoma for the years 1950 to 2018 (US Department of Commerce & Noaa, 2016). Find the general interval that contains about 95% of the data.
 
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [Tornado_OK]{.data}. @tbl-Tornado displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-tornado) that follows.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [Tornado_OK]{.data}. @tbl-Tornado displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-tornado) that follows.
 :::
 
 ```{r tornado-data, echo = FALSE}
@@ -775,7 +775,7 @@ References The data was supplied by The U.S. Weather Service
 ::::{.callout-tip .solution-callout collapse="true" icon=false}
 ## 🔎 Solution
 
-Import the [Tornado_OK]{.data} dataset from the [Kozak]{.repo} repository into your Data toolbox on Rguroo using these [directions](#Importing-cats-to-Rguroo).
+Import the [Tornado_OK]{.data} dataset from the [stats with rguroo]{.repo} repository into your Data toolbox on Rguroo using these [directions](#Importing-cats-to-Rguroo).
 
 Variable: $x$ = number of [annual]{.var} tornadoes in Oklahoma
 
@@ -830,7 +830,7 @@ Using the tornado dataset from the previous [example](#exm-empirical-rule), wher
 a.  In 1974, there were 45 tornadoes in Oklahoma. Is this value unusual? Why or why not?
 b.  In 1999, there were 145 tornadoes in the Oklahoma. Is this value unusual? Why or why not?
 
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [Tornado_OK]{.data}. @tbl-Tornado displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-tornado) that follows.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [Tornado_OK]{.data}. @tbl-Tornado displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-tornado) that follows.
 :::
 
 ::::{.callout-tip .solution-callout collapse="true" icon=false}
@@ -901,7 +901,7 @@ a.  Which cat weighs more?
 b.  Which cat is heavier relative to other cats of the same sex?
 c.  Is either cat's weight unusual for its sex?
 
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [cats]{.data}. @tbl-Cats displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-cats).
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [cats]{.data}. @tbl-Cats displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-cats).
 :::
 
 ::::{.callout-tip .solution-callout collapse="true" icon=false}
@@ -935,7 +935,7 @@ This example shows why $z$-scores are useful. Comparing the raw weights suggests
 1.  Cholesterol levels were collected from patients certain days after they had a heart attack and are in @tbl-Cholesterol. Find the mean, median, range, variance, and standard deviation for cholesterol levels 2 days after the heart attack.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [cholesterol]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [cholesterol]{.data}.
 
 **Code book for Data Frame Cholesterol** is below @tbl-Cholesterol.
 :::
@@ -943,7 +943,7 @@ This example shows why $z$-scores are useful. Comparing the raw weights suggests
 2.  The lengths (in kilometers) of rivers on the South Island of New Zealand and what body of water they flow into are listed in @tbl-Length (Lee, 1994). Find the mean, median, range, variance, and standard deviation of the length of rivers that flow into the Pacific Ocean and the mean, median, range, variance, and standard deviation of the length of rivers that flow into the Tasman Sea. Compare and contrast the length of rivers that flow to the Pacific Ocean versus the ones that flow into the Tasman Sea using both measures of center and measures of variability.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [length]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [length]{.data}.
 
 **Code book for dataset Length** is below @tbl-Length.
 :::
@@ -951,7 +951,7 @@ This example shows why $z$-scores are useful. Comparing the raw weights suggests
 3.  Print-O-Matic printing company's employees have salaries that are contained in @tbl-Pay. Find the mean, median, range, variance, and standard deviation for the salaries of all employees.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [pay]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [pay]{.data}.
 
 **Code book for dataset Pay** below @tbl-Pay.
 :::
@@ -959,7 +959,7 @@ This example shows why $z$-scores are useful. Comparing the raw weights suggests
 4.  Print-O-Matic printing company spends specific amounts on fixed costs every month. The costs of those fixed costs are in @tbl-Cost. Find the mean, median, range, variance, and standard deviation for the fixed costs.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [cost]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [cost]{.data}.
 
 **Code book for Data frame Cost** is below @tbl-Cost.
 :::
@@ -967,14 +967,14 @@ This example shows why $z$-scores are useful. Comparing the raw weights suggests
 5.  The dataset Pulse @tbl-Pulse contains various variables about a person including their pulse rates before the subject exercised and after the subject ran in place for one minute. Create a dataset that contains only males, who drink alcohol, but do not smoke. Then compare the pulse before and the pulse after using the mean and standard deviation. Discuss whether pulse before or pulse after has a higher mean and larger spread. Create the new dataset and save as [pulse_males]{.data} by subsetting the [pulse]{.data} data using the steps described here. See @fig-subset-pulse for the Data Subset Dialog.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [pulse]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [pulse]{.data}.
 :::
 
 ```{r pulse-data, echo = FALSE}
 #| tbl-alt: "Table showing first 6 rows of Pulse dataset"
 #| label: tbl-Pulse
 #| tbl-cap: "Head of Pulse Rates of people Before and After Exercise"
-Pulse<-read.csv("https://krkozak.github.io/MAT160/pulse.csv")
+Pulse<-read.csv("FJK_datasets/pulse.csv")
 knitr::kable(head(Pulse))
 ```
 
@@ -1037,14 +1037,14 @@ knitr::kable(head(Males))
 7.  To determine if Reiki is an effective method for treating pain, a pilot study was carried out in which a certified second-degree Reiki therapist provided treatment to volunteers. Pain was measured using two scales — a visual analogue scale (VAS) and a Likert scale — immediately before and after the Reiki treatment (Olson & Hanson, 1997). The data are in @tbl-Reiki.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [Reiki_pain]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [Reiki_pain]{.data}.
 :::
 
 ```{r reiki-data, echo = FALSE}
 #| tbl-alt: "Table showing first 6 rows of Reiki dataset"
 #| label: tbl-Reiki
 #| tbl-cap: "Head of Pain Measurements Before and After Reiki Treatment"
-Reiki<- read.csv( "https://krkozak.github.io/MAT160/reki.csv") 
+Reiki<- read.csv("FJK_datasets/reiki.csv") 
 knitr::kable(head(Reiki))
 ```
 
@@ -1091,7 +1091,7 @@ Since pain was measured on the same individuals both before and after treatment,
 #| label: tbl-Newreiki
 #| tbl-cap: "Head of Pain Measurements Before and After Reiki Treatment with Difference column"
 Newreiki<-Reiki |>
-  mutate(vas.diff=vas.before-vas.after) 
+  mutate(vas.diff=VAS.before-VAS.after) 
 knitr::kable(head(Newreiki))
 ```
 
@@ -1104,14 +1104,14 @@ knitr::kable(head(Newreiki))
 
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [rainfall]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [rainfall]{.data}.
 :::
 
 ```{r rainfall-data, echo = FALSE}
 #| tbl-alt: "Table showing first 6 rows of Rainfall dataset"
 #| label: tbl-Rainfall
 #| tbl-cap: "Head of Yearly rainfall amounts in Sydney, Australia"
-Rainfall<-read.csv("https://krkozak.github.io/MAT160/rainfall.csv") 
+Rainfall<-read.csv("FJK_datasets/rainfall.csv") 
 knitr::kable(head(Rainfall))
 ```
 
@@ -1149,7 +1149,7 @@ References Rayner J.C.W. and Best D.J. (1989) Smooth tests of goodness of fit. O
     c.  Which student's pulse rate was higher relative to their own group? Is either pulse rate unusual? Explain.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [pulse]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [pulse]{.data}.
 
 **Code book for dataset Pulse** is below @tbl-Pulse.
 :::
@@ -1276,7 +1276,7 @@ If a boxplot is symmetric with long whiskers relative to the size of the box, th
 
 Find the five-number summary, the interquartile range ($IQR$), and draw a box-and-whiskers plot for the weight of cats @tbl-Cats.
 
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [cats]{.data}. @tbl-Cats displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-cats) that follows.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [cats]{.data}. @tbl-Cats displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-cats) that follows.
 :::
 
 ::::{.callout-tip .solution-callout collapse="true" icon=false}
@@ -1343,7 +1343,7 @@ There are no outliers since there are no dots outside of the fences.
 
 Find the five-number summary of the weights of cats separated by the sex of the cat. Then create a box plot of the weights of cats for each sex of the cat.
 
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [cats]{.data}. @tbl-Cats displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-cats) that follows.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [cats]{.data}. @tbl-Cats displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-cats) that follows.
 :::
 
 ::::{.callout-tip .solution-callout collapse="true" icon=false}
@@ -1401,13 +1401,13 @@ Notice that the weights of female cats has a median less than male cats, and in 
 
 The time (in 1/50 seconds) between successive pulses along a nerve fiber ("Time between nerve," 2013) are given in @tbl-Nerve.
 
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [nerve]{.data}. @tbl-Nerve displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-nerve) that follows.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this example is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [nerve]{.data}. @tbl-Nerve displays the first six rows of the dataset. A complete description of the variables is provided in the [dataset code book](#code-book-nerve) that follows.
 
 ```{r nerve-data, echo = FALSE}
 #| tbl-alt: "Table showing first 6 rows of Nerve dataset"
 #| label: tbl-Nerve
 #| tbl-cap: "Head of Successive pulses along a nerve fiber"
-Nerve<-read.csv( "https://krkozak.github.io/MAT160/Nerve_pulse.csv") 
+Nerve<-read.csv( "FJK_datasets/Nerve_pulse.csv") 
 knitr::kable(head(Nerve))
 ```
 
@@ -1493,7 +1493,7 @@ The boxplot reveals multiple high outliers above the upper fence. The IQR is Q3 
 5.  Cholesterol levels were collected from patients certain days after they had a heart attack and are in table @tbl-Cholesterol.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [cholesterol]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [cholesterol]{.data}.
 
 **Code book for Data Frame Cholesterol** below @tbl-Cholesterol.
 :::
@@ -1503,7 +1503,7 @@ Find the five-number summary and interquartile range (IQR) for the cholesterol l
 6.  The lengths (in kilometers) of rivers on the South Island of New Zealand and what body of water they flow into are listed in table @tbl-Length (Lee, 1994). Find the five-number summary and interquartile range (IQR) for the lengths of rivers that go to the Pacific Ocean and ones that go to the Tasman Sea, and draw a boxplot of both.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [length]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [length]{.data}.
 
 **Code book for dataset Length** below @tbl-Length.
 :::
@@ -1511,7 +1511,7 @@ Find the five-number summary and interquartile range (IQR) for the cholesterol l
 7.  Print-O-Matic printing company's employees have salaries that are contained in @tbl-Pay Find the five number summary and draw a boxplot for the salaries of all employees.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [pay]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [pay]{.data}.
 
 **Code book for dataset Pay** below @tbl-Pay.
 :::
@@ -1519,7 +1519,7 @@ Find the five-number summary and interquartile range (IQR) for the cholesterol l
 8.  The dataset Pulse @tbl-Pulse contains various variables about a person including their pulse rates before the subject exercised and after after the subject ran in place for one minute. Create a dataset that contains only people who drink alcohol, but do not smoke. Then find the five number summary and draw a boxplot for both males and females separately.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [pulse]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [pulse]{.data}.
 
 **Code book for dataset Pulse** below @tbl-Pulse.
 :::
@@ -1527,7 +1527,7 @@ Find the five-number summary and interquartile range (IQR) for the cholesterol l
 9.  To determine if Reiki is an effective method for treating pain, a pilot study was carried out where a certified second-degree Reiki therapist provided treatment on volunteers. Pain was measured using a visual analogue scale (VAS) and a Likert scale immediately before and after the Reiki treatment (Olson & Hanson, 1997) and the data is in @tbl-Reiki. Find the five number summary for both the before and after VAS scores and draw boxplots of before and after VAS scores. Compare and contrast the before and after VAS scores.
 
 ::: {tabindex="0" style="width:85%; margin:auto;"}
-![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [Kozak]{.repo}, with the dataset name [Reiki_pain]{.data}.
+![Rguroo dataset logo](Rguroo_Icons/Rguroo_repo_logo.png) The dataset for this exercise is available in the Rguroo dataset repository [stats with rguroo]{.repo}, with the dataset name [Reiki_pain]{.data}.
 
 **Code book for dataset Reiki** below @tbl-Reiki.
 :::
